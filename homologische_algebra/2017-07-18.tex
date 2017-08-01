@@ -1,0 +1,40 @@
+Ist
+\begin{equation*}
+  \begin{tikzcd}
+    0 \arrow{r}{}
+      & A \arrow{r}{f}
+      & B \arrow{r}{g}
+      & C \arrow{r}{}
+      & 0
+  \end{tikzcd}
+\end{equation*}
+exakt, so ist
+\begin{equation*}
+  \begin{tikzcd}[arrows=leftarrow]
+    ? \arrow{r}{}
+      & \Hom(A,G) \arrow{r}{f^*}
+      & \Hom(B,G) \arrow{r}{g^*}
+      & \Hom(C,G) \arrow{r}{}
+      & 0
+  \end{tikzcd}
+  \tag{$*$}\label{eqn:kes_unvollstaendig}
+\end{equation*}
+ist exakt, aber $f^*$ i.A.\ nicht surjektiv.
+Naheliegend könnte man~\eqref{eqn:kes_unvollstaendig} mit
+\begin{equation*}
+  \coker f^* := \Hom(A,G) / {\im f^*}
+\end{equation*}
+und
+\begin{equation*}
+  \nu\colon \Hom/A,G) \to \coker f^*
+\end{equation*}
+fortsetzen, was aber so aussieht, dass es von zu vielen Wahlen abhängt.
+\begin{defn}
+  Seien $A$ und $G$ abelsche Gruppen und $S(A)$ die Standardauflösung von $A$.
+  Dann nennt man
+  \begin{align*}
+    \Ext(A,G) &:= \coker i^* = \Hom(R,g) / {\im i^*}, \\
+    i^* & \colon \Hom(F,G) \to \Hom/R,G)
+  \end{align*}
+  das \emph{Extensionsprodukt} (kurz: Ext-Produkt) \emph{von $A$ und $G$}.
+\end{defn}

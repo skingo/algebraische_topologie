@@ -1,0 +1,67 @@
+
+\documentclass[parskip=half,a4paper]{scrartcl}
+
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+
+\usepackage{amsmath,amssymb,amsthm}
+
+\usepackage{microtype}
+
+\usepackage{enumerate}
+
+\usepackage{tikz}
+%\usetikzlibrary{cd}
+\usepackage{tikz-cd}
+
+\tikzset{%
+  >=stealth
+}
+%\tikzcdset{%
+  %arrow style=tikz,
+  %diagrams={>={Straight Barb}}
+  %%diagrams={>=stealth}
+%}
+
+\listfiles
+
+\newtheoremstyle{default}
+{3pt}% pace above
+{3pt}% Space below
+{}% Body font
+{}% Indent amount
+{\bfseries}% Theorem head font
+{.}% Punctuation after theorem head 
+{.5em}% Space after theorem head
+{\thmnumber{(#2)} \thmname{#1}\thmnote{ (#3)}}% Theorem head spec (can be left empty, meaning ‘normal’)
+\theoremstyle{default}
+\newtheorem{prop}{Proposition}[section]
+\newtheorem{lemma}[prop]{Lemma}
+\newtheorem{erinnerung}[prop]{Erinnerung}
+\newtheorem{kommentar}[prop]{Kommentar}
+\newtheorem{beispiel}[prop]{Beispiel}
+\newtheorem{zusatz}[prop]{Zusatz}
+\newtheorem{defn}[prop]{Definition}
+
+\title{Algebraische Topologie II ff}
+\author{Ingo Skupin}
+%\renewcommand*{\sectionformat}{\textrm\S \thesection\enskip}
+
+\input{macros.tex}
+
+\begin{document}
+
+\maketitle
+
+\clearpage
+
+%\renewcommand*{\thesection}{§\arabic{section}}
+
+\setcounter{section}{8}
+\section{Homologische Algebra}
+
+\input{homologische_algebra/2017-07-13.tex}
+
+\input{homologische_algebra/2017-07-18.tex}
+\end{document}

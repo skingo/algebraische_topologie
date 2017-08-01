@@ -1,0 +1,212 @@
+\setcounter{prop}{3}
+\begin{prop}
+  Sei $G$ eine abelsche Gruppe und
+  \begin{equation*}
+    \begin{tikzcd}
+      A \arrow{r}{f}  & B
+        \arrow{r}{g}  & C
+        \arrow{r}{}   & 0
+    \end{tikzcd}
+  \end{equation*}
+  eine exakte Sequenz abelscher Gruppen. Dann is auch die induzierte Sequenz
+  \begin{equation*}
+    \begin{tikzcd}
+      \Hom(A,G) & \Hom(B,G) \arrow{l}{f^*}
+                & \Hom(C,G) \arrow{l}{g^*}
+                & 0         \arrow{l}{}
+    \end{tikzcd}
+  \end{equation*}
+  exakt. $\Hom(-,G)$ ist \emph{links-exakt}.
+\end{prop}
+\begin{proof}
+  \begin{enumerate}[(i)]
+    \item 
+      Exaktheit bei $\Hom(C,G)$.
+      Zeige $g^*$ ist injektiv.
+      Sei $\varphi \in \Hom(C,G)$ mit $g^*(\varphi) = \varphi \circ g  = 0$.
+      \begin{align*}
+        \begin{tikzcd}[ampersand replacement=\&]
+          B \arrow{rd}{0} \arrow[twoheadrightarrow]{r}{g}  \& C \arrow{d}{\varphi} \\
+                                        \& G
+        \end{tikzcd}
+        & \qquad \implies \varphi = 0
+      \end{align*}
+      %\begin{equation*}
+        %\begin{tikzcd}
+          %B \arrow{rd}{0} \arrow[twoheadrightarrow]{r}{g}  & C \arrow{d}{\varphi} \\
+                                        %& G
+        %\end{tikzcd}
+      %\end{equation*}
+      %Dann folgt $\varphi = 0$.
+    \item
+      Exaktheit bei $\Hom(B,G)$:
+      \begin{enumerate}[(a)]
+        \item 
+          $\im g^* \subseteq \ker f^*$, also $f^* \circ g^* = 0$.
+          Aber $f^* \circ g^* = {(g \circ f)}^* = 0^* = 0$.
+        \item
+          $\ker f^* \subseteq \im g^*$:
+          Sei $\varphi \colon B \to G \in \ker f^*$, $0 = f^*(\varphi) = \varphi \circ f$.
+          \begin{equation*}
+            \begin{tikzcd}
+              B \arrow[twoheadrightarrow]{r}{g}
+                \arrow[twoheadrightarrow]{rd}{\pi}
+                \arrow{d}{\phi}
+                & C \\
+              G & B/{\ker g}  \arrow{u}{\overline g}
+                              \arrow{l}{\overline \varphi}
+            \end{tikzcd}
+          \end{equation*}
+          Dann ist $\ker g = \im f \subseteq \ker \varphi$ und daraus folgt die eindeutige Existenz eines $\overline \varphi \colon B/{\ker g} \to G$ mit $\overline \varphi \circ \pi = \varphi$.
+
+          Ebenso induziert $g$ einen Morphismus $\overline g\colon B/{\ker g} \to C$ mit $\overline g \circ \pi = g$.
+          Außerdem ist $\overline g$ injektiv und surjektiv, also ein Isomorphismus und somit
+          \begin{equation*}
+            \varphi = \overline \varphi \circ \pi = \overline \varphi \circ {\overline g}^{-1} \circ g = g^* (\overline \varphi \circ {\overline g}^{-1}).
+            \end{equation*}
+      \end{enumerate}
+  \end{enumerate}
+\end{proof}
+\begin{kommentar}
+  Man sagt, dass der kontravariante Funktor $\Hom(-,G) =: F$ links-exakt ist.
+  Beachte, dass $F$ allerdings i.A.\ nicht exakte Sequenzen
+  \begin{equation*}
+    \begin{tikzcd}
+      0 \arrow{r}{}   & A
+        \arrow{r}{f}  & B
+        \arrow{r}{g}  & C
+        \arrow{r}{}   & 0
+    \end{tikzcd}
+  \end{equation*}
+  in exakte Sequenzen überführt.
+  \begin{equation*}
+    \begin{tikzcd}
+      0         & \Hom(A,G) \arrow{l}{}
+                & \Hom(B,G) \arrow{l}{f^*}
+                & \Hom(C,G) \arrow{l}{g^*}
+                & 0         \arrow{l}{}
+    \end{tikzcd}
+  \end{equation*}
+  \begin{tikz}[overlay]
+    \draw[dashed] (3.1,.65) rectangle +(2.2,1);
+  \end{tikz}
+  ist also i.A.\ nicht exakt.
+\end{kommentar}
+\begin{erinnerung}
+  eine exakte Sequenz abelscher Gruppen
+  \begin{equation*}
+    \begin{tikzcd}
+      0 \arrow{r}{}
+        & A \arrow{r}{f}
+        & B \arrow[bend left]{r}{\theta}
+        & C \arrow[bend left]{l}{r}
+            \arrow[loop above]{r}{id_C}
+            \arrow{r}{}
+        & 0
+    \end{tikzcd}
+  \end{equation*}
+  mit $g \circ r = id_C$ \emph{spaltet}.
+  Äquivalent:
+  \begin{equation*}
+    \begin{tikzcd}
+      0 \arrow{r}{}
+        & A \arrow[bend left]{r}{f}
+            \arrow[loop above]{r}{id_A}
+        & B \arrow[bend left]{l}{l}
+            \arrow{r}{g}
+        & C \arrow{r}{}
+        & 0
+    \end{tikzcd}
+  \end{equation*}
+  mit $l \circ f = id_A$.
+
+  In diesem Fall gilt $B \cong A \oplus C$.
+\end{erinnerung}
+\begin{zusatz}
+  Ist
+  \begin{equation*}
+    \begin{tikzcd}
+      0 \arrow{r}{}   & A
+        \arrow{r}{f}  & B
+        \arrow{r}{g}  & C
+        \arrow{r}{}   & 0
+    \end{tikzcd}
+  \end{equation*}
+  exakt und spaltet, so ist auch
+  \begin{equation*}
+    \begin{tikzcd}
+      0         & \Hom(A,G) \arrow{l}{}
+                & \Hom(B,G) \arrow{l}{f^*}
+                & \Hom(C,G) \arrow{l}{g^*}
+                & 0         \arrow{l}{}
+    \end{tikzcd}
+    \tag{$*$}\label{eqn:hom_spaltung}
+  \end{equation*}
+  exakt und spaltet.
+\end{zusatz}
+\begin{proof}
+  ist $l \colon B \to A$ linksinvers zu $f$, $l \circ f = id_A$, so ist $id_{\Hom(A,G)} = id_{A}^* = {(l \circ f)}^* = f^* \circ l^*$, also ist $f^*$ surjektiv.
+  Außerdem ist nun $l^*$ offenbar rechtsinvers zu $f^*$, also eine Spaltung von~\eqref{eqn:hom_spaltung}.
+\end{proof}
+\begin{defn}
+  Sei $A$ eine abelsche Gruppe.
+  Dann heißt eine kure exakte Sequenz
+  \begin{equation*}
+    \begin{tikzcd}
+      0 \arrow{r}{}
+        & R \arrow{r}{\alpha}
+        & F \arrow{r}{\beta}
+        & F \arrow{r}{}
+        & 0
+    \end{tikzcd}
+  \end{equation*}
+  eine \emph{freie Auflösung}, wenn $F$ eine frei abelsche Gruppe ist.
+\end{defn}
+\begin{kommentar}
+  Als Untergruppe (vie $\alpha$) von $F$ ist $R$ selbst eine frei abelsche Gruppe.
+  Ist ${(e_i)}_{i \in I}$ eine Basis von $F$, so ist $\varepsilon = {(\beta(e_i))}_{i \in I}$ ein Erzeugendensystem von $A$.
+  Und ist ${(r_j)}_{j \in J}$ eine Basis von $R$, so erzeugt ${(\alpha(r_j))}_{j \in J}$ die Relationen von $\varepsilon$ (\emph{Relationen auf $\varepsilon$}: $f \in F$ mit $\beta(f) = 0$).
+\end{kommentar}
+\begin{beispiel}
+  \begin{enumerate}
+    \item 
+      ist $A$ selbst frei, s okann man $F = A$ und $\beta = id_A$ wählen (dann $R = \triv$).
+    \item
+      Ist $A = \Z_4$, so ist
+      \begin{equation*}
+        \begin{tikzcd}
+          0 \arrow{r}{}
+            & \Z \arrow{r}{\cdot 2}
+            & \Z \arrow{r}{\pi}
+            & \Z_2 \arrow {r}{}
+            & 0
+        \end{tikzcd}
+      \end{equation*}
+      eine freie Auflösung.
+    \item
+      Ist $A$ beliebig, so betrachte $A$ als menge und setze $F = \F(A)$ und $\pi\colon F \to A$ der Homorphismus, der auf der Basis ${(i(a))}_{a \in A}$ durch $\pi(i(a)) = a$ gegeben ist.
+      Natürlich ist dann $\pi(2 \cdot a) = \pi(1\cdot (2a)) = 2a$ und $\pi(0_A) = \pi(0_{\F(A)}) = 0_A$.
+      Ist $R = \ker \pi$ und $j\colon R \hookrightarrow F$ die Inklusion, so ist
+      \begin{equation*}
+        \begin{tikzcd}
+          0 \arrow{r}{}
+            & R \arrow{r}{j} 
+            & F \arrow{r}{\pi}
+            & A \arrow{r}{}
+            & 0
+        \end{tikzcd}
+      \end{equation*}
+      offenbar exakt (weil $\pi$ surjektiv ist).
+      Das ist die \emph{Standardauflösung} $S(A)$ von $A$:
+      \begin{equation*}
+        \begin{tikzcd}
+          S(A):
+          0 \arrow{r}{}
+            & R \arrow{r}{j} 
+            & F \arrow{r}{\pi}
+            & A \arrow{r}{}
+            & 0
+        \end{tikzcd}
+      \end{equation*}
+  \end{enumerate}
+\end{beispiel}

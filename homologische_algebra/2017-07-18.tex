@@ -38,3 +38,17 @@ fortsetzen, was aber so aussieht, dass es von zu vielen Wahlen abhängt.
   \end{align*}
   das \emph{Extensionsprodukt} (kurz: Ext-Produkt) \emph{von $A$ und $G$}.
 \end{defn}
+\begin{kommentar}
+  Für die Standardauflösung $S(A): \begin{tikzcd} 0 \arrow{r}{} &R\arrow{r}{i} &F\arrow{r}{\pi} &A\arrow{r}{}&0\end{tikzcd}$ von $A$ wird dann also mit der kanonischen Projektion $\nu\colon \Hom(R,G) \to \Ext(A,G)$ die folgende Sequenz exakt:
+  \begin{equation*}
+    \begin{tikzcd}
+      0 \arrow{r}{}
+        & \Hom(C,G) \arrow{r}{g^*}
+        & \Hom(B,G) \arrow{r}{f^*}
+        & \Hom(A,G) \arrow{r}{\nu}
+        & \Ext(A,G) \arrow{r}{}
+        & 0
+    \end{tikzcd}
+  \end{equation*}
+\end{kommentar}
+\emph{Frage}: Wie ist das mit anderen freien Auflösungen?

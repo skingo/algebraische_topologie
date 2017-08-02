@@ -1,0 +1,3 @@
+
+silent! nunmap <leader>ll
+nnoremap <buffer> <leader>ll :MMake<CR>

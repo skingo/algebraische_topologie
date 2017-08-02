@@ -52,3 +52,128 @@ fortsetzen, was aber so aussieht, dass es von zu vielen Wahlen abhängt.
   \end{equation*}
 \end{kommentar}
 \emph{Frage}: Wie ist das mit anderen freien Auflösungen?
+\begin{lemma}
+  Seien $A$ und $A'$ abelsche Gruppen und
+  \begin{equation*}
+    \begin{tikzcd}[row sep=tiny]
+      S: 0  \arrow{r}{}  & R \arrow{r}{f}  & F \arrow{r}{g}  & A \arrow{r}{} & 0 \\
+      S': 0 \arrow{r}{}  & R \arrow{r}{f'} & F \arrow{r}{g'} & A \arrow{r}{} & 0
+    \end{tikzcd}
+  \end{equation*}
+  freie Auflösungen sowie $h\colon A \to A'$ ein Homomorphismus.
+  \begin{equation*}
+    \begin{tikzcd}
+      0 \arrow{r}{} & R   \arrow{d}{\alpha}
+                          \arrow{r}{f}  & F   \arrow{d}{\beta}
+                                              \arrow{r}{g}  & A   \arrow{d}{h}
+                                                                  \arrow{r}{} & 0 \\
+      0 \arrow{r}{} & R'  \arrow{r}{f'} & F'  \arrow{r}{g'} & A'  \arrow{r}{} & 0 
+    \end{tikzcd}
+    \tag{$*$}\label{eqn:frei_aufl_hom}
+  \end{equation*}
+  \begin{enumerate}[(a)]
+    \item 
+      Dann existieren Homomorphismen $\alpha \colon R \to R'$ und $\beta \colon F \to F'$, die das Diagramm~\eqref{eqn:frei_aufl_hom} kommutieren lassen.
+      \begin{equation*}
+        \begin{tikzcd}
+      0 \arrow{r}{} & R   \arrow[swap]{d}{\tilde\alpha - \alpha}
+                          \arrow{r}{f}  & F   \arrow{d}{\tilde\beta - \beta}
+                                              \arrow{dl}{\varphi}
+                                              \arrow{r}{g}  & A   \arrow{d}{h-h = 0}
+                                                                  \arrow{r}{} & 0 \\
+      0 \arrow{r}{} & R'  \arrow[swap]{r}{f'} & F'  \arrow{r}{g'} & A'  \arrow{r}{} & 0 
+        \end{tikzcd}
+        \tag{$**$}\label{eqn:frei_aufl_homotopie}
+      \end{equation*}
+    \item
+      Sind $\tilde\beta \colon F \to F'$ und $\tilde\alpha \colon R \to R'$ weitere Homomorphismen, die~\eqref{eqn:frei_aufl_hom} kommutieren lassen, so existiert ein $\varphi \colon F \to R'$ mit
+      \begin{equation*}
+        f' \circ \varphi = \tilde\beta - \beta, \qquad \varphi \circ f = \tilde\alpha - \alpha.
+      \end{equation*}
+  \end{enumerate}
+\end{lemma}
+\begin{proof}
+  \begin{enumerate}[(a)]
+    \item 
+      Sei ${(e_i)}_{i \in I}$ eine Basis von $F$.
+      Betrachte dann $h \circ g (e_i) \in A'$.
+      Da $f'$ surjektiv ist, existiert $x_i \in F'$ mit $f'(x_i) = h \circ g(e_i)$.
+      Definiere dann $\beta \colon F \to F'$ durch $\beta(e_i) := x_i$.
+      Dann gilt für alle $i \in I$:
+      \begin{equation*}
+        g' \circ \beta(e_i) = g'(x_i) = h \circ g(e_i)
+      \end{equation*}
+      und somit $g' \circ \beta = h \circ g$.
+
+      Für alle $x \in R$ ist
+      \begin{align*}
+        g' \circ (\beta \circ f) (x)
+          & = (g' \circ \beta) \circ f (x) \\
+          & = h \circ \underset{=0}{\underbrace{g \circ f(x)}}
+      \end{align*}
+      und somit $\im (\beta \circ f) \subseteq  \ker g' = \im f'$.
+      Bezeichne mit $f'\colon R' \to \im f'$ auch den Homomorphismus $f'$, wenn man der Wertebereich auf $\im f'$ einschränkt.
+      Dann ist (dieses) $f'$ ein Isomorphismus, da $f'$ injektiv und (nun auch) surjektiv ist.
+      Setze dann
+      \[
+        \alpha \colon R \to R',\quad \alpha := {(f')}^{-1} \circ \beta \circ f.
+      \]
+      Dann ist offenbar
+      \begin{equation*}
+        f' \circ \alpha = \beta \circ f.
+      \end{equation*}
+    \item
+      Für  alle $x \in F$ is
+      \begin{equation*}
+        g' \circ (\tilde\beta - \beta) (x) = (g' \circ \tilde \beta - g' \circ \beta) (x) = h\circ g(x) - h \circ g(x) = 0
+      \end{equation*}
+      und somit $\im (\tilde\beta - \beta) \subseteq \ker g' = \im f'$.
+      Setze daher $\varphi \colon F \to R'$ mit $\varphi := {(f')}^{-1} \circ (\tilde \beta - \beta)$, dann gilt $f' \circ \varphi = \tilde \beta - \beta$.
+      Es ist aber auch:
+      \begin{align*}
+        f' \circ (\tilde\alpha - \alpha)
+          & = f' \circ \tilde \alpha - f' \circ \alpha \\
+          & = \tilde \beta \circ f - \beta \circ f \\
+          & = (\tilde \beta - \beta) \circ f \\
+          & = f' \circ \varphi \circ f.
+      \end{align*}
+      Da $f'$ injektiv ist, folgt $\tilde \alpha - \alpha = \varphi \circ f$.
+  \end{enumerate}
+\end{proof}
+\begin{prop}
+  Seien $A$, $A'$ abelsche Gruppen, $S$ und $S'$ freie Auflösungen von $A$ und $A'$,
+  \begin{equation*}
+    \begin{tikzcd}
+      S:\,0 \arrow{r}{} & R   \arrow{d}{f}
+                              \arrow{r}{j}  & F   \arrow{d}{}
+                                                  \arrow{r}{}   & A   \arrow{d}{h}
+                                                                      \arrow{r}{} & 0, \\
+      S': 0 \arrow{r}{} & R'  \arrow{r}{j'} & F'  \arrow{r}{}   & A'  \arrow{r}{} & 0,
+    \end{tikzcd}
+  \end{equation*}
+  und sei $h\colon A \to A'$ Homomorphismus.
+  Dann gibt es genau einen Homomorphismus
+  \begin{equation*}
+    \Phi(h;S,S') \colon \coker {(j')}^* \to \coker j^*,
+  \end{equation*}
+  sodass gilt: Sind $g \colon F \to F'$ und $f \colon R \to R'$ Homomorphismen derart, dass $(f,g,h) \colon S \to SÄ$ Homomorphismus zwischen freien Auflösungen ist, d.h.~\eqref{eqn:frei_aufl_hom} kommutiert, so kommutiert auch (für jede abelsche Gruppe $G$):
+  \begin{equation*}
+    \begin{tikzcd}
+      0 \arrow{r}{}   & \Hom(A,G)   \arrow{r}{}   & \Hom(F,G) \arrow{r}{j^*}        & \Hom(R,G) \arrow{r}{\nu}  & \coker j^* \arrow{r}{}      & 0 \\
+      0 \arrow{r}{}   & \Hom(A',G)  \arrow{u}{h^*}
+                                    \arrow{r}{}   & \Hom(F',G)\arrow{u}{g^*}
+                                                              \arrow{r}{{(j')}^*}  & \Hom(R',G) \arrow{u}{f^*}
+                                                                                                \arrow[swap]{ul}{\alpha^*}
+                                                                                                \arrow{r}{\nu} & \coker {(j')}^* \arrow{u}{\Phi}
+                                                                                                                              \arrow{r}{} & 0
+    \end{tikzcd}
+  \end{equation*}
+\end{prop}
+\begin{kommentar}
+  Das Besondere ist nicht so sher die Existenz und Eindeutigkeit von $\Phi$, denn es gibt nur einen Kandidaten
+  \begin{equation*}
+    \Phi([\varphi]) = [f^*(\varphi)]  \qquad \text{für } \varphi \in \Hom(R',G), 
+  \end{equation*}
+  sondern mehr die Unabhängigkeit von $f$ (und $g$).
+\end{kommentar}
+

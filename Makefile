@@ -3,8 +3,9 @@ MODE = batchmode
 TEX = pdflatex -synctex=1 -interaction=$(MODE)
 
 HOMALGFILES=$(wildcard homologische_algebra/2017-*.tex)
+COHOMFILES=$(wildcard cohomologie/2017-*.tex)
 
-FILES=$(HOMALGFILES)
+FILES=macros.tex $(HOMALGFILES) $(COHOMFILES)
 
 %.pdf: %.tex
 	$(TEX) $<

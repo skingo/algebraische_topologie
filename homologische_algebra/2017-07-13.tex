@@ -8,7 +8,7 @@
         \arrow{r}{}   & 0
     \end{tikzcd}
   \end{equation*}
-  eine exakte Sequenz abelscher Gruppen. Dann is auch die induzierte Sequenz
+  eine exakte Sequenz abelscher Gruppen. Dann ist auch die induzierte Sequenz
   \begin{equation*}
     \begin{tikzcd}
       \Hom(A,G) & \Hom(B,G) \arrow{l}{f^*}
@@ -100,25 +100,25 @@
         & A \arrow{r}{f}
         & B \arrow[bend left]{r}{\theta}
         & C \arrow[bend left]{l}{r}
-            \arrow[loop above]{r}{id_C}
+            \arrow[loop above]{r}{\id_C}
             \arrow{r}{}
         & 0
     \end{tikzcd}
   \end{equation*}
-  mit $g \circ r = id_C$ \emph{spaltet}.
+  mit $g \circ r = \id_C$ \emph{spaltet}.
   Äquivalent:
   \begin{equation*}
     \begin{tikzcd}
       0 \arrow{r}{}
         & A \arrow[bend left]{r}{f}
-            \arrow[loop above]{r}{id_A}
+            \arrow[loop above]{r}{\id_A}
         & B \arrow[bend left]{l}{l}
             \arrow{r}{g}
         & C \arrow{r}{}
         & 0
     \end{tikzcd}
   \end{equation*}
-  mit $l \circ f = id_A$.
+  mit $l \circ f = \id_A$.
 
   In diesem Fall gilt $B \cong A \oplus C$.
 \end{erinnerung}
@@ -145,7 +145,7 @@
   exakt und spaltet.
 \end{zusatz}
 \begin{proof}
-  ist $l \colon B \to A$ linksinvers zu $f$, $l \circ f = id_A$, so ist $id_{\Hom(A,G)} = id_{A}^* = {(l \circ f)}^* = f^* \circ l^*$, also ist $f^*$ surjektiv.
+  ist $l \colon B \to A$ linksinvers zu $f$, $l \circ f = \id_A$, so ist $\id_{\Hom(A,G)} = \id_{A}^* = {(l \circ f)}^* = f^* \circ l^*$, also ist $f^*$ surjektiv.
   Außerdem ist nun $l^*$ offenbar rechtsinvers zu $f^*$, also eine Spaltung von~\eqref{eqn:hom_spaltung}.
 \end{proof}
 \begin{defn}
@@ -163,14 +163,14 @@
   eine \emph{freie Auflösung}, wenn $F$ eine frei abelsche Gruppe ist.
 \end{defn}
 \begin{kommentar}
-  Als Untergruppe (vie $\alpha$) von $F$ ist $R$ selbst eine frei abelsche Gruppe.
+  Als Untergruppe (via $\alpha$) von $F$ ist $R$ selbst eine frei abelsche Gruppe.
   Ist ${(e_i)}_{i \in I}$ eine Basis von $F$, so ist $\varepsilon = {(\beta(e_i))}_{i \in I}$ ein Erzeugendensystem von $A$.
   Und ist ${(r_j)}_{j \in J}$ eine Basis von $R$, so erzeugt ${(\alpha(r_j))}_{j \in J}$ die Relationen von $\varepsilon$ (\emph{Relationen auf $\varepsilon$}: $f \in F$ mit $\beta(f) = 0$).
 \end{kommentar}
 \begin{beispiel}
   \begin{enumerate}
     \item 
-      ist $A$ selbst frei, s okann man $F = A$ und $\beta = id_A$ wählen (dann $R = \triv$).
+      ist $A$ selbst frei, so kann man $F = A$ und $\beta = \id_A$ wählen (dann $R = \triv$).
     \item
       Ist $A = \Z_4$, so ist
       \begin{equation*}
@@ -184,7 +184,7 @@
       \end{equation*}
       eine freie Auflösung.
     \item
-      Ist $A$ beliebig, so betrachte $A$ als menge und setze $F = \F(A)$ und $\pi\colon F \to A$ der Homorphismus, der auf der Basis ${(i(a))}_{a \in A}$ durch $\pi(i(a)) = a$ gegeben ist.
+      Ist $A$ beliebig, so betrachte $A$ als menge und setze $F = \F(A)$ und $\pi\colon F \to A$ der Homomorphismus, der auf der Basis ${(i(a))}_{a \in A}$ durch $\pi(i(a)) = a$ gegeben ist.
       Natürlich ist dann $\pi(2 \cdot a) = \pi(1\cdot (2a)) = 2a$ und $\pi(0_A) = \pi(0_{\F(A)}) = 0_A$.
       Ist $R = \ker \pi$ und $j\colon R \hookrightarrow F$ die Inklusion, so ist
       \begin{equation*}
@@ -200,7 +200,7 @@
       Das ist die \emph{Standardauflösung} $S(A)$ von $A$:
       \begin{equation*}
         \begin{tikzcd}
-          S(A):
+          S(A)\colon
           0 \arrow{r}{}
             & R \arrow{r}{j} 
             & F \arrow{r}{\pi}

@@ -6,10 +6,14 @@
 \usepackage[ngerman]{babel}
 
 \usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
 
 \usepackage{microtype}
 
 \usepackage{enumerate}
+
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\renewcommand{\labelenumii}{(\roman{enumii})}
 
 \usepackage{tikz}
 %\usetikzlibrary{cd}
@@ -24,7 +28,8 @@
   %%diagrams={>=stealth}
 %}
 
-\listfiles
+%\listfiles
+\usepackage{todonotes}
 
 \newtheoremstyle{default}
 {3pt}% pace above
@@ -40,6 +45,7 @@
 \newtheorem{lemma}[prop]{Lemma}
 \newtheorem{erinnerung}[prop]{Erinnerung}
 \newtheorem{kommentar}[prop]{Kommentar}
+\newtheorem{korollar}[prop]{Korollar}
 \newtheorem{beispiel}[prop]{Beispiel}
 \newtheorem{zusatz}[prop]{Zusatz}
 \newtheorem{defn}[prop]{Definition}
@@ -64,4 +70,10 @@
 \input{homologische_algebra/2017-07-13.tex}
 
 \input{homologische_algebra/2017-07-18.tex}
+
+\input{homologische_algebra/2017-07-20.tex}
+
+\section{Cohomologie}
+
+\input{cohomologie/2017-07-20.tex}
 \end{document}

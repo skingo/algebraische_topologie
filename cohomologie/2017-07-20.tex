@@ -1,0 +1,97 @@
+\begin{defn}
+  Ein \emph{Cokettenkomplex} $(C,\delta)$ besteht aus einer Familie ${(C^k)}_{m \in \Z}$ abelscher Gruppen und Homomorphismen (\emph{Corandoperatoren}) $\delta^k\colon C^k \to C^{k+1}$ mit $\delta^{k+1} \circ \delta^k = 0$ für alle $k \in \Z$.
+\end{defn}
+\begin{kommentar}
+  \begin{enumerate}
+    \item 
+      Setzt man für einen Cokettenkomplex $( (C^k), (\delta^k))$
+      \begin{equation*}
+        C_{-k} := C^k, \quad \del_k\colon C_k \to C_{k-1}, \del_k := \delta^{-k},
+      \end{equation*}
+      so erhält man einen Kettenkomplex $( (C_k), (\del_k) )$ und umgekehrt.
+      Auf diese übertragen sich alle Konzepte der Kettenkomplexe auf solche von Cokettenkomplexen, z.B.:
+      \begin{enumerate}[(i)]
+        \item 
+          Es heißen die Elemente von $C^k$ \emph{Coketten}, die Elemente von
+          \begin{equation*}
+            Z^k := \ker \delta^k \subseteq C^k
+          \end{equation*}
+          \emph{Cozyklen} und die Elemente von
+          \begin{equation*}
+            B^k := \im \delta^{^k-1} \subseteq C^k
+          \end{equation*}
+          \emph{Coränder} und wegen $\delta^{\circ 2} = 0$ ist $B^k \subseteq  Z^k$.
+        \item
+          Man nennt $H^k(C) := Z^k/{B^k}$ die $k$-te \emph{Cohomologiegruppe} von $(C,\delta)$ und ihre Elemente \emph{Cohomologieklassen}.
+        \item
+          Für zwei Cokettenkomplexe $(C,\delta)$ und $(C',\delta')$ heißt die Familie von Homomorphismen $f = {(f^k\colon C^k \to {C'}^k)}_{k \in \Z}$ eine \emph{Cokettenabbildung}, falls
+          \begin{equation*}
+            {\delta'}^k \circ f^k = f^{k+1} \circ \delta^k \quad \text{für alle $k \in \Z$}
+          \end{equation*}
+          ist.
+          Eine solche induziert dann einen Homomorphismus
+          \begin{align*}
+            f_{*,k}\colon H^k(C) & \to H^k(C') \\
+            [\alpha] & \mapsto [f^k(\alpha)] \qquad \text{für alle $\alpha \in Z^k$}
+          \end{align*}
+        \item
+          Eine Familie von Homomorphismen $D = {(D^k \colon C^k \to {(C')}^{k-1})}_{k \in \Z}$ heißt eine \emph{Coketten-Homotopie von $f$ nach $g$} für zwei Cokettenabbildungen $f,g \colon C \to C'$, wenn für alle $k \in \Z$ gilt:
+          \begin{equation*}
+            \delta^{k-1} \circ D^k + D^{k+1} \circ \delta^k = g^k - f^k.
+          \end{equation*}
+      \end{enumerate}
+    \item
+      Weiter übertragen sich Resultate über Kettenkomplexe, z.B.\
+      \begin{enumerate}
+        \item 
+          Ist
+          \begin{equation*}
+            \begin{tikzcd}
+              0 \arrow{r}{} & C' \arrow{r}{f} & C \arrow{r}{g}  & C'' \arrow{r}{} & 0
+            \end{tikzcd}
+          \end{equation*}
+          kurze exakte Sequenz von Cokettenkomplexen, so existiert ein natürlicher Homomorphismus (sogar eine natürliche Transformation)
+          \begin{equation*}
+            \delta^k_*\colon H^k(C'') \to H^{k+1}(C'),
+          \end{equation*}
+          sodass folgende \emph{lange Cohomologiesequenz} exakt wird:
+          \begin{equation*}
+            \begin{tikzcd}
+              \dotsb \arrow{r}{}  & H^k(C') \arrow{r}{f^*}  & H^k(C) \arrow{r}{g^*} & H^k(C'') \arrow{r}{\delta^k_*}  & H^{k+1}(C') \arrow{r}{} & \dotsb
+            \end{tikzcd}
+          \end{equation*}
+        \item
+          Induziert für zwei Teilcokomplexe $C,C'' \subseteq C$ die Inklusion $i\colon C' + C'' \to C$ einen Isomorphismus in der Cohomologie
+          \begin{equation*}
+            i_*\colon H(C' + C'') \overset{\cong}{\longrightarrow} H(C),
+            %i_*\colon H(C' + C'') \xrightarrow{\cong} H(C),
+          \end{equation*}
+          dann heißt $(C',C'')$ ein \emph{Ausschneidungspaar} von $C$ und man erhält eine exakte Sequenz (die Maier-Vietoris-Sequenz)
+          \begin{equation*}
+            \begin{tikzcd}[column sep=small]
+              \dotsb \arrow{r}{}  & H^k(C' \cap C'') \arrow{r}{\mu}  & H^k(C') \oplus H^k(C'') \arrow{r}{\nu} & H^k(C) \arrow{r}{\Delta}  & H^{k+1}(C' \cap C'') \arrow{r}{} & \dotsb
+            \end{tikzcd}
+          \end{equation*}
+          wobei $\mu$, $\nu$ und $\Delta$ entsprechend definiert werden.
+      \end{enumerate}
+  \end{enumerate}
+\end{kommentar}
+\begin{beispiel}[wichtig]
+  Sei nun ${( C_k, \del_k )}_{k \in \Z}$ eine Kettenkomplex
+  \begin{equation*}
+    \begin{tikzcd}
+      \dotsb \arrow{r}{}  & C_{k+1} \arrow[bend right]{rr}{0}
+                            \arrow{r}{\del_{k+1}}     & C_{k} \arrow{r}{\del_k} & C_{k-1} \arrow{r}{} & \dotsb
+    \end{tikzcd}
+  \end{equation*}
+  und $G$ eine feste abelsche Gruppe.
+  Durch Anwenden von $\Hom(-,G)$ erhält man dann den \emph{zugehörigen Cokettenkomplex ${(C^k,\delta^k)}_{k \in \Z}$ mit Koeffizienten in $G$} durch
+  \begin{align*}
+    C^k & := \Hom(C_k,G) \\
+    \delta^k \colon & C^k \to C^{k+1}, \ \delta^k := \del_{k+1}^*
+  \end{align*}
+  Weil $\Hom(_,G)$ funktoriell ist, ist $(C^k,\delta^k)$ tatsächlich ein Cokettenkomplex,
+  \begin{equation*}
+    \delta^{k+1} \circ \delta^k = \del_{k+2}^* \circ \del_{k+1}^* = {(\del_{k+1} \circ \del_{k+2})}^* = 0^* = 0.
+  \end{equation*}
+\end{beispiel}

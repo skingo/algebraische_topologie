@@ -1,0 +1,132 @@
+\begin{kommentar}
+  \begin{enumerate}[(a)]
+    \item 
+      Ist $h\colon A \to A'$ Isomorphismus, so ist
+      \begin{equation*}
+        \Phi(h;S,S')\colon \coker {(j')}^* \to \coker j^*
+      \end{equation*}
+      ebenfalls Isomorphismus, denn $\Phi(h^{-1};S',S) = {\Phi(h;S,S')}^{-1}$.
+    \item
+      Ist insbesondere $S(A)$ die Standardauflösung von $A$, $S$ eine beliebige freie Auflösung von $A$ und $h = \id_A$, so ist also das induzierte
+      \begin{equation*}
+        \Phi(\id;S,S(A))\colon \coker i^* = \Ext(A,G) \to \coker j^*
+      \end{equation*}
+      ein (kanonischer) Isomorphismus.
+      Daher hängt der Isomorphietyp von $\Ext(A,G)$ nicht von der Wahl der freien Auflösung von $A$ ab.
+  \end{enumerate}
+\end{kommentar}
+\begin{beispiel}
+  \begin{enumerate}[(a)]
+    \item 
+      ist $A$ frei-abelsch und $G$ beliebig, so ist
+      \begin{equation*}
+        \Ext(A,G) = \triv,
+      \end{equation*}
+      denn:
+      \begin{equation*}
+        \begin{tikzcd}
+          S\colon 0 \arrow{r}{}  & 0 \arrow{r}{0}  & A \arrow{r}{\id}  & A \arrow{r}{} & 0
+        \end{tikzcd}
+      \end{equation*}
+      ist freie Auflösung und $\coker 0^* = \triv$.
+    \item
+      Für zwei abelsche Gruppen $A_1$ und $A_2$ (und $G$ beliebig) ist
+      \begin{equation*}
+        \Ext(A_1 \oplus A_2,G) \cong \Ext(A_1,G) \oplus \Ext(A_2,G),
+      \end{equation*}
+      denn: Sind
+      \begin{equation*}
+        \begin{tikzcd}[row sep=tiny]
+          S_1\colon 0 \arrow{r}{}  & R_1 \arrow{r}{j_1}  & F_1 \arrow{r}{}  & A_1 \arrow{r}{} & 0 \\
+          S_2\colon 0 \arrow{r}{}  & R_2 \arrow{r}{j_2}  & F_2 \arrow{r}{}  & A_2 \arrow{r}{} & 0
+        \end{tikzcd}
+      \end{equation*}
+      freie Auflösungen, so ist
+      \begin{equation*}
+        \begin{tikzcd}[row sep=tiny]
+          S_1 \oplus S_2\colon 0 \arrow{r}{}  & R_1 \oplus R_2 \arrow{r}{j_1 \oplus j_2}  & F_1 \oplus F_2 \arrow{r}{}  & A_1 \oplus A_2 \arrow{r}{} & 0
+        \end{tikzcd}
+      \end{equation*}
+      eine freie Auflösung von $A_1 \oplus A_2$ und daher ist
+      \begin{align*}
+        \Ext(A_1 \oplus A_2,G) \cong \coker {(j_1 \oplus j_2)}^* 
+          & \cong \coker (j_1^* \oplus j_2^*) \\
+          & \cong \coker j_1^* \oplus \coker j_2^* \\
+          & \cong \Ext(A_1,G) \oplus \Ext(A_2,G).
+      \end{align*}
+    \item
+      Für jede abelsche Gruppe $G$ und $n \in \N_0$ sei
+      \begin{equation*}
+        n G := \{ \underset{\mathclap{g+\dotsb+g \ (\text{$n$-mal})}}{\underbrace{ng}} \in G : g \in G \} \leq G
+      \end{equation*}
+      Denn gilt für $\Z_n := \Z / {Z_n}$:
+      \begin{equation*}
+        \Ext(\Z_n, G) = G/{nG},
+      \end{equation*}
+      denn
+      \begin{equation*}
+        \begin{tikzcd}
+          0 \arrow{r}{} & \Z \arrow{r}{\cdot n}[swap]{=:j}  & \Z \arrow{r}{\pi} & \Z_n \arrow{r}{}  & 0
+        \end{tikzcd}
+      \end{equation*}
+      ist eine freie Auflösung von $\Z_n$.
+      Identifiziert man nun noch $\Hom(\Z,G)$ mit $G$ (vermöge $\varphi \mapsto \varphi(1)$), so erhält man, dass $j^*\colon G \to G, j^*(g) = n \cdot g$ ist.
+      Daher ist
+      \begin{equation*}
+        \Ext(\Z_n,G) \cong \coker j^* \cong G/{nG}.
+      \end{equation*}
+      \emph{Bemerkung}: Beachte, dass also
+      \begin{equation*}
+        \Ext(\Z_n,\Z) \cong \Z/{n\Z} = \Z_n \neq \triv = \Ext(\Z,\Z_n)
+      \end{equation*}
+      für $n \ge 2$.
+      Also ist $\Ext$ (im Unterschied zu $\operatorname{Tor}(-,-)$, gebildet ganz ähnlich wie $\Ext$ aus $\Hom$, aus $-\oplus-$) im Allgemeinen nicht symmetrisch in seinen beiden Argumenten, genauso wie $\Hom(-,-)$ auch, denn z.B.\ ist
+      \begin{equation*}
+        \Hom(\Z,\Z_n) \cong \Z_n \neq \triv = \hom(\Z_n,\Z) \quad \text{für $n\geq 2$}.
+      \end{equation*}
+    \item
+      Ist insbesondere $G$ ein Körper der Charakteristik 0 (z.B.\ $G = \Q,\R,\CC$), so ist also für alle $n \in \N$
+      \begin{equation*}
+        n = 1 + \dotsb + 1 \ \text{($n$-mal)}
+      \end{equation*}
+      verschieden von $0$, also existiert $n^{-1} \in G$ und damit ist $nG = G$, also ist $g/{nG} = \triv$.
+      In diesem Fall ist also
+      \begin{equation*}
+        \Ext(\Z_n,G) = \triv.
+      \end{equation*}
+    \item
+      Für endlich erzeugte abelsche Gruppe $A$, wo also
+      \begin{equation*}
+        A \cong \Z^b \oplus \Z_{n_1} \oplus \dotsb \oplus \Z_{n_r}
+      \end{equation*}
+    (mit $b \in \N_0$ und $n_i \in \N^{\ge 2}$) ist, erhält man also
+    \begin{equation*}
+      \Ext(A,G) = \triv
+    \end{equation*}
+    für jeden Körper $G$ der Charakteristik 0.
+  \end{enumerate}
+\end{beispiel}
+\begin{defn}
+  Sei $G$ fest und $f\colon A \to B$ Homomorphismus abelscher Gruppen.
+  Wir nennen dann
+  \begin{equation*}
+    f^* = \Phi(f;S(A),S(B))\colon \Ext(B,G) \to \Ext(A,G)
+  \end{equation*}
+  den \emph{von $f$ induzierten Homomorphismus}.
+\end{defn}
+\begin{kommentar}
+  Es wird dann
+  \begin{equation*}
+    T := \Ext(-,G)\colon \Ab \to \Ab
+    \end{equation*}
+    ein kontravarianter Funktor,
+    \begin{align*}
+      T(A) & = \Ext(A,G) \\
+      T(f) & = \Ext(f,G) = f^*,
+    \end{align*}
+    denn
+    \begin{align*}
+      T(\id) & = \id^* = \id \\
+      T(g \circ f) & = T(f) \circ T(g)
+    \end{align*}
+\end{kommentar}

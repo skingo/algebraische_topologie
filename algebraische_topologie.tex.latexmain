@@ -1,3 +1,6 @@
 
 silent! nunmap <leader>ll
 nnoremap <buffer> <leader>ll :MMake<CR>
+
+" allow spellcheck if there is not syntax region defined
+syntax spell toplevel

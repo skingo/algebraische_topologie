@@ -15,4 +15,13 @@
 \newcommand{\CC}{\ensuremath{\mathbb{C}}}
 \newcommand{\C}{\ensuremath{\mathcal{C}}}
 \newcommand{\Ab}{\ensuremath{\mathbf{Ab}}}
-
+\newcommand{\GAb}{\ensuremath{\mathbf{GAb}}}
+\newcommand{\KK}{\ensuremath{\mathbf{KK}}}
+\newcommand{\CoKK}{\ensuremath{\mathbf{Co\kern1.5pt\text{\textbf-}KK}}}
+% https://tex.stackexchange.com/questions/224805/i-want-a-really-small-underbrace
+\makeatletter
+\def\smallunderbrace#1{\mathop{\vtop{\m@th\ialign{##\crcr
+   $\hfil\displaystyle{#1}\hfil$\crcr
+   \noalign{\kern3\p@\nointerlineskip}%
+   \scriptsize\upbracefill\crcr\noalign{\kern3\p@}}}}\limits}
+\makeatother

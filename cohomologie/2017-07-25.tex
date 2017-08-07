@@ -1,0 +1,217 @@
+\begin{kommentar}
+  Ist $f\colon C \to C'$ eine Kettenabbildung, so ist
+  \begin{equation*}
+    f^*\colon \Hom(C',G) \to \Hom(C,G)
+  \end{equation*}
+  eine Cokettenabbildung und induziert damit einen Homomorphismus in der Cohomologie
+  \begin{equation*}
+    f^* := f_*^* \colon H^k(C',G) \to H^k(C,G).
+  \end{equation*}
+  Die \emph{Cohomologie mit Koeffizienten in $G$} wird damit ein kontravarianter Funktor von $\KK \xrightarrow{H} \GAb$.
+  Er ist die Hintereinanderausführung des kontravarianten $\Hom(-,G)\colon \KK \to \CoKK$ mit dem Cohomologie-Funktor $H\colon \CoKK \to \GAb$.
+\end{kommentar}
+\emph{Frage:} Wie passen denn die (ganzzahlige) Homologie ${(H_k(C))}_{k\in\Z}$, die Cohomologie ${(H^k(C,G))}_{k\in\Z}$ und $G$ zusammen?
+Ist vielleicht $H^k(C,G) \underset{\text{kan.}}{\cong} \Hom(H_k(C),G)$?
+\begin{defn}
+  Sei $G$ abelsche Gruppe, $(C_k,\del_k)$ ein Kettenkomplex, $(C^k,\delta^k)$ der induzierte Cokettenkomplex, $C^k = \Hom(C_k,G)$.
+  Wir notierten mit $\langle -,- \rangle \colon C^k \times C_k \to G$ die folgende natürliche Paarung:
+  \begin{equation*}
+    \langle \varphi,c \rangle := \varphi(c) \qquad \text{für alle } \varphi\in C^k, c \in C_k.
+  \end{equation*}
+\end{defn}
+\begin{kommentar}
+  \begin{enumerate}
+    \item 
+      $\langle -,- \rangle$ ist bilinear, also
+      \begin{align*}
+        \langle \varphi+\varphi', c \rangle & = \langle \varphi, c \rangle + \langle \varphi',c \rangle \\
+        \langle \varphi, c+c' \rangle & = \langle \varphi, c \rangle + \langle \varphi,c' \rangle
+      \end{align*}
+      für alle $\varphi,\varphi' \in C^k$, $c,c' \in C_k$.
+
+      Beachte aber, dass der Homomorphismus
+      \begin{align*}
+        C_k & \to \Hom(C^k,G)\\
+        c   & \mapsto [ \varphi \mapsto \langle \varphi, c \rangle ]
+      \end{align*}
+      im Allgemeinen weder injektiv noch surjektiv ist.
+    \item
+      Es gilt dann die \emph{Corand-Rand-Formel}
+      \begin{equation*}
+        \langle \delta\varphi,c \rangle = \langle \varphi, \del c \rangle \qquad \text{für alle $\varphi \in C^k$, $c \in C_{k+1}$}
+      \end{equation*}
+      denn
+      \begin{equation*}
+        \langle \delta\varphi, c \rangle = \delta \varphi (c) = \varphi (\del c) = \langle \varphi, \del c \rangle.
+      \end{equation*}
+  \end{enumerate}
+\end{kommentar}
+\begin{bemerkung}
+  \begin{enumerate}
+    \item 
+      Ist $\alpha \in C^k$ ein Cozyklus und $z \in C_k$ ein Rand, so ist $\langle \alpha, z \rangle = 0$.
+    \item
+      Ist $\alpha \in C^k$ ein Corand und $z \in C_k$ ein Zyklus, so ist $\langle \alpha, z \rangle = 0$.
+  \end{enumerate}
+\end{bemerkung}
+\begin{proof}
+  \begin{enumerate}
+    \item 
+      Ist $z = \del c \in B_k$, $\alpha \in Z^k$, so gilt
+      \begin{equation*}
+        \langle \alpha,z \rangle = \langle \alpha, \del c \rangle = \langle \smallunderbrace{\delta\alpha}_{=0}, c \rangle = 0.
+      \end{equation*}
+    \item
+      Ist $\alpha = \delta \varphi \in B^k$, $z \in Z_k$, so gilt
+      \begin{equation*}
+        \langle \alpha,z \rangle = \langle \delta\varphi, z \rangle = \langle \varphi, \smallunderbrace{\del z}_{=0} \rangle = 0.
+      \end{equation*}
+  \end{enumerate}
+\end{proof}
+\begin{kommentar}
+  nach dem Homomorphiesatz drückt sich daher die Einschränkung der natürlichen Paarung zwischen Cohomologie und Homologie herunter,
+  \begin{equation*}
+    \begin{tikzcd}
+      Z^k \times Z_k  \arrow[swap]{d}{\pi^k \times \pi_k}
+                      \arrow{r}{\langle -,- \rangle} & G \\
+      H^k \times H_k \arrow[swap]{ur}{\langle \,\boldsymbol\cdot\,,\,\boldsymbol\cdot\, \rangle}
+    \end{tikzcd}
+  \end{equation*}
+  wobei $\pi^k \colon Z^k \to H^k$ und $\pi_k \colon Z_k \to H_k$ die natürlichen Projektionen sind.
+\end{kommentar}
+Es ist also wohldefiniert:
+\begin{defn}
+  Sei $C = (C_k,\del_k)$ ein Kettenkomplex, $G$ eine abelsche Gruppe und $(C^k,\delta^k)$ der induzierte Cokettenkomplex.
+  Dann definiert man die natürliche Paarung
+  \begin{equation*}
+    \langle - , - \rangle\colon H^k(C,G) \times H_k(C) \to G
+  \end{equation*}
+  durch
+  \begin{equation*}
+    \langle [\alpha], [z] \rangle := \langle \alpha, z \rangle.
+  \end{equation*}
+\end{defn}
+\begin{kommentar}
+  \begin{enumerate}
+    \item 
+      Da $\langle - ,- \rangle \colon C^k \times C_k \to G$ bilinear ist, erhält man also einen (natürlichen) Homomorphismus
+      \begin{align*}
+        \kappa \colon H^k(C,G) & \to \Hom(H_k(C),G) \\
+        \kappa ([\alpha])([z]) & := \langle [\alpha],[z] \rangle
+      \end{align*}
+    \item
+      \emph{Frage}: ist das ein Isomorphismus?
+  \end{enumerate}
+\end{kommentar}
+\stepcounter{prop}
+\textbf{(\theprop) Ab sofort.\ }
+Sei unser Kettenkomplex $C$ \emph{frei}, d.h.\ alle abelschen Gruppen $C_k$ seien frei.
+Wir benutzen weiter, dass jede Untergruppe einer frei-abelschen Gruppe selbst auch wieder frei ist.
+\begin{vorbereitung}
+  \begin{enumerate}
+    \item 
+      Bezeichne zunächst mit $i_k$ und $j_k$ die Inklusionen $i_k \colon B_k \hookrightarrow Z_k$ und $j_k \colon Z_k \hookrightarrow C_k$ und mit $\del'\colon C_k \to B_{k-1}, \del'_k(c) := \del_k(c)$, sodass also
+      \begin{equation*}
+        j_{k-1} \circ i_{k-1} \circ \del' = \del.
+      \end{equation*}
+      Betrachte nun die exakte Sequenz
+      \begin{equation*}
+        \begin{tikzcd}
+          0 \arrow{r}{} & Z_k \arrow{r}{j_k}  & C_k \arrow[bend left]{l}{l_k}
+                                                    \arrow{r}{\del'_k}        & B_{k-1} \arrow{r}{} & 0
+        \end{tikzcd}
+        \tag{$*$}\label{eqn:inklusionssequenz}
+      \end{equation*}
+      Mit $C_{k-1}$ ist auch $B_{k-1} \subseteq C_{k-1}$ frei, deshalb spaltet~\eqref{eqn:inklusionssequenz}.
+      Es gibt also ein Linksinverses $l_k\colon C_k \to Z_k$ zu $j_k$, $l_k \circ j_k = \id_{Z_k}$.
+      Es ist deshalb auch exakt (und spaltet):
+      \begin{equation*}
+        \begin{tikzcd}
+          0 \arrow{r}{} & \Hom(B_{k-1},G) \arrow{r}{{\del'_k}^*}  & \Hom(C_k,G) \arrow{r}{j_k^*}  & \Hom(Z_k,G) \arrow[bend left]{l}{l_k^*}
+                                                                                                              \arrow{r}{} & 0.
+        \end{tikzcd}
+      \end{equation*}
+    \item
+      Betrachte außerdem die kurze exakte Sequenz
+      \begin{equation*}
+        \begin{tikzcd}
+          0 \arrow{r}{} & B_{k-1} \arrow{r}{i_{k-1}}  & Z_{k-1} \arrow{r}{p_{k-1}}  & H_{k-1} \arrow{r}{} & 0.
+        \end{tikzcd}
+        \tag{$**$}\label{eqn:inklusion_projektion_sequenz}
+      \end{equation*}
+      Es ist dann auch exakt:
+      \begin{equation*}
+        \begin{tikzcd}
+          0 \arrow{r}{} & \Hom(H_{k-1},G) \arrow{r}{p_{k-1}^*}  & \Hom(Z_{k-1},G) \arrow{r}{i_{k-1}^*}  & \Hom(B_{k-1},G).
+        \end{tikzcd}
+      \end{equation*}
+  \end{enumerate}
+\end{vorbereitung}
+\begin{lemma}
+\label{thm:induzierter_hom_lemma}
+  Es ist
+  \begin{align*}
+    \im {\del'_k}^* & \subseteq Z^k(C,G), & {\del'_k}^* (\im i_{k-1}^*) & \subseteq B^k(C,G)
+  \end{align*}
+  Deshalb induziert ${\del'_k}^*$ einen Homomorphismus
+  \begin{equation*}
+    h\colon \Hom(B_{k-1},G) / {\im i_{k-1}^*} \to Z^k(C,G) / {B^k(C,G)}
+  \end{equation*}
+  mit $h([\varphi]) = [{\del'_k}^*(\varphi)]$.
+  \begin{equation*}
+    \begin{tikzcd}
+      \Hom(B_{k-1},G)   \arrow{d}{\pi_{k-1}}
+                        \arrow{r}{{\del'_k}^*}  & Z^k(C,G) \arrow{d}{\pi^k}\\
+      \coker i_{k-1}^*  \arrow{r}{h}            & H^k(C,G)
+    \end{tikzcd}
+  \end{equation*}
+\end{lemma}
+\begin{vorbereitung}
+  Weil schließlich~\eqref{eqn:inklusion_projektion_sequenz} eine freie Auflösung von $H_{k-1}(C)$ ist, gibt es einen (natürlichen) Isomorphismus
+  \begin{equation*}
+    \Phi \colon \Ext(H_{k-1}(C),G) \xrightarrow{\cong} \coker i_{k-1}^*.
+  \end{equation*}
+  Fassen wir $\Phi$ und $h$ zusammen, so erhält man einen (natürlichen) Homomorphismus $\rho := h \circ \Phi$,
+  \begin{equation*}
+    \rho \colon \Ext(H_{k-1}(C),G) \to H^k(C,G).
+  \end{equation*}
+\end{vorbereitung}
+Es gilt nun
+\begin{satz}[Universelles Koeffiziententheorem]
+  Sei $(C,\del)$ ein freier Kettenkomplex, $G$ abelsche Gruppe und für jedes $k \in \Z$ seien $\rho$ und $\kappa$ die Homomorphismen von oben.
+  Dann ist die folgende Sequenz (natürlich) exakt und spaltet:
+  \begin{equation*}
+    \begin{tikzcd}
+      0 \arrow{r}{} & \Ext(H_{k-1}(C),G)  \arrow{r}{\rho} & H^k(C,G)  \arrow{r}{\kappa} & \Hom(H_k(C),G)  \arrow{r}{} & 0.
+    \end{tikzcd}
+  \end{equation*}
+\end{satz}
+\begin{proof}[Beweis zu Lemma~\ref{thm:induzierter_hom_lemma}]
+  \begin{enumerate}
+    \item 
+      $\im {\del'_k}^* \subseteq Z^k(C,G)$:
+      Für $\varphi \in \Hom(B_{k-1},G)$ ist
+      \begin{equation*}
+        \delta^k({\del'_k}^* \varphi) = \delta^k(\varphi \circ \del'_k) = \varphi \circ \underbrace{\del'_k \circ \del_{k+1}}_{=0} = 0.
+      \end{equation*}
+    \item
+      ${\del'_k}^* (\im i_{k-1}^*) \subseteq B^k(C,G)$:
+        Sei $\varphi \in \im i_{k-1}^* \subseteq \Hom(B_{k-1},G)$, also $\varphi = i_{k-1}^* \varphi'$ für ein $\varphi' \in \Hom(Z_{k-1},G)$ (d.h.\ $\varphi'\colon Z_{k-1} \to G$ ist Fortsetzung von $\varphi$).
+        Weil aber~\eqref{eqn:inklusionssequenz} spaltet (mit $k-1$ statt $k$), existiert sogar Fortsetzung $\psi$ von $\varphi'$ auf ganz $C_{k-1}$,
+        \begin{equation*}
+          \psi := \varphi' \circ l_{k-1},
+        \end{equation*}
+        wobei $l_{k-1} \circ j_{k-1} = \id_{Z_{k-1}}$ ist,
+        \begin{equation*}
+          \psi \circ j_{k-1} \circ i_{k-1} = \varphi' \circ \underbrace{l_{k-1} \circ j_{k-1}}_{=\id} {}\circ i_{k-1} = \varphi
+        \end{equation*}
+        Es folgt:
+        \begin{align*}
+          \delta^{k-1} (\psi)
+            & = \psi \circ \del_k\\
+            & = \psi \circ j_{k-1} \circ i_{k-1} \circ \del'_k\\
+            & = \varphi \circ \del'_k\\
+            & = {\del'_k}^* (\varphi) \in B^k(C,G)
+        \end{align*}
+  \end{enumerate}
+\end{proof}

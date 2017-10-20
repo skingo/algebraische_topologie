@@ -19,7 +19,7 @@ exakt, so ist
   \end{tikzcd}
   \tag{$*$}\label{eqn:kes_unvollstaendig}
 \end{equation*}
-ist exakt, aber $f^*$ i.A.\ nicht surjektiv.
+exakt, aber $f^*$ i.A.\ nicht surjektiv.
 Naheliegend könnte man~\eqref{eqn:kes_unvollstaendig} mit
 \begin{equation*}
   \coker f^* := \Hom(A,G) / {\im f^*}
@@ -33,7 +33,7 @@ fortsetzen, was aber so aussieht, dass es von zu vielen Wahlen abhängt.
   Seien $A$ und $G$ abelsche Gruppen und $S(A)$ die Standardauflösung von $A$.
   Dann nennt man
   \begin{align*}
-    \Ext(A,G) &:= \coker i^* = \Hom(R,g) / {\im i^*}, \\
+    \Ext(A,G) &:= \coker i^* = \Hom(R,G) / {\im i^*}, \\
     i^* & \colon \Hom(F,G) \to \Hom/R,G)
   \end{align*}
   das \emph{Extensionsprodukt} (kurz: Ext-Produkt) \emph{von $A$ und $G$}.
@@ -67,12 +67,12 @@ fortsetzen, was aber so aussieht, dass es von zu vielen Wahlen abhängt.
                           \arrow{r}{f}  & F   \arrow{d}{\beta}
                                               \arrow{r}{g}  & A   \arrow{d}{h}
                                                                   \arrow{r}{} & 0 \\
-      0 \arrow{r}{} & R'  \arrow{r}{f'} & F'  \arrow{r}{g'} & A'  \arrow{r}{} & 0 
+      0 \arrow{r}{} & R'  \arrow{r}{f'} & F'  \arrow{r}{g'} & A'  \arrow{r}{} & 0
     \end{tikzcd}
     \tag{$*$}\label{eqn:frei_aufl_hom}
   \end{equation*}
   \begin{enumerate}[(a)]
-    \item 
+    \item
       Dann existieren Homomorphismen $\alpha \colon R \to R'$ und $\beta \colon F \to F'$, die das Diagramm~\eqref{eqn:frei_aufl_hom} kommutieren lassen.
       \begin{equation*}
         \begin{tikzcd}
@@ -81,7 +81,7 @@ fortsetzen, was aber so aussieht, dass es von zu vielen Wahlen abhängt.
                                               \arrow{dl}{\varphi}
                                               \arrow{r}{g}  & A   \arrow{d}{h-h = 0}
                                                                   \arrow{r}{} & 0 \\
-      0 \arrow{r}{} & R'  \arrow[swap]{r}{f'} & F'  \arrow{r}{g'} & A'  \arrow{r}{} & 0 
+      0 \arrow{r}{} & R'  \arrow[swap]{r}{f'} & F'  \arrow{r}{g'} & A'  \arrow{r}{} & 0
         \end{tikzcd}
         \tag{$**$}\label{eqn:frei_aufl_homotopie}
       \end{equation*}
@@ -94,7 +94,7 @@ fortsetzen, was aber so aussieht, dass es von zu vielen Wahlen abhängt.
 \end{lemma}
 \begin{proof}
   \begin{enumerate}[(a)]
-    \item 
+    \item
       Sei ${(e_i)}_{i \in I}$ eine Basis von $F$.
       Betrachte dann $h \circ g (e_i) \in A'$.
       Da $f'$ surjektiv ist, existiert $x_i \in F'$ mit $f'(x_i) = h \circ g(e_i)$.
@@ -173,7 +173,7 @@ fortsetzen, was aber so aussieht, dass es von zu vielen Wahlen abhängt.
 \begin{kommentar}
   Das Besondere ist nicht so sehr die Existenz und Eindeutigkeit von $\Phi$, denn es gibt nur einen Kandidaten
   \begin{equation*}
-    \Phi([\varphi]) = [f^*(\varphi)]  \qquad \text{für } \varphi \in \Hom(R',G), 
+    \Phi([\varphi]) = [f^*(\varphi)]  \qquad \text{für } \varphi \in \Hom(R',G),
   \end{equation*}
   sondern mehr die Unabhängigkeit von $f$ (und $g$).
 \end{kommentar}
@@ -198,13 +198,13 @@ fortsetzen, was aber so aussieht, dass es von zu vielen Wahlen abhängt.
     \begin{tikzcd}
       S\colon 0 \arrow{r}{}  & R \arrow{r}{j}  & F \arrow{r}{} & A \arrow{d}{h}
                                                               \arrow{r}{}   & 0 \\
-      \phantom{S\colon}
-      0 \arrow{r}{}  & R'\arrow{r}{j}  & F'\arrow{r}{} & A'\arrow{r}{}   & 0,
+      %\phantom{S\colon}
+      S'\colon 0 \arrow{r}{}  & R'\arrow{r}{j}  & F'\arrow{r}{} & A'\arrow{r}{}   & 0,
     \end{tikzcd}
   \end{equation*}
   so ist die Zuordnung (für gegebene $G$) $\Phi \colon \C \to \Ab$ auf Objekten $\Phi(S) := \coker j^*$ und auf Morphismen $h \mapsto \Phi(h;S,S')$, wie in der Proposition, funktoriell:
   \begin{enumerate}[(a)]
-    \item 
+    \item
       $\Phi(\id;S,S) = \id$
     \item
       $\Phi(h' \circ h;S,S'') = \Phi(h;S,S') \circ \Phi(h';S',S'')$ für alle $h,h',S,S',S''$ etc.
@@ -212,7 +212,7 @@ fortsetzen, was aber so aussieht, dass es von zu vielen Wahlen abhängt.
 \end{korollar}
 \begin{proof}
   \begin{enumerate}[(a)]
-    \item 
+    \item
       Ist $h = \id\colon S \to S$, so kann $f = \id$ und $g = \id$ gewählt werden und man erhält: $\Phi = \id$.
     \item
       Sind $(f,g)$ bzw.\ $(f',g')$ für $h \colon S \to S'$ bzw.\ $h'\colon S' \to S''$ gewählt, so kann man für $(f'',g'')$ die Wahlen $f'' = f' \circ f$ und $g'' = g' \circ g$ treffen, weil das Diagramm~\eqref{eqn:neu} dann als Zusammensetzung von~\eqref{eqn:} und~\eqref{eqqn:} kommutiert.

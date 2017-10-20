@@ -14,10 +14,11 @@
 \newcommand{\Q}{\ensuremath{\mathbb{Q}}}
 \newcommand{\CC}{\ensuremath{\mathbb{C}}}
 \newcommand{\C}{\ensuremath{\mathcal{C}}}
-\newcommand{\Ab}{\ensuremath{\mathbf{Ab}}}
-\newcommand{\GAb}{\ensuremath{\mathbf{GAb}}}
-\newcommand{\KK}{\ensuremath{\mathbf{KK}}}
-\newcommand{\CoKK}{\ensuremath{\mathbf{Co\kern1.5pt\text{\textbf-}KK}}}
+\newcommand{\Ab}{\typesetConcreteCat{Ab}}
+\newcommand{\GAb}{\typesetConcreteCat{GAb}}
+\newcommand{\KK}{\typesetConcreteCat{KK}}
+\newcommand{\CoKK}{\typesetConcreteCat{Co\kern1.5pt\text{\textbf{-}}KK}}
+\newcommand{\typesetConcreteCat}[1]{\ensuremath{\mathbf{#1}}}
 % https://tex.stackexchange.com/questions/224805/i-want-a-really-small-underbrace
 \makeatletter
 \def\smallunderbrace#1{\mathop{\vtop{\m@th\ialign{##\crcr

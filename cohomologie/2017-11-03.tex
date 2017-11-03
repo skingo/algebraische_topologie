@@ -1,0 +1,186 @@
+
+\begin{vorbereitung}
+  \begin{enumerate}
+    \item
+      Seien $i_k \colon B_k \to Z_k$, $j_k \colon Z_k \to C_k$ die Inklusionen und sei $\del_k'\colon C_k \to B_{k-1}$ gegeben durch
+      \begin{equation*}
+        \del_k'(c) \coloneqq \del_k(c).
+      \end{equation*}
+      Dann gilt $\del_k = j_k \circ i_k \circ \del_k'$.
+      Betrachte nun folgende exakte Sequenz:
+      \begin{equation}
+        \begin{tikzcd}
+          \tag{$\star$}
+          \label{seq:foo}
+          0 \arrow{r}{} & Z_k \arrow{r}{j_k}
+          & C_k \arrow[bend left]{l}{l_k}
+          \arrow{r}{\del_k'}
+          & B_{k-1} \arrow{r}{}
+          & 0
+        \end{tikzcd}k
+      \end{equation}
+      Weil mit $C_{k-1}$ auch $B_{k-1}$ frei ist, spaltet~\eqref{seq:foo}.
+      Man erhält also ein Linksinverses $l_k \colon C_k \to Z_k$ mit $l_k \circ j_k = \id_{Z_k}$.
+
+      Es ist damit auch exakt:
+      \begin{equation*}
+        \begin{tikzcd}
+          0 \arrow{r}{}
+          & \Hom(B_{k-1},G) \arrow{r}{\del_k'^*}
+          & \Hom(C_k,G) \arrow{r}{j_k^*}
+          & \Hom(Z_k,G) \arrow{r}{}
+          & 0
+        \end{tikzcd}
+      \end{equation*}
+    \item
+      Betrachte außderdem die kurze exakte Sequenz
+      \begin{equation}
+        \tag{$\star\star$}
+        \label{seq:bar}
+        \begin{tikzcd}
+          0 \arrow{r}{}
+          & B_{k-1} \arrow{r}{i_{k-1}}
+          & Z_{k-1} \arrow{r}{p_{k-1}}
+          & H_{k-1}(C) \arrow{r}{}
+          & 0
+        \end{tikzcd}
+      \end{equation}
+      Es ist dann auch exakt:
+      \begin{equation*}
+        \begin{tikzcd}
+          0 \arrow{r}{}
+          & \Hom(H_{k-1}(C),G) \arrow{r}{p_{k-1}^*}
+          & \Hom(Z_{k-1},G) \arrow{r}{i_{k-1}^*}
+          & \Hom(B_{k-1},G).
+        \end{tikzcd}
+      \end{equation*}
+  \end{enumerate}
+\end{vorbereitung}
+
+\begin{lemma}
+  Es ist
+  \begin{itemize}
+    \item
+      $\im(\del_k'^*) \subseteq Z^k(C,G)$,
+    \item
+      $\del_{k}'^*(\im(i_{k-1}^*)) \subseteq B^k(C,G)$.
+  \end{itemize}
+  Daher induziert $\del_k'^*\colon \Hom(B_{k-1},G) \to \Hom(C_k,G)$ nach dem Homomorphiesatz (genau) einen Homomorphismus
+  \begin{equation*}
+    h \colon \Hom(B_{k-1},G) / \im(i_{k-1}^*) = \coker(i_{k-1}^*) \to Z^k(C,G) / B^k(C,G) = H^k(C,G)
+  \end{equation*}
+  mit $h([\varphi]) = [\del_k'^*(\varphi)]$.
+  %\label{}
+  \begin{equation*}
+    \begin{tikzcd}
+      \Hom(B_{k-1},G) \arrow{r}{\del_k'^*} \arrow{d}{\pi_{k-1}}
+      & Z^k(C,G) \subseteq \Hom(C_k,G) = C^k \arrow{d}{\pi_k} \\
+      \Hom(B_{k-1},G) / \im(i_{k-1}^*) = \coker(i_{k-1}^*) \arrow[dashed]{r}{h}
+      & H^k(C,G)
+    \end{tikzcd}
+  \end{equation*}
+\end{lemma}
+\begin{proof}
+  \begin{enumerate}
+    \item
+      Für $\varphi \in \Hom(B_{k-1},G)$ ist $\delta^k \circ \del_{k}'^*(\varphi) = \delta^k(\varphi \circ \del_k') = \varphi \circ \underbrace{\del_k' \circ \del_{k+1}}_{= 0} = 0$.
+    \item
+      Sei $\varphi \in \im(i_{k-1}^*) \subseteq  \Hom(B_{k-1},G)$, also: $\varphi = i_{k-1}^*(\psi)$ mit $\psi \in \Hom(Z_{k-1},G)$, d.h. $\varphi = \psi \circ i_{k-1}$.
+      Weil aber~\eqref{seq:foo} spaltet, (mit $k-1$ statt $k$), existiert sogar eine Fortsetzung von $\varphi'$ auf ganz $C_{k-1}$:
+      \begin{equation*}
+        \psi \coloneqq \varphi' \circ l_{k-1} \implies \psi \circ j_{k-1} = \varphi' \circ \underbrace{l_{k-1} \circ j_{k-1}}_{= \id} = \varphi'.
+      \end{equation*}
+      Es ist dann $\delta^k(\psi) = \del_k^* (\psi) = \underbrace{\psi \circ j_{k-1} \circ i_{k-1}}_{\varphi} \circ \del_k^* = \varphi \circ \del_{k}' = \del_{k}'^*(\varphi) \implies \del_{k}'^* \in B^k(C,G)$.
+  \end{enumerate}
+\end{proof}
+\begin{vorbereitung}
+  Weil schließlich~\eqref{seq:bar} eine freie Auflösung von $H_{k-1}(C)$ ist, haben wir einen (natürlichen) Isomorphismus
+  \begin{equation*}
+    \Phi\colon \Ext(H_{k-1}(C),G) \to \coker(i_{k-1}^*).
+  \end{equation*}
+  Schalten wir diesen vor $h \colon \coker(i_{k-1}^*) \to H^K(C,G)$, so erhalten wir einen (natürlichen) Homomorphismus
+  \begin{equation*}
+    \rho \coloneqq h \circ \Phi \colon \Ext(H_{k-1}(C),G) \to H^k(C,G).
+  \end{equation*}
+\end{vorbereitung}
+Es gilt nun
+\begin{satz}[Universelles Koeffiziententheorem]
+  Sei $(C,\delta)$ ein freier Kettenkomplex, $G$ eine abelsche Gruppe und $\rho$ und $\kappa$ wie beschrieben.
+  Dann ist die folgende Sequenz exakt und spaltet:
+  \begin{equation*}
+    \begin{tikzcd}
+      0 \arrow{r}{}
+      & \Ext(H_{k-1}(C),G) \arrow{r}{\rho}
+      & H^K(C,G) \arrow{r}{\kappa}
+      & \Hom(H_k(C), G) \arrow{r}{} \arrow[bend left]{l}{r}
+      & 0
+    \end{tikzcd}
+  \end{equation*}
+\end{satz}
+\begin{proof}
+  \begin{enumerate}[(i)]
+    \item
+      $\rho$ ist injektiv:
+      Da $\Phi$ Isomorphismus ist, muss man zeigen, dass $h$ injektiv ist.
+      Sei dazu $\varphi \in \Hom(B_{k-1},G)$ mit $h([\varphi]) = 0$, d.h.:
+      \begin{equation*}
+        0 \equiv \del_{k}'^*(\varphi) \equiv \varphi \circ \del_k' \mod B^k
+      \end{equation*}
+      Also gibt es ein $\psi \colon C_{k-1} \to G$ mit
+      \begin{equation*}
+        \varphi \circ \delta^{k-1}(\psi) = \psi \circ \del_k = \psi \circ j_{k-1} \circ i_{k-1} \circ \del_k'.
+      \end{equation*}
+      Da $\del_k'$ surjektiv ist, folgt:
+      \begin{equation*}
+        \varphi = \psi \circ j_{k-1} \circ i_{k-1} = i_{k-1}^*(\psi \circ j_{k-1}) \in \im(i_{k-1}^*)
+      \end{equation*}
+      (also fortsetzbar auf $Z_{k-1}$), d.h.: $[\varphi] = 0$ in $\coker(i_{k-1}^*)$, somit ist $h$ injektiv.
+    \item
+      $\im \rho = \ker \kappa$:
+      Sei dafür $\varphi \in \Hom(B_{k-1},G)$ und $\psi \coloneqq \del_{k}'^* (\varphi) = \varphi \circ \del_k'$, also:
+      \begin{equation*}
+        [\psi] = h([\varphi]).
+      \end{equation*}
+      \emph{Zeige}: $\kappa([\psi]) = 0$ ($\implies \kappa \circ h = 0)$.
+      Sei dazu $z \in Z_k$ beliebig.
+      Dann ist:
+      \begin{equation*}
+        \kappa \circ h ([\varphi])([z]) = \kappa([\psi])([z]) = \langle \psi, z \rangle = \langle \varphi \circ \del_k', z \rangle = \varphi(\underbrace{\del_k(z)}_{= 0}) = 0
+      \end{equation*}
+      Daraus folgt $\im \rho \subseteq \ker \kappa$.
+    \item
+      $\ker \kappa \subseteq \im \rho$:
+      Sei dazu $\psi \in Z^k$, sodass $\langle \psi, z \rangle = 0$ für alle $z \in Z_k$, also $[\psi] \in \ker \kappa$.
+      \emph{Behauptung}: Es existiert Homomorphismus $\varphi \colon B_{k-1} \to G$  mit $\psi = \varphi \circ \del_k'$, denn dann ist $[\psi] = h([\varphi])$ (und damit $[\psi] \in \im h = \im \rho$).
+      Wegen $\langle \psi, z \rangle = 0$ für alle $z \in Z_k$ ist
+      \begin{equation*}
+        j_k^*(\psi) = \psi \circ j_k = 0.
+      \end{equation*}
+      Weil die duale Sequenz von~\eqref{seq:foo} bei $\Hom(C_{k-1},G)$ exakt ist, existiert ein $\varphi \in \Hom(B_{k-1},G)$ mit $\del_{k}'^*(\varphi) = \psi$.
+      Daher ist
+      \begin{equation*}
+        [\psi] = [\varphi \circ \del_k'] = h([\varphi]) \in \im h.
+      \end{equation*}
+    \item
+      $\kappa$ ist surjektiv und hat ein Rechtsinverses:
+      Sei $\lambda \colon H_k(C) \to G$ beliebig und (wie früher) $l_k \colon C_k \to Z_k$ linksinvers zu $j_k$, $l_k \circ j_k = \id$.
+      Setze dann $\varphi \colon C_k \to G, \varphi \coloneqq \lambda \circ p_k \circ l_k$.
+      Dann ist wegen $\im (l_k \circ \del_{k+1}) = \im \del_{k-1} = B_k$:
+      \begin{equation*}
+        \delta^k(\varphi) = \varphi \circ \del_{k+1} = \lambda \circ \underbrace{p_k \circ \underbrace{l_k \circ \del_{k+1}}_{\to B_k}}_{= 0},
+      \end{equation*}
+      also $\varphi \in Z^k(C,G)$.
+      Weiter gilt für alle $z \in Z_k$:
+      \begin{equation*}
+        \kappa([\varphi])([z)] = \langle \varphi, j_k(z) \rangle = \varphi \circ j_k(z) = \lambda \circ p_k \circ \underbrace{l_k \circ j_k}_{= 0}(z)
+        = \lambda([z])
+      \end{equation*}
+      und somit $\kappa([\varphi]) = \lambda$, also $\kappa$ surjektiv.
+      Außerdem ist die Zuordnung
+      \begin{align*}
+        r \colon \Hom(H_k(C),G) & \to H^k(C,G) \\
+        \lambda & \mapsto [\lambda \circ p_k \circ l_k]
+      \end{align*}
+      homomorph und damit $r$ rechtsinvers zu $\kappa$.
+  \end{enumerate}
+\end{proof}

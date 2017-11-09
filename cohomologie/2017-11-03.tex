@@ -2,7 +2,7 @@
 \begin{vorbereitung}
   \begin{enumerate}
     \item
-      Seien $i_k \colon B_k \to Z_k$, $j_k \colon Z_k \to C_k$ die Inklusionen und sei $\del_k'\colon C_k \to B_{k-1}$ gegeben durch
+      Seien $i_k \colon B_k \hookrightarrow Z_k$, $j_k \colon Z_k \hookrightarrow C_k$ die Inklusionen und sei $\del_k'\colon C_k \to B_{k-1}$ gegeben durch
       \begin{equation*}
         \del_k'(c) \coloneqq \del_k(c).
       \end{equation*}
@@ -11,15 +11,15 @@
       \begin{equation}
         \begin{tikzcd}
           \tag{$\star$}
-          \label{seq:foo}
+          \label{seq:kes_auf_kette}
           0 \arrow{r}{} & Z_k \arrow{r}{j_k}
           & C_k \arrow[bend left]{l}{l_k}
           \arrow{r}{\del_k'}
           & B_{k-1} \arrow{r}{}
           & 0
-        \end{tikzcd}k
+        \end{tikzcd}
       \end{equation}
-      Weil mit $C_{k-1}$ auch $B_{k-1}$ frei ist, spaltet~\eqref{seq:foo}.
+      Weil mit $C_{k-1}$ auch $B_{k-1}$ frei ist, spaltet~\eqref{seq:kes_auf_kette}.
       Man erhält also ein Linksinverses $l_k \colon C_k \to Z_k$ mit $l_k \circ j_k = \id_{Z_k}$.
 
       Es ist damit auch exakt:
@@ -36,7 +36,7 @@
       Betrachte außderdem die kurze exakte Sequenz
       \begin{equation}
         \tag{$\star\star$}
-        \label{seq:bar}
+        \label{seq:kes_mit_homologie}
         \begin{tikzcd}
           0 \arrow{r}{}
           & B_{k-1} \arrow{r}{i_{k-1}}
@@ -85,16 +85,16 @@
     \item
       Für $\varphi \in \Hom(B_{k-1},G)$ ist $\delta^k \circ \del_{k}'^*(\varphi) = \delta^k(\varphi \circ \del_k') = \varphi \circ \underbrace{\del_k' \circ \del_{k+1}}_{= 0} = 0$.
     \item
-      Sei $\varphi \in \im(i_{k-1}^*) \subseteq  \Hom(B_{k-1},G)$, also: $\varphi = i_{k-1}^*(\psi)$ mit $\psi \in \Hom(Z_{k-1},G)$, d.h. $\varphi = \psi \circ i_{k-1}$.
-      Weil aber~\eqref{seq:foo} spaltet, (mit $k-1$ statt $k$), existiert sogar eine Fortsetzung von $\varphi'$ auf ganz $C_{k-1}$:
+      Sei $\varphi \in \im(i_{k-1}^*) \subseteq  \Hom(B_{k-1},G)$, also: $\varphi = i_{k-1}^*(\varphi')$ mit $\psi \in \Hom(Z_{k-1},G)$, d.h. $\varphi = \varphi' \circ i_{k-1}$.
+      Weil aber~\eqref{seq:kes_auf_kette} spaltet, (mit $k-1$ statt $k$), existiert sogar eine Fortsetzung von $\varphi'$ auf ganz $C_{k-1}$:
       \begin{equation*}
-        \psi \coloneqq \varphi' \circ l_{k-1} \implies \psi \circ j_{k-1} = \varphi' \circ \underbrace{l_{k-1} \circ j_{k-1}}_{= \id} = \varphi'.
+        \psi \coloneqq \varphi' \circ l_{k-1} \implies \psi \circ j_{k-1} = \varphi' \circ {} \underbrace{l_{k-1} \circ j_{k-1}}_{= \id} = \varphi'.
       \end{equation*}
-      Es ist dann $\delta^k(\psi) = \del_k^* (\psi) = \underbrace{\psi \circ j_{k-1} \circ i_{k-1}}_{\varphi} \circ \del_k^* = \varphi \circ \del_{k}' = \del_{k}'^*(\varphi) \implies \del_{k}'^* \in B^k(C,G)$.
+      Es ist dann $\delta^k(\psi) = \del_k^* (\psi) = \underbrace{\psi \circ j_{k-1} \circ i_{k-1}}_{\varphi} {}\circ \del_k' = \varphi \circ \del_{k}' = \del_{k}'^*(\varphi) \implies \del_{k}'^* \in B^k(C,G)$.
   \end{enumerate}
 \end{proof}
 \begin{vorbereitung}
-  Weil schließlich~\eqref{seq:bar} eine freie Auflösung von $H_{k-1}(C)$ ist, haben wir einen (natürlichen) Isomorphismus
+  Weil schließlich~\eqref{seq:kes_mit_homologie} eine freie Auflösung von $H_{k-1}(C)$ ist, haben wir einen (natürlichen) Isomorphismus
   \begin{equation*}
     \Phi\colon \Ext(H_{k-1}(C),G) \to \coker(i_{k-1}^*).
   \end{equation*}
@@ -105,7 +105,7 @@
 \end{vorbereitung}
 Es gilt nun
 \begin{satz}[Universelles Koeffiziententheorem]
-  Sei $(C,\delta)$ ein freier Kettenkomplex, $G$ eine abelsche Gruppe und $\rho$ und $\kappa$ wie beschrieben.
+  Sei $(C,\del)$ ein freier Kettenkomplex, $G$ eine abelsche Gruppe und $\rho$ und $\kappa$ wie beschrieben.
   Dann ist die folgende Sequenz exakt und spaltet:
   \begin{equation*}
     \begin{tikzcd}
@@ -128,7 +128,7 @@ Es gilt nun
       \end{equation*}
       Also gibt es ein $\psi \colon C_{k-1} \to G$ mit
       \begin{equation*}
-        \varphi \circ \delta^{k-1}(\psi) = \psi \circ \del_k = \psi \circ j_{k-1} \circ i_{k-1} \circ \del_k'.
+        \varphi = \delta^{k-1}(\psi) = \psi \circ \del_k = \psi \circ j_{k-1} \circ i_{k-1} \circ \del_k'.
       \end{equation*}
       Da $\del_k'$ surjektiv ist, folgt:
       \begin{equation*}
@@ -156,7 +156,7 @@ Es gilt nun
       \begin{equation*}
         j_k^*(\psi) = \psi \circ j_k = 0.
       \end{equation*}
-      Weil die duale Sequenz von~\eqref{seq:foo} bei $\Hom(C_{k-1},G)$ exakt ist, existiert ein $\varphi \in \Hom(B_{k-1},G)$ mit $\del_{k}'^*(\varphi) = \psi$.
+      Weil die duale Sequenz von~\eqref{seq:kes_auf_kette} bei $\Hom(C_{k-1},G)$ exakt ist, existiert ein $\varphi \in \Hom(B_{k-1},G)$ mit $\del_{k}'^*(\varphi) = \psi$.
       Daher ist
       \begin{equation*}
         [\psi] = [\varphi \circ \del_k'] = h([\varphi]) \in \im h.

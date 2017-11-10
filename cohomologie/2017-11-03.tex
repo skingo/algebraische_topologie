@@ -108,6 +108,8 @@ Es gilt nun
   Sei $(C,\del)$ ein freier Kettenkomplex, $G$ eine abelsche Gruppe und $\rho$ und $\kappa$ wie beschrieben.
   Dann ist die folgende Sequenz exakt und spaltet:
   \begin{equation*}
+    \label{seq:koeffiziententheorem}
+    \tag{$\ast$}
     \begin{tikzcd}
       0 \arrow{r}{}
       & \Ext(H_{k-1}(C),G) \arrow{r}{\rho}
@@ -128,7 +130,7 @@ Es gilt nun
       \end{equation*}
       Also gibt es ein $\psi \colon C_{k-1} \to G$ mit
       \begin{equation*}
-        \varphi = \delta^{k-1}(\psi) = \psi \circ \del_k = \psi \circ j_{k-1} \circ i_{k-1} \circ \del_k'.
+        \varphi \circ \del_k' = \delta^{k-1}(\psi) = \psi \circ \del_k = \psi \circ j_{k-1} \circ i_{k-1} \circ \del_k'.
       \end{equation*}
       Da $\del_k'$ surjektiv ist, folgt:
       \begin{equation*}

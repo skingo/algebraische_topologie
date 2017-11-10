@@ -1,6 +1,8 @@
 
 silent! nunmap <leader>ll
 nnoremap <buffer> <leader>ll :MMake<CR>
+silent! nunmap <leader>li
+nnoremap <buffer> <leader>li :MMake MODE=nonstopmode<CR>
 
 " allow spellcheck if there is not syntax region defined
 syntax spell toplevel

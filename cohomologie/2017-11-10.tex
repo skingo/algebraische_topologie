@@ -1,0 +1,173 @@
+
+\begin{kommentar}
+  \begin{enumerate}
+    \item
+      Weil Sequenz~\eqref{seq:kes_auf_kette} spaltet, erhält man insbesondere einen Isomorphismus
+      \begin{equation*}
+        \label{eqn:iso_cohom-ext_plus_hom}
+        \tag{$\ast\ast$}
+        H^k(C,G) \cong \Ext(H_{k-1}(C),G) \oplus \Hom(H_k(C),G)
+      \end{equation*}
+    \item
+      Die Sequenz~\eqref{seq:koeffiziententheorem} is in dem Sinne natürlich wie die Homomorphismen $\rho$ und $r$ natürliche Transformationen von $F_1 = \Ext(H_{k-1}(-),G)$, $F_2 = H^k(-,G)$und $F_3 = \Hom(H_k(-),G)$, d.h.:
+      Ist $f \colon C \to C'$ Kettenabbildung zwischen freien Kettenkomplexen, so kommutiert:
+      \begin{equation*}
+        \begin{tikzcd}
+          0 \arrow{r}{}
+          & \Ext(H_{k-1}(C),G) \arrow{r}{\rho_C}
+          & H^k(C,G) \arrow{r}{\kappa_C}
+          & \Hom(H_k(C),G) \arrow{r}{}
+          & 0 \\
+          0 \arrow{r}{}
+          & \Ext(H_{k-1}(C'),G) \arrow{r}{\rho_{C'}}
+            \arrow{u}{f^*}
+          & H^k(C',G) \arrow{r}{\kappa_{C'}}
+            \arrow{u}{f^*}
+          & \Hom(H_k(C'),G) \arrow{r}{}
+            \arrow{u}{f^*}
+          & 0
+        \end{tikzcd}
+      \end{equation*}
+      wo $f^* = F(f)$ ist mit $F = F_1,F_2$ beziehungsweise $F_3$.
+      Allerdingskann man den Isomorphismus in~\eqref{eqn:iso_cohom-ext_plus_hom} für jedes freie $C$ nicht so wählen, dass er natürlich ist.
+      [Stö/Zie: S. 264/265]
+      \todo[]{Referenz hinzufügen}
+    \item
+      Is die Homologie von $(C,\del)$ endlich erzeugt, so kann man die Cohomologie von $C$ mit Koeffizienten in $G$ berechnen, falls $G = \Z,\Q,\R$ oder $\mathbb C$.
+      Ist nämlich
+      \begin{equation*}
+        H_k(C) \cong \Z^{b_k} \oplus \Tor(H_k(C)),
+      \end{equation*}
+      so ist wegen
+      \begin{align*}
+        \Hom(\Tor(H_k(C)),G) & = \triv,\\
+      \Hom(\Z^b,G) & = G^k
+      \end{align*}
+      Andererseits ist
+      \begin{equation*}
+        \Ext(H_{k-1}(C),G) =
+        \begin{cases}
+          0 & \text{für $G = \Q,\R$ oder $\mathbb C$}\\
+          \Tor(H_{k-1}(C))  & \text{für $G = \Z$}
+        \end{cases}
+      \end{equation*}
+      dann $\Ext(\Z_n,\Z) = \Z_n$ und $\Tor(H_{k-1}(C)) = \Z^{n_1} \oplus \dotsb \oplus \Z^{n_r}$ mit $n_1, \dotsc n_r \in \N$ mit $n_1 | n_2 | \dotsb | n_r$.
+      Für $G = \Z$ hat die Cohomologie
+      \begin{equation*}
+        H^*(C) \coloneqq H^*(C,G) \coloneqq \bigoplus_{k \in \Z} H^k(C,\Z)
+      \end{equation*}
+      die gleiche Information wie die Homologie $H_*(C) = \bigoplus_{k\in\Z}H_k(C)$, denn ist
+      \begin{equation*}
+        H^k(C) = \Z^{b_k} \oplus \underbrace{\Tor(H^k(C))}_{= \Z_{n_1^k} \oplus \dotsb \oplus \Z_{n_{r_k}^k}},
+      \end{equation*}
+      so ist die "`Cobettizahl"' $b_k$ also gleich der Bettizahl $\rg(H^k(C)) = \rg(H_k(C))$ und die "`Cotorsionskoeffizienten"' $n_1^k, \dotsc, n_{r_k}^k$ im Grad $k$ sind die Torsionskoeffizienten $m_{1}^{k-1}, \dotsc, m_{s_{k-1}}^{k-1}$ im Grad $k-1$, $\Tor(H^k(C)) \cong \Tor(H_{k-1}(C))$.
+  \end{enumerate}
+\end{kommentar}
+
+
+\section{Homologie mit Koeffizienten}
+
+\begin{motivation}
+  \begin{enumerate}
+    \item
+      Homologie mit Koeffizienten (aus einer beliebigen abelschen  Gruppe $G$) wird aus Kettenkomplexen gebildet, in denen die Kettengruppen direkte Summen von Kopien von $G$ (nicht von $\Z$) sind, ihre Elemente also von der Form
+      \begin{equation*}
+        c = g_{1}\sigma_1 + \dotsb + g_r\sigma_r
+      \end{equation*}
+      mit $r \in \N_0$, $g_j \in G$ ($j = 1,\dotsc, r)$ und (in der singulären Theorie) singulären $k$-Simplexen $\sigma_j$ ($j = 1, \dotsc, r)$.
+    \item
+      So bekommt man beispielsweise für die Koeffizientengruppe $G = \Z_2$, dass für den Randoperator $\del$ des zellulären Kettenkomplexes von $\mathbb{P}^n(\R)$ mit Koeffizienten in $\Z_2$ gilt: $\del = 0$.
+      Das führt dann zu
+      \begin{equation*}
+        H_k(\mathbb{P}^n(\R),\Z_2) =
+        \begin{cases}
+          \Z_2 & \text{für $0 \le k \le n$}\\
+          0   & \text{für $k > n$}
+        \end{cases}
+      \end{equation*}
+  \end{enumerate}
+\end{motivation}
+
+\begin{defn}
+  Seien $A$ und $B$ abelsche Gruppen.
+  Wir nennen ein Paar $(T,t)$ bestehend aus einer abelschen Gruppe $T$ und einer bilinearen Abbildung $t \colon A \times B \to T$ ein \emph{Tensorprodukt von $A$ und $B$}, wenn folgende universelle Eigenschaft gilt:
+  Ist $(C,s)$ ein Konkurrenzpaar ($C$ abelsche Gruppe, $s$ bilinear), so gibt es genau einen Homomorphismus $\Phi \colon T \to C$ mit $\Phi \circ t = s$.
+  \begin{equation*}
+    \begin{tikzcd}
+      A\times B \arrow{r}{s}
+          \arrow{d}{t}
+      & C\\
+      T \arrow[dashed,swap]{ur}{\Phi}
+    \end{tikzcd}
+  \end{equation*}
+\end{defn}
+
+\begin{kommentar}
+  \begin{enumerate}
+    \item
+      Ein Tensorprodukt $(T,t)$ ist -- wenn es existiert -- im folgenden Sinne eindeutig bestimmt:
+      Sind $(T_1,t_1)$ und $(T_2,t_2)$ zwei Tensorprodukte, so existiert ein (sogar eindeutiger) Isomorphismus $\Phi \colon T_1 \to T_2$ mit $\Phi \circ t_1 = t_2$ (Übung).
+    \item
+      Die Existenz kann man so sehen:
+      Bilde zunächst die frei-abelsche Gruppe $(\F(A\times B),i)$ und betrachte dann die Untergruppe $R \subseteq \F(A \times B)$, die von allen Elementen
+      \begin{gather*}
+        (a_1 + a_2, b) - (a_1,b) - (a_2,b)\\
+        (a,b_1 + b_2) - (a,b_1) - (a, b_2)
+      \end{gather*}
+    mit $a,a_1,a_2 \in A$ sowie $b,b_1,b_2 \in B$ erzeugt wird.
+    Ist $i \colon A \times B \hookrightarrow \F(A \times B)$ die natürliche Inklusion und $\pi \colon \F(A \times B) \to \F(A \times B) / R$ die kanonische Projektion, so setze
+    \begin{align*}
+      A \otimes B & \coloneqq \F(A \times B) / R, \\
+      \otimes & \coloneqq \pi \circ i \colon A \times B \to A \otimes B.
+    \end{align*}
+    Es ist dann $A \otimes B$ eine abelsche Gruppe und $\otimes$ ist bilinear, denn mit $\otimes(a,b) \eqqcolon a \otimes b$:
+    \begin{equation*}
+      (a_1 + a_2) \otimes b - a_1 \otimes b - a_2 \otimes b = \pi(\underbrace{(a_1 + a_2, b) - (a_1,b) - (a_2,b)}_{\in R}) = 0
+    \end{equation*}
+    und genau so:
+    \begin{equation*}
+      a \otimes (b_1+b_2) = a \otimes b_1 + a \otimes b_2
+    \end{equation*}
+    für alle $a,a_1,a_2 \in A$ und $b,b_1,b_2 \in B$.
+    Es ist auch
+    \begin{equation*}
+      n (a \otimes b) = (na) \otimes b = a \otimes (nb)
+    \end{equation*}
+    für alle $n \in \N$ (Übung).
+
+    Zur universellen Eigenschaft:
+    Ist $s \colon A \times B \to C$ Konkurrent (zu $\otimes \colon A \times B \to A \otimes B$), so existiert zunächst nach der universellen Eigenschaft von $(\F(A \times B), i)$ ein eindeutig bestimmter Homomorphismus $\tilde \Phi \colon \F(A \times B) \to C$ mit $\tilde \Phi \circ i = s$.
+    \begin{equation*}
+      \begin{tikzcd}
+        A \times B \arrow{r}{s}
+          \arrow{d}{i}
+        & C\\
+        \F(A \times B) \arrow[dashed,swap]{ur}{\tilde \Phi}
+      \end{tikzcd}
+    \end{equation*}
+    Da $\tilde \Phi | _R = 0$ ist, weil $s$ bilinear ist, existiert nach der universellen Eigenschaft des Quotienten $(A \otimes B, \pi)$ genau ein Homomorphismus $\Phi \colon A \otimes B \to C$ mit $\Phi \circ \pi = \tilde \Phi$.
+    \begin{equation*}
+      \begin{tikzcd}
+        \F(A \times B) \arrow{r}{\tilde \Phi}
+          \arrow{d}{\pi}
+        & C\\
+        A \otimes B \arrow[dashed,swap]{ur}{\Phi}
+      \end{tikzcd}
+    \end{equation*}
+    Es kommutiert also auch das große Dreieck im Diagramm, $\Phi \circ \otimes = s$
+    \begin{equation*}
+      \begin{tikzcd}
+        A \times B \arrow{r}{s}
+          \arrow{d}{i}
+          \arrow[bend right,swap]{dd}{\oplus}
+        & C\\
+        \F(A \times B) \arrow[swap]{ur}{\tilde \Phi}
+          \arrow{d}{\pi}
+        \\
+        A \otimes B \arrow[bend right,swap]{uur}{\Phi}
+      \end{tikzcd}
+    \end{equation*}
+    $\Phi$ is auch eindeutig, denn kommutiert das große Dreieck, so auch das untere kleine.
+  \end{enumerate}
+\end{kommentar}
+

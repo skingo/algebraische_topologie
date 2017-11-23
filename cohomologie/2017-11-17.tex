@@ -1,0 +1,263 @@
+
+\begin{kommentar}
+    Jedes Element $t$ in $A \tensor B$ ist damit von der Form
+    \begin{equation*}
+      t = a_1 \tensor b_1 + \dotsb a_r \tensor b_r
+    \end{equation*}
+    mit $r \in \N_0$, $a_1, \dotsc a_r, \in A$ und $b_1, \dotsc, b_r \in B$.
+    Beachte aber, dass diese Darstellung im Allgemeinen nicht eindeutig ist.
+\end{kommentar}
+
+\begin{defn}
+  Seien $f \colon A \to A'$ und $g \colon B \to B'$ Homomorphismen.
+  Dann wird durch
+  \begin{equation*}
+    \label{eqn:tensor_hom}
+    \tag{$\ast$}
+    h(a \tensor b) \coloneqq f(a) \tensor g(b)
+  \end{equation*}
+  ein Homomorphismus $h \colon A \tensor B \to A' \tensor B'$ definiert, der mit $h \eqqcolon f \tensor g$ bezeichnet wird.
+\end{defn}
+
+\begin{kommentar}
+  \begin{enumerate}
+    \item
+      Durch~\eqref{eqn:tensor_hom} wird tatsächlich genau ein Homomorphismus $h \colon A \tensor B \to A' \tensor B'$ gegeben, denn:
+      Betrachtet man
+      \begin{align*}
+        f \times g \colon A \times B & \to A' \times B', \\
+        (f \times g) (a,b) & \coloneqq (f(a),g(b)),
+      \end{align*}
+      so ist $H \coloneqq \tensor \circ (f \times g) \colon A \times B \to A' \tensor B'$ bilinear und daher existiert eindeutig bestimmtes $h \colon A \tensor B \to A' \tensor B'$ mit $h \circ \tensor = H$, das heißt $h(a \tensor b) = f(a) \tensor g(b)$.
+      \begin{equation*}
+        \begin{tikzcd}
+          A \times B
+            \arrow{r}{f \times g}
+            \arrow{d}{\tensor}
+            \arrow{dr}{H}
+          & A' \times B'
+            \arrow{d}{\tensor}
+          \\
+          A \tensor B
+            \arrow{r}{h}
+          & A' \tensor B'
+        \end{tikzcd}
+      \end{equation*}
+    \item
+      Sind $f' \colon A' \to A''$ und $g' \colon B' \to B''$ weitere Homomorphismen, so gilt (offenbar)
+      \begin{equation*}
+        (f' \circ f) \tensor (g' \circ g) = (f' \tensor g') \circ (f \tensor g),
+      \end{equation*}
+      insbesondere
+      \begin{equation*}
+        (f \tensor g) = (f \tensor \id) \circ (\id \tensor g).
+      \end{equation*}
+      Hält man daher einen Faktor $G \in \Ob(\Ab)$ fest, so erhält man durch
+      \todo[]{fix the $\Ob$ issue}
+      \begin{align*}
+        F \colon \Ab & \to \Ab\\
+        F(A) & \coloneqq A \tensor G \\
+        F(f) & \coloneqq f \tensor \id_G
+      \end{align*}
+      einen (covarianten) Funktor ($F\colon \Ab \times \Ab \to \Ab$ ist ein Bifunktor, covariant in beiden Argumenten).
+  \end{enumerate}
+\end{kommentar}
+
+\begin{bemerkung}
+\label{bem:tensor_summen_iso}
+  Seien $A_1$, $A_2$ und $G$ abelsche Gruppen.
+  Dann definiert
+  \begin{align*}
+    \Phi \colon (A_1 \oplus A_2) \tensor G & \to (A_1 \tensor G) \oplus (A_2 \tensor G),\\
+    \Phi( (a_1,a_2) \tensor g) & \coloneqq (a_1 \tensor g, a_2 \tensor g)
+  \end{align*}
+  einen (kanonischen) Isomorphismus von $(A_1 \oplus A_2) \tensor G$ nach $A_1 \tensor G \oplus A_2 \tensor G$, wobei hier vereinbart wird, dass $\tensor$ stärker bindet als $\oplus$.
+\end{bemerkung}
+\begin{proof}
+  Wieder ist
+  \begin{align*}
+    \tilde \Phi \colon (A_1 \oplus A_2) \times G & \to (A_1 \tensor G) \oplus (A_2 \tensor G), \\
+    ( (a_1, a_2), g) & \mapsto (a_1 \tensor g, a_2 \tensor g)
+  \end{align*}
+  bilinear und daher $\Phi$ (als Homomorphismus) durch~\eqref{eqn:tensor_hom} wohldefiniert.
+  Ebenso ist
+  \begin{align*}
+    \Psi \colon A_1 \tensor G \oplus A_2 \tensor G & \to (A_1 \oplus A_2) \tensor G, \\
+    (a_1 \tensor g_1, a_2 \tensor g_2) & \mapsto (a_1,0) \tensor g_1 + (0,a_2) \tensor g_2
+  \end{align*}
+  wohldefiniert und
+  \begin{align*}
+    \Psi \circ \Phi & = \id,
+    & \Phi \circ \Psi & = \id,
+  \end{align*}
+  also ist $\Phi$ ein Isomorphismus.
+\end{proof}
+
+\begin{beispiel}
+  \begin{enumerate}
+    \item
+      Ähnlich wie bei Bemerkung~\ref{bem:tensor_summen_iso} sieht man, dass
+      \begin{equation*}
+        A \tensor B \cong B \tensor A
+      \end{equation*}
+      kanonisch isomorph vermöge $a \tensor b \mapsto b \tensor a$ ist.
+    \item
+      Für alle abelschen Gruppen ist
+      \begin{equation*}
+        A \tensor \Z \cong A
+      \end{equation*}
+      vermöge
+      \begin{equation*}
+        a \tensor n \mapsto n a,
+      \end{equation*}
+      wo $n a \coloneqq \underbrace{a + a + \dotsb + a}_{n\text{-mal}}$ für $n \in \N$, $0 a \coloneqq 0$ und $n a \coloneqq (-n) (-a)$ für $n < 0$ bezeichnet.
+      Dann ist $A \to A \tensor \Z, a \mapsto a \tensor 1$ offenbar invers dazu.
+    \item
+      Ist $G$ ein Körper und $A$ abelsche Gruppe, so hat $A \tensor G$ sogar die Struktur eines $G$-Vektorraums vermöge
+      \begin{equation*}
+        g \cdot (a \tensor g') = (a \tensor gg').
+      \end{equation*}
+    \item
+      Ist $A = \Z^r$, so ist deshalb $\Z^r \tensor G \cong G^{r}$, denn
+      \begin{equation*}
+        \Z^r \tensor G \cong (\Z \oplus \dotsb \oplus \Z) \tensor G
+        \cong \Z \tensor G \oplus \dotsb \oplus \Z \tensor G
+        \cong G \oplus \dotsm \oplus G = G^r
+      \end{equation*}
+    \item
+      Ist $A$ eine \emph{Torsionsgruppe}, das heißt $\forall a \in A \exists n \in \N$ mit $n a = 0$, und $G$ ein Körper der Charakteristik $0$, so ist
+      \begin{equation*}
+        A \tensor G = 0,
+      \end{equation*}
+      denn für beliebiges $a \in A$ sei $n \in \N$ mit $n a = 0$, dann folgt, dass
+      \begin{equation*}
+        a \tensor 1 = a \tensor (n \cdot n^{-1}) = (na) \tensor n^{-1} = 0 \tensor n^{-1} = 0
+      \end{equation*}
+      und somit für alle $g \in G$
+      \begin{equation*}
+        a \tensor g = g \cdot (a \tensor 1) = g \cdot 0 = 0,
+      \end{equation*}
+      also $t = 0$ für alle $t \in A \tensor G$.
+    \item
+      Für endlich erzeugte abelsche Gruppe $A$, also
+      \begin{equation*}
+        A \cong \Tor(A) \oplus \Z^b
+      \end{equation*}
+      mit $b = \rg(A)$, annulliert also das Tensorprodukt mit $\Q$ den Torsionsanteil,
+      \begin{equation*}
+        A \tensor \Q \cong \underbrace{\Tor(A) \tensor \Q}_{= 0} \oplus \underbrace{\Z^b \tensor \Q}_{= \Q^b} \cong \Q^b
+      \end{equation*}
+      und man erhält: $\rg(A) = \rg(A \tensor \Q)$.
+    \item
+      Für $m, n \in \N$ ist
+      \begin{equation*}
+        \Z^m \tensor \Z^n \cong \Z^{mn}
+      \end{equation*}
+      (Übung, ist $(e_i)$ Basis von $\Z^m$ und $(e_j)$ Basis von $\Z^n$, so ist $(e_i \tensor e_j)$ Basis von $\Z^m \tensor \Z^n$).
+    \item
+      Für $m,n \in \N$ ist
+      \begin{equation*}
+        \Z_m \tensor \Z_n \cong \Z_{\mathrm{ggT}(m,n)}
+      \end{equation*}
+      (Übung).
+      Das ermöglicht also die Berechnung von $A \tensor B$ für endlich erzeugte abelsche Gruppen $A$ und $B$.
+  \end{enumerate}
+\end{beispiel}
+
+\begin{bemerkung}
+  Sei $G$ abelsche Gruppe.
+  \begin{enumerate}
+    \item
+      Ist
+      \begin{equation*}
+        \begin{tikzcd}
+          A \arrow{r}{\alpha}
+          & B \arrow{r}{\beta}
+          & C \arrow{r}{}
+          & 0
+        \end{tikzcd}
+      \end{equation*}
+      eine exakte Sequenz abelscher Gruppen, so ist auch
+      \begin{equation*}
+        \begin{tikzcd}
+          A \tensor G \arrow{r}{\alpha \tensor \id}
+          & B \tensor G \arrow{r}{\beta \tensor \id}
+          & C \tensor G \arrow{r}{}
+          & 0
+        \end{tikzcd}
+      \end{equation*}
+      exakt.
+    \item
+      Ist
+      \begin{equation*}
+        \begin{tikzcd}
+          0 \arrow{r}{}
+          & A \arrow{r}{\alpha}
+          & B \arrow{r}{\beta}
+              \arrow[bend right,swap]{l}{e}
+          & C \arrow{r}{}
+          & 0
+        \end{tikzcd}
+      \end{equation*}
+      exakt und spaltet, so ist auch
+      \begin{equation*}
+        \begin{tikzcd}
+          0 \arrow{r}{}
+          & A \tensor G \arrow{r}{\alpha \tensor \id}
+          & B \tensor G \arrow{r}{\beta \tensor \id}
+          & C \tensor G \arrow{r}{}
+          & 0
+        \end{tikzcd}
+      \end{equation*}
+      exakt und spaltet.
+  \end{enumerate}
+\end{bemerkung}
+\begin{proof}
+  \begin{enumerate}
+    \item
+      \begin{enumerate}
+        \item
+          Sei $c \in C$ und $g \in G$ beliebig.
+          Dann existiert $b \in B$ mit $\beta(b) = c$.
+          Somit ist $(\beta \tensor \id) (b \tensor g) = \beta(b) \tensor \id(g) = c \tensor g$.
+          Da $C \tensor G$ von $\left\{ c \tensor g : c \in C, g \in G \right\}$ erzeugt ist, folgt: $\beta \tensor \id$ ist surjektiv.
+        \item
+          \emph{Exaktheit bei $B \tensor G$}:
+          \begin{enumerate}[($\alpha$)]
+            \item
+              Wegen
+              \begin{equation*}
+                (\beta \tensor \id) \circ (\alpha \tensor \id) = \underbrace{(\beta \circ \alpha)}_{= 0} \tensor \id = 0 \tensor \id = 0
+              \end{equation*}
+              ist
+              \begin{equation*}
+                \im (\alpha \tensor \id) \subseteq \ker (\beta \tensor \id)
+              \end{equation*}
+            \item
+              \begin{equation*}
+                \begin{tikzcd}
+                  A \tensor G
+                    \arrow{r}{\alpha \tensor \id}
+                  & B \tensor G
+                    \arrow{r}{\beta \tensor \id}
+                    \arrow{d}{\pi}
+                  & C \tensor G
+                    \arrow{r}{}
+                    \arrow[dashed]{dl}{\varphi}
+                  & 0\\
+                  & B \tensor G / U
+                \end{tikzcd}
+              \end{equation*}
+              mit $U \coloneqq \im(\alpha \tensor \id)$.
+
+              Betrachte $\tilde \varphi \colon C \times G \to B \tensor G / U$ mit $\tilde \varphi (c,g) \coloneqq [ b \tensor g ]$ und $b \in \beta^{-1}(c)$.
+              Wegen der Surjektivität von $\beta$ existiert zunächst ein solches $b$, $\beta^{-1}(c) \neq \emptyset$, und $\tilde \varphi(c,g)$ hängt nicht von der Auswahl ab, denn ist $b' \in \beta^{-1}(c)$ ein weiteres Urbild, $\beta(b) = \beta(b') = c$, so ist $\beta(b' - b) = \beta(b') - \beta(b) = c - c = 0$ und damit existiert ein $a \in A$ mit $\alpha(a) = b' - b$, daher
+              \begin{equation*}
+                b' \tensor g - b \tensor g = (b' - b) \tensor g = \alpha(a) \tensor g = (\alpha \tensor \id)(a, g) \in U,
+              \end{equation*}
+              also $[b' \tensor g] = [b \tensor g]$.
+              Aus diesem Grund ist $\tilde \varphi$ dann auch ein Homomorphismus.
+          \end{enumerate}
+      \end{enumerate}
+  \end{enumerate}
+\end{proof}

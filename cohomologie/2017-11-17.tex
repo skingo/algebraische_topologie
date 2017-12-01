@@ -53,7 +53,6 @@
         (f \tensor g) = (f \tensor \id) \circ (\id \tensor g).
       \end{equation*}
       Hält man daher einen Faktor $G \in \Ob(\Ab)$ fest, so erhält man durch
-      \todo[]{fix the $\Ob$ issue}
       \begin{align*}
         F \colon \Ab & \to \Ab\\
         F(A) & \coloneqq A \tensor G \\
@@ -194,17 +193,20 @@
           0 \arrow{r}{}
           & A \arrow{r}{\alpha}
           & B \arrow{r}{\beta}
-              \arrow[bend right,swap]{l}{e}
+              \arrow[bend right,swap]{l}{l}
           & C \arrow{r}{}
           & 0
         \end{tikzcd}
       \end{equation*}
       exakt und spaltet, so ist auch
       \begin{equation*}
+        \label{eqn:tensor_spaltung}
+        \tag{$\ast\ast$}
         \begin{tikzcd}
           0 \arrow{r}{}
           & A \tensor G \arrow{r}{\alpha \tensor \id}
           & B \tensor G \arrow{r}{\beta \tensor \id}
+                        \arrow[bend left]{l}{l \tensor \id}
           & C \tensor G \arrow{r}{}
           & 0
         \end{tikzcd}
@@ -257,7 +259,36 @@
               \end{equation*}
               also $[b' \tensor g] = [b \tensor g]$.
               Aus diesem Grund ist $\tilde \varphi$ dann auch ein Homomorphismus.
+              \todo[]{Ab hier Fortsetzung am 2017{-}11{-}24}
+
+              $\tilde \varphi$ ist auch bilinear: $c_1,c_2 \in C$, $g \in G$, $b_1 \in \beta^{-1}(c_1)$, $b_2 \in \beta^{-1}(c_2)$.
+              Dann ist $b_1 + b_2 \in \beta^{-1}(c_1 + c_2)$.
+              Somit also
+              \begin{equation*}
+                \tilde \varphi(c_1+c_2, g) = [ (b_1 + b_2) \tensor g ] = [ b_1 \tensor g + b_2 \tensor g ]= [b_1 \tensor g] + [b_2 \tensor g] = \tilde \varphi (b_1,g) + \tilde \varphi (b_2, g).
+              \end{equation*}
+              Außerdem $\tilde \varphi(c, g_1 + g_2) = [ b \tensor (g_1 + g_2) ] = \dotsb = \tilde \varphi(c,g_1) + \tilde \varphi(c,g_2)$.
+
+              Daher existiert Homomorphismus $\varphi \colon C \tensor G \to B \tensor G / U$ mit $\varphi(c \tensor g) = [b \tensor g]$ und $b \in \beta^{-1}(c)$.
+              Somit also
+              \begin{equation*}
+                \varphi \circ (\beta \tensor \id) (b \tensor g) = \varphi (\beta(b) \tensor g) = [b \tensor g] = ¸pi (b \tensor g),
+              \end{equation*}
+              und damit $\varphi \circ (\beta \tensor \id) = \pi$.
+
+              Sei nun $t \in \ker (\beta \tensor \id)$, dann ist
+              \begin{equation*}
+                0 = \varphi(0) = \varphi \circ (\beta \tensor \id) (t) = \pi(t),
+              \end{equation*}
+              also $t \in \ker(\pi) = U = \im(\alpha \tensor \id)$.
+              Somit $\ker(\beta \tensor \id) \subseteq \im (\alpha \tensor \id)$.
           \end{enumerate}
       \end{enumerate}
+    \item
+      Ist $l \colon B \to A$ ein Linksinverses von $\alpha$, also $l \circ \alpha = \id$, so gilt
+      \begin{equation*}
+        (l \tensor \id) \circ (\alpha \tensor \id) = (l \circ \alpha) \tensor \id = \id \tensor \id = \id,
+      \end{equation*}
+      somit ist $\alpha \tensor \id$ ist injektiv, also ist~\eqref{eqn:tensor_spaltung} auch exakt und $l \tensor \id$ eine Spaltung dafür.
   \end{enumerate}
 \end{proof}

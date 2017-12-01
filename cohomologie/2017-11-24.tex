@@ -1,0 +1,323 @@
+\begin{kommentar}
+  \begin{enumerate}
+    \item
+      Man sagt deshalb, dass $F = - \tensor G$ \emph{rechtsexakt} ist, das heißt exakte Sequenzen der Form $
+      \begin{tikzcd}
+      \cdot \arrow{r}{}
+      & \cdot \arrow{r}{}
+      & \cdot \arrow{r}{}
+      & 0
+      \end{tikzcd}
+      $
+      in wieder solche überführt.
+    \item
+      Er ist nicht \emph{exakt}, denn zum Beispiel ist
+      \begin{equation*}
+        \begin{tikzcd}
+          0 \arrow{r}{}
+          & \Z \arrow{r}{i}
+          & \Q \arrow{r}{\pi}
+          & \Q /\Z \arrow{r}{}
+          & 0
+        \end{tikzcd}
+      \end{equation*}
+      so ist die mit $\Z_2$ tensorierte Sequenz
+      \begin{equation*}
+        \begin{tikzcd}
+          0 \arrow{r}{}
+          & \underbrace{\Z \tensor \Z_2}_{=\Z_2} \arrow{r}{i \tensor \id}
+          & \underbrace{\Q \tensor \Z_2}_{=0} \arrow{r}{\pi \tensor \id}
+          & \Q /\Z \tensor \Z_2 \arrow{r}{}
+          & 0
+        \end{tikzcd}
+      \end{equation*}
+      nicht exakt.
+    \item
+      Das im Folgenden konstruierte Tensorprodukt ist ein Maß für die Abweichung der Injektivität in dem Sinne, das für eine kurze Sequenz (und abelsche Gruppe $G$)
+      \begin{equation*}
+        \begin{tikzcd}
+          0 \arrow{r}{}
+          & A \arrow{r}{\alpha}
+          & B \arrow{r}{\beta}
+          & C \arrow{r}{}
+          & 0
+        \end{tikzcd}
+      \end{equation*}
+      folgende Sequenz induziert wird, die exakt ist:
+      \begin{equation*}
+        \begin{tikzcd}
+          0 \arrow{r}{}
+          & \Tor(C,G) \arrow{r}{\Phi}
+          & A \tensor G \arrow{r}{\alpha \tensor \id}
+          & B \tensor G \arrow{r}{\beta \tensor \id}
+          & C \tensor G \arrow{r}{}
+          & 0
+        \end{tikzcd}
+      \end{equation*}
+  \end{enumerate}
+\end{kommentar}
+
+\begin{defn}
+  Seien $A$ und $G$ abelsche Gruppen und
+  \begin{equation*}
+    S(A):
+    \begin{tikzcd}
+      0 \arrow{r}{}
+      & R \arrow{r}{i}
+      & F(A) \arrow{r}{\pi}
+      & A \arrow{r}{}
+      & 0
+    \end{tikzcd}
+  \end{equation*}
+  die Standard-Auflösung von $A$.
+  Dann nennt man
+  \begin{equation*}
+    \Tor(A,G) \coloneqq \ker(j \tensor \id)
+  \end{equation*}
+  das \emph{Torsionsprodukt von $A$ mit $G$}.
+  Es gilt dann mit sehr ähnlichem Beweis wie bei $\Ext(A,G)$:
+\end{defn}
+
+\begin{proposition}
+  Seien $A$ und $A'$ abelsche Gruppen und $h \colon A \to A'$ ein Homomorphismus.
+  Seien weiter
+  \begin{equation*}
+    \begin{tikzcd}
+      S: 0 \arrow{r}{}
+      & R \arrow{r}{}
+      & F \arrow{r}{}
+      & A \arrow{r}{}
+      & 0\\
+      S': 0 \arrow{r}{}
+      & R' \arrow{r}{}
+      & F' \arrow{r}{}
+      & A' \arrow{r}{}
+      & 0
+    \end{tikzcd}
+  \end{equation*}
+  freie Auflösungen von $A$ und $A'$.
+  Dann existiert eindeutig bestimmter Homomorphismus
+  \begin{equation*}
+    \Phi(h; S,S') \colon \ker(i \tensor \id) \to \ker(i' \tensor \id),
+  \end{equation*}
+  sodass für alle Fortsetzungen $(f,g)$ von $h$ gilt:
+  Diagramm~\eqref{eqn:foo} kommutiert
+  \begin{equation*}
+    \label{eqn:bar}
+    \tag{$\ast$}
+    \begin{tikzcd}
+      S: 0 \arrow{r}{}
+      & R \arrow{r}{i}
+          \arrow{d}{f}
+      & F \arrow{r}{}
+          \arrow{d}{g}
+      & A \arrow{r}{}
+          \arrow{d}{h}
+      & 0\\
+      S': 0 \arrow{r}{}
+      & R' \arrow{r}{i'}
+      & F' \arrow{r}{}
+      & A' \arrow{r}{}
+      & 0
+    \end{tikzcd}
+  \end{equation*}
+  \begin{equation*}
+    \label{eqn:foo}
+    \tag{$\ast\ast$}
+    \begin{tikzcd}
+      0 \arrow{r}{}
+      & \ker(i\tensor \id) \arrow{r}{\incl}
+          \arrow{d}{\Phi}
+      & R \tensor G\arrow{r}{i \tensor \id}
+          \arrow{d}{f \tensor \id}
+      & F \tensor G \arrow{r}{}
+          \arrow{d}{g \tensor \id}
+      & A \tensor G \arrow{r}{}
+          \arrow{d}{h \tensor \id}
+      & 0\\
+      0 \arrow{r}{}
+      & \ker(i' \tensor \id) \arrow{r}{\incl'}
+      & R' \tensor G\arrow{r}{}
+      & F' \tensor G \arrow{r}{}
+      & A' \tensor G \arrow{r}{}
+      & 0\\
+    \end{tikzcd}
+  \end{equation*}
+\end{proposition}
+
+\begin{kommentar}
+  Die Existenz von $\Phi$ ist eigentlich nicht erstaunlich, da man natürlich
+  \begin{equation*}
+    \Phi \coloneqq {(\incl')}^{-1} \circ (f \tensor \id) \circ \incl
+  \end{equation*}
+  setzt (wenn man gecheckt hat, dass $\im(f \tensor \id \circ \incl) \subseteq  \ker(i' \tensor \id)$ liegt).
+  Erstaunlich ist vielmehr, dass $\Phi$ nicht von der Auwahl der Fortsetzung $(f,g)$ von $h$ abhängt (vgl.\ Diskussion bei $\Ext$).
+\end{kommentar}
+
+\begin{kommentar}
+  \begin{enumerate}[(a)]
+      Die Zuordnung $(h;S,S') \mapsto \Phi(h; S, S')$ ist funktoriell in dem Sinne, dass gilt:
+      \begin{enumerate}[(i)]
+        \item
+          $\Phi(\id,S,S) = \id$
+        \item
+          $\Phi(h' \circ h; S, S'') = \Phi(h'; S, S') \circ \Phi(h; S', S'')$
+      \end{enumerate}
+    \item
+      Ist $h \colon A \to A'$ insbesondere ein Isomorphismus (z.B.\ $h = \id$), so muss für zwei freie Auflösungen $S$ und $S'$
+      \begin{equation*}
+        \ker(i \tensor \id) \underset{\Phi(h;S,S')}{\cong} \ker(i' \tensor \id),
+      \end{equation*}
+      denn $\Phi(h^{-1}; S', S) = {\Phi(h; S, S')}^{-1}$.
+    \item
+      Noch speziell folgt, dass für eine beliebige freie Auflösung
+      \begin{equation*}
+        \begin{tikzcd}
+          0 \arrow{r}{}
+          & R \arrow{r}{i}
+          & F \arrow{r}{\pi}
+          & A \arrow{r}{}
+          & 0
+        \end{tikzcd}
+      \end{equation*}
+      $\ker(i \tensor \id)$ (kanonisch) isomorph zu $\Tor(A,G)$ (vermöge $\Phi(\id, S, S(A))$) ist.
+  \end{enumerate}
+\end{kommentar}
+
+\begin{beispiel}
+  \begin{enumerate}
+    \item
+      Ist $A$ frei abelsch, so ist deshalb
+      \begin{equation*}
+        \Tor(A,G) = \triv
+      \end{equation*}
+      für alle abelschen Gruppen $G$, denn
+      \begin{equation*}
+        \begin{tikzcd}
+          0 \arrow{r}{}
+          & 0 \arrow{r}{}
+          & A \arrow{r}{\id}
+          & A \arrow{r}{}
+          & 0
+        \end{tikzcd}
+      \end{equation*}
+      ist freie Auflösung und $0 \tensor \id = 0$.
+    \item
+      Ist $A = A_1 \oplus A_2$ und $G$ beliebig, so gilt
+      \begin{equation*}
+        \Tor(A_1 \oplus A_2,G) \cong \Tor(A_1, G) \oplus \Tor(A_2, G),
+      \end{equation*}
+      denn sind
+      \begin{equation*}
+        \begin{tikzcd}
+          S_1\colon 0 \arrow{r}{}
+          & R_1 \arrow{r}{}
+          & F_1 \arrow{r}{}
+          & A_1 \arrow{r}{}
+          & 0
+        \end{tikzcd}
+      \end{equation*}
+      und
+      \begin{equation*}
+        \begin{tikzcd}
+          S_2\colon 0 \arrow{r}{}
+          & R_2 \arrow{r}{}
+          & F_2 \arrow{r}{}
+          & A_2 \arrow{r}{}
+          & 0
+        \end{tikzcd}
+      \end{equation*}
+      zwei freie Auflösungen, so auch
+      \begin{equation*}
+        \begin{tikzcd}
+          S_1 \oplus S_2 \colon 0 \arrow{r}{}
+          & R_1 \oplus R_2 \arrow{r}{j_1 \oplus j_2}
+          & F_1 \oplus F_2 \arrow{r}{}
+          & A_1 \oplus A_2 \arrow{r}{}
+          & 0
+        \end{tikzcd}
+      \end{equation*}
+      und daher:
+      \begin{equation*}
+        \Tor(A_1 \oplus A_2, G) \cong \ker(j_1 \oplus j_2,\tensor \id) \cong \ker(j_1 \tensor \id) \oplus \ker(j_2 \tensor \id) \cong \Tor(A_1, G) \oplus \Tor(A_2, G)
+      \end{equation*}
+    \item
+      Für jedes $n \in \N$ ist
+      \begin{equation*}
+        \Tor(\Z_n,G) \cong \left\{ g \in G : n g = 0 \right\},
+      \end{equation*}
+      denn
+      \begin{equation*}
+        \begin{tikzcd}
+          0 \arrow{r}{}
+          & \Z \arrow{r}{\cdot n \eqqcolon \mult[n]}
+          & \Z \arrow{r}{\pi}
+          & \Z_n \arrow{r}{}
+          & 0
+        \end{tikzcd}
+      \end{equation*}
+      ist freie Auflösung und daher ist
+      \begin{equation*}
+        \Tor(\Z_n, G) \cong \ker(\mult[n] \tensor \id)
+      \end{equation*}
+      und wegen
+      \begin{cd}
+        0 \arrow{r}{}
+        & \Tor(\Z_n, G) \arrow{r}{}
+          \arrow{d}{\cong}
+        & \Z \tensor G \arrow{r}{\mult[n] \tensor \id}
+          \arrow{d}{\cong,(k,g) \mapsto kg}
+        & \Z \tensor G \arrow{r}{}
+          \arrow{d}{\cong}
+        & \Z_n \tensor G \arrow{r}{}
+          \arrow{d}{\cong}
+        & 0\\
+        0 \arrow{r}{}
+        & \ker(\mult[n]) \arrow{r}{\overline {\incl}}
+        & G \arrow{r}{\mult[n]}
+        & G \arrow[r, "\overline \pi", "(k{,}g) \mapsto kg"']
+        & \Z_n \tensor G \arrow{r}{}
+        & 0
+      \end{cd}
+      ist tatsächlich $\Tor(\Z_n,G) = \ker(\mult[n])$.
+    \item
+      Ist $A$ endlich erzeugt und $G$ Körper der Charakteristik Null (also $A \cong \Tor(A) \oplus \Z^r$, mit $r = \rg(A) \in \N_0$), so ist wegen\ (a)-(c):
+      \begin{equation*}
+        \Tor(A,G) = \triv
+      \end{equation*}
+    \item
+      Für alle $m,n \in \Z$ ist schließlich (Übung):
+      \begin{equation*}
+        \Tor(\Z_m,\Z_n) \cong \Z_{\mathrm{ggT}(m,n)}.
+      \end{equation*}
+  \end{enumerate}
+\end{beispiel}
+
+\begin{kommentar}
+  Sei $G$ feste abelsche Gruppe.
+  Dann wird $F = \Tor(-,G) \colon \Ab \to \Ab$ mit
+  \begin{align*}
+    F(A) & = \Tor(A,G) \\
+    F(h) & = \Phi(h; S(A), S(B)) & \text{für $h \colon A \to B$ Homomorphismus}
+  \end{align*}
+  zu einem covarianten Funktor von \Ab\ auf sich selbst.
+\end{kommentar}
+
+\begin{defn}
+  Sei $C = (C_k, \del_k)$ ein Kettenkomplex und $G$ eine abelsche Gruppe.
+  Dann nennen wir
+  \begin{equation*}
+    C \tensor G \coloneqq (C_k \tensor G, \del_k \tensor \id_G)
+  \end{equation*}
+  den \emph{zugehörigen Kettenkomplex mit Koeffizienten in $G$}.
+\end{defn}
+
+\begin{kommentar}
+  \begin{enumerate}
+    \item
+      $C \tensor G$ ist tatsächlich ein Kettenkomplex, denn
+      \begin{equation*}
+        (\del_k \tensor \id) \circ (\del_{k-1} \tensor \id) = \underbrace{\del_k \circ \del_{k-1}}_{= 0} \tensor \id = 0
+      \end{equation*}
+  \end{enumerate}
+\end{kommentar}

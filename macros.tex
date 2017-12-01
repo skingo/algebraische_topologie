@@ -6,7 +6,9 @@
 %\newcommand{\ker}{\operatorname{ker}}
 \newcommand{\coker}{\operatorname{coker}}
 \newcommand{\id}{\operatorname{id}}
+\newcommand{\incl}{\operatorname{incl}}
 \newcommand{\rg}{\operatorname{rg}}
+\newcommand{\mult}[1][]{\operatorname{mult}_{#1}}
 \newcommand{\triv}{(0)}
 \newcommand{\del}{\partial}
 \newcommand{\tensor}{\otimes}
@@ -17,13 +19,15 @@
 \newcommand{\Q}{\ensuremath{\mathbb{Q}}}
 \newcommand{\CC}{\ensuremath{\mathbb{C}}}
 \newcommand{\C}{\ensuremath{\mathcal{C}}}
-\newcommand{\Ob}{\ensuremath{\mathcal{Ob}}}
+\newcommand{\Ob}{\ensuremath{\mathit{Ob}}}
 \newcommand{\Ab}{\typesetConcreteCat{Ab}}
 \newcommand{\GAb}{\typesetConcreteCat{GAb}}
 \newcommand{\KK}{\typesetConcreteCat{KK}}
 \newcommand{\CoKK}{\typesetConcreteCat{Co\kern1.5pt\text{\textbf{-}}KK}}
 \newcommand{\typesetConcreteCat}[1]{\ensuremath{\mathbf{#1}}}
 
+\newenvironment{cd*}{\shorthandoff{"}\begin{equation*}\begin{tikzcd}}{\end{tikzcd}\end{equation*}\shorthandon{"}}
+\newenvironment{cd}{\shorthandoff{"}\begin{tikzcd}}{\end{tikzcd}\shorthandon{"}}
 
 
 % https://tex.stackexchange.com/questions/224805/i-want-a-really-small-underbrace

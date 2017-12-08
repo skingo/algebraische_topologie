@@ -261,24 +261,24 @@
         \Tor(\Z_n, G) \cong \ker(\mult[n] \tensor \id)
       \end{equation*}
       und wegen
-      \begin{cd}
+      \begin{cd*}
         0 \arrow{r}{}
         & \Tor(\Z_n, G) \arrow{r}{}
           \arrow{d}{\cong}
         & \Z \tensor G \arrow{r}{\mult[n] \tensor \id}
-          \arrow{d}{\cong,(k,g) \mapsto kg}
+          \arrow[d,"\cong", "(k{,}g) \mapsto kg"']
         & \Z \tensor G \arrow{r}{}
           \arrow{d}{\cong}
         & \Z_n \tensor G \arrow{r}{}
           \arrow{d}{\cong}
         & 0\\
         0 \arrow{r}{}
-        & \ker(\mult[n]) \arrow{r}{\overline {\incl}}
-        & G \arrow{r}{\mult[n]}
+        & \ker(\mult[n]) \arrow[swap]{r}{\overline {\incl}}
+        & G \arrow[swap]{r}{\mult[n]}
         & G \arrow[r, "\overline \pi", "(k{,}g) \mapsto kg"']
         & \Z_n \tensor G \arrow{r}{}
         & 0
-      \end{cd}
+      \end{cd*}
       ist tatsächlich $\Tor(\Z_n,G) = \ker(\mult[n])$.
     \item
       Ist $A$ endlich erzeugt und $G$ Körper der Charakteristik Null (also $A \cong \Tor(A) \oplus \Z^r$, mit $r = \rg(A) \in \N_0$), so ist wegen\ (a)-(c):

@@ -1,0 +1,314 @@
+
+\begin{kommentar}
+  \begin{enumerate}
+    \item
+      Ist beispielsweise $C = S(X)$ der singuläre Kettenkomplex eines topologischen Raumes, $S_k(X) = \mathbb{F} (\Sigma_k(X))$, dann folgt
+      \begin{equation*}
+        S_k(X) \tensor G = \bigoplus_{\Sigma_k(X)} \Z \tensor G \cong \bigoplus_{\Sigma_k(X)} (\underbrace{\Z \tensor G}_{=G}) = \bigoplus_{\Sigma_k(X)} G,
+      \end{equation*}
+      das heißt jedes Element $\tau \in S_k(X) \tensor G$ hat eindeutige Darstellung
+      \begin{equation*}
+        \overline c = g_1 \sigma_1 + \dotsb + g_r \sigma_r,
+      \end{equation*}
+      wobei $g \sigma \coloneqq g \tensor \sigma$ abkürzt.
+    \item
+      \emph{Warnung}: Für
+      \begin{equation*}
+        \overline c = g_1 \sigma_1 + \dotsb + g_r \sigma_r
+      \end{equation*}
+      ist also
+      \begin{equation*}
+        \del \overline c = g_1 \del \sigma_1 + \dotsb + g_r \del \sigma_r
+      \end{equation*}
+      mit
+      \begin{equation*}
+        \del \sigma = \sum_{i = 0}^k {(-1)}^{i} \sigma \circ \delta_k^i,
+      \end{equation*}
+      die Elemente $\sigma$ und $\del \sigma$ liegen aber nicht in $S_k(X) \tensor G$, da $G$ im Allgemeinen kein Einselement hat.
+    \item
+      Die Homologie von $C \tensor G$ notieren wir so:
+      \begin{equation*}
+        H(C;G) \coloneqq (H_k(C \tensor G))
+      \end{equation*}
+      und nenne sie die \emph{Homologie von $C$ mit Koeffizienten in $G$}.
+  \end{enumerate}
+\end{kommentar}
+
+\begin{defn}
+  Seien $C$ und $C'$ Kettenkomplexe und $f \colon C \to C'$ eine Kettenabbildung.
+  Ist $G$ abelsche Gruppe, so nennt man $f \tensor \id = (f_k \tensor id)$, $f_k \tensor \id \colon C_k \tensor G \to C_k' \tensor G$ die \emph{von $f$ induzierte Kettenabbildung}.
+\end{defn}
+
+\begin{kommentar}
+  \begin{enumerate}
+    \item
+      $f$ ist tatsächlich Kettenabbildung, denn:
+      \begin{equation*}
+        (\del_k' \tensor \id) \circ (f_k \tensor \id) = (\del_k' \circ f_k) \tensor \id = (f_{k1} \circ \del_k) \tensor \id = (f_{k-1} \tensor \id) \circ (\del_k \tensor \id)
+      \end{equation*}
+    \item
+      Das Tensorieren mit $G$ ergibt also einen Funktor
+      \begin{equation*}
+        F = - \tensor G \colon \KK \to \KK.
+      \end{equation*}
+  \end{enumerate}
+\end{kommentar}
+
+\emph{Frage:} Wie hängen nun $H(C;G)$ und $H(C) = H(C;\Z)$ zusammen?
+
+\begin{vorbereitung}
+  Sei $C$ Kettenkomplex, $G$ abelsche Gruppe und $k \in \N_0$.
+  Dann induziert das Tensorprodukt $C_k \times G$ ein bilineares
+  \begin{align*}
+    Z_k \times G &  \xrightarrow{\tensor} Z_k (C \tensor G) \\
+    (z,g) & \mapsto z \tensor g,
+  \end{align*}
+  denn
+  \begin{equation*}
+    (\del_k \tensor \id) (z \tensor g) = \underbrace{\del_k z}_{=0} \tensor g = 0
+  \end{equation*}
+  und überführt dabei $B_k \times G$ nach $B_k(C \tensor G)$, denn ist $z = \del w$ ($w \in C_{k+1}$), so ist
+  \begin{equation*}
+    z \tensor g = \del w \tensor g = \del \tensor \id (w \tensor g)
+  \end{equation*}
+  Deshalt induziert $\tensor$ ein (eindeutig bestimmtes)
+  \begin{align*}
+    \Lambda \colon H_k \times G & \to H_k(C;G) \\
+    \Lambda([z], g) & = [ z \tensor g]
+  \end{align*}
+  Da $\Lambda$ offenbar bilinear ist, existiert ein eindeutig bestimmter Homomorphismus
+  \begin{align*}
+    \lambda \colon H_k \tensor G & \to H_k(C;G) \\
+    \intertext{mit}
+    \lambda([z] \tensor g) & = [ z \tensor g ]
+  \end{align*}
+  für alle $z \in Z_k, g \in G$.
+  \begin{cd*}
+    Z_k \times G \arrow[r, "\tensor"]
+      \ar[d, "\pi_k \times \id"]
+    & Z_k (C \tensor G)
+      \ar[d, "\pi_k"]
+    \\
+    H_k \times G \ar[r, "\Lambda"]
+    & H_k(C;G)
+  \end{cd*}
+\end{vorbereitung}
+
+\emph{Ab jetzt}: $C$ sei frei.
+
+\begin{lemma}
+\label{lem:quux}
+  Es gilt mit $\del_k' \colon C_k \to B_{k-1}$ und $i_k \colon B_k \xhookrightarrow{} Z_k$, $j_k \colon Z_k \xhookrightarrow{} C_k$ (also $\del_k = j_{k-1} \circ i_{k-1} \circ \del_k'$):
+  \begin{enumerate}
+    \item
+      \begin{equation*}
+        \del_k' \tensor \id C_k \tensor B_{k-1} \tensor \id
+      \end{equation*}
+      ist surjektiv und
+      \begin{equation*}
+        \overline{Z_k} \coloneqq Z_k(C \tensor G) = {(\del_k' \tensor \id)}^{-1} (\ker (i_{k-1} \tensor \id))
+      \end{equation*}
+    \item
+      \begin{equation*}
+        \del_k' \tensor \id (\overline{B_k}) = 0,
+      \end{equation*}
+      wobei $\overline{B_k} \coloneqq B_k(C \tensor G)$.
+  \end{enumerate}
+\end{lemma}
+
+\begin{kommentar}
+  \begin{enumerate}
+    \item
+      Deshalb induziert nun $\del_k' \tensor \id$ einen Homomorphismus
+      \begin{align*}
+        h_k \colon H_k(C;G) = \overline{Z_k} / \overline{B_k} & \to \ker (i_{k-1} \tensor \id) \\
+        [ \overline z ] & \mapsto \del_k' \tensor \id (\overline z).
+      \end{align*}
+    \item
+      Betrachte nun die freie Auflösung
+      \begin{cd*}
+        S \colon 0 \ar[r]
+        & B_{k-1} \ar[r, "i_{k-1}"]
+        & Z_{k-1} \ar[r, "\pi_k"]
+        & H_{k-1}(C) \ar[r]
+        & 0,
+      \end{cd*}
+      da mit $C_{k-1}$ auch $Z_{k-1}$ und $B_{k-1}$ frei sind.
+      Sei dann
+      \begin{equation*}
+        \Phi = \Phi(\id; S, S(H_{k-1}(C))) \colon \ker(i_{k-1} \tensor \id) \to \Tor(H_{k-1}(C), G)
+      \end{equation*}
+      der induzierte Isomorphismus.
+      Setze schließlich
+      \begin{equation*}
+        \mu \coloneqq \Phi \circ h \colon H_k(C;G) \to \Tor(H_{k-1}(C), G)
+      \end{equation*}
+  \end{enumerate}
+\end{kommentar}
+
+\begin{proof}[Beweis von Lemma~\ref{lem:quux}]
+  \begin{enumerate}
+    \item
+      \begin{equation*}
+        \del_k' \tensor \id \colon C_k \tensor G \to B_{k-1} \tensor G
+      \end{equation*}
+      surjektiv, $\overline{Z_k}= {(\del_k' \tensor \id)}^{-1} (\ker (i_{k-1} \tensor \id))$.
+      Dazu: Da $\del_k'$ surjektiv ist, ist es auch $\del_k' \tensor \id$:
+      Ist $z \in B_{k-1}$, $g \in G$, also $z = \del w$ für ein $w \in C_k$, so ist $z \tensor g = \del \tensor \id (w \tensor g)$.
+      Da ($z \tensor g : z \in B_{k-1}, g \in G$) $B_{k-1} \tensor G$ erzeugt, folgt, dass $\del_k' \tensor \id$ surjektiv ist.
+
+      Erinnere:
+      \begin{equation*}
+        \del_k = j_{k-1} \circ i_{k-1} \circ \del_k'.
+      \end{equation*}
+      Dann gilt
+      \begin{equation*}
+        \del_k \tensor \id = (j_{k-1} \tensor \id) \circ (i_{k-1} \tensor \id) \circ (\del_{k}' \tensor \id).
+      \end{equation*}
+      Weil nun die folgende Sequenz spaltet
+      \begin{cd*}
+        0 \ar[r]
+        & Z_{k-1} \ar[r, "j_{k-1}"]
+        & C_{k-1} \ar[r, "\del_{k-1}'"]
+          \ar[l, bend left, "l_{k-1}"]
+        & B_{k-2} \ar[r]
+        & 0
+      \end{cd*}
+      ist auch
+      \begin{cd*}
+        0 \ar[r]
+        & Z_{k-1} \tensor G \ar[r, "j_{k-1} \tensor \id"]
+        & C_{k-1} \tensor G \ar[r]
+        & B_{k-2} \tensor G \ar[r]
+        & 0
+      \end{cd*}
+      exakt, insbesondere ist $j_{k-1} \tensor \id$ injektiv.
+      Somit gilt
+      \begin{align*}
+        \overline{Z_k}
+        & = Z_k(C \tensor G) \\
+        & = \ker(\del_k \tensor \id) \\
+        & \underset{j_k \tensor \id \text{ injektiv}}{=} \ker( (i_{k-1} \tensor \id) \circ (\del_k' \tensor \id)) \\
+        & = {(\del_k' \tensor \id)}^{-1} (\ker (i_{k-1} \tensor \id))
+      \end{align*}
+    \item
+      $\del_k' \tensor \id (\overline{B_k}) = 0$.
+
+      Dazu:
+      Sei $\overline z \in \im(\del_{k+1} \tensor \id) = \overline{B_k}$ und ohne Einschränkung $\overline z = (\del_{k+1} \tensor \id) (c \tensor g)$ mit $c \in C_{k+1}, g \in G$ (jedes andere Element ist Summe von solchen).
+      Dann ist
+      \begin{equation*}
+        \del_k' \tensor \id (\overline z) = (\del_k' \tensor \id) \circ (\del_{k+1} \tensor \id) (c \tensor g) = \underbrace{\del_k' \circ \del_{k+1} (c)}_{= 0} {} \tensor g = 0
+      \end{equation*}
+  \end{enumerate}
+\end{proof}
+
+\begin{satz}[Universelles Koeffiziententheorem für Kettenkomplexe]
+  Sei $C$ freier Kettenkomplex und $k \in \Z$.
+  Dann ist mit $\lambda$ und $\mu$ wie oben beschrieben die folgende Sequenz exakt und spaltet:
+  \begin{cd*}
+    0 \ar[r]
+    & H_k(C) \tensor G \ar[r, "\lambda"]
+    & H_k(C;G) \ar[r, "\mu"]
+    & \Tor(H_{k-1}(C),G) \ar[r]
+    & 0
+  \end{cd*}
+\end{satz}
+
+\begin{proof}
+  \begin{enumerate}
+    \item
+      EXaktheit bei $\Tor(H_k(C), G)$:
+      Nach dem Lemma ist $\del_k' \tensor \id \colon \overline{Z_k} \to \ker (i_{k-1} \tensor \id)$ surjektiv und dann auch $h \colon \overline{H_k} \coloneqq H_k(C;G) \to \ker(i_{k-1} \tensor \id)$ und damit auch $\mu = \Phi \circ h \colon \overline{H_k} \to \Tor(H_{k-1}, G)$, da $\Phi$ surjektiv ist.
+    \item
+      Bei $H_k(C;G)$:
+      \begin{enumerate}
+        \item
+          $\im(\lambda) \subseteq \ker(\mu)$:
+          Für $z \in Z_k, g \in G$ ist:
+          \begin{align*}
+            \mu \circ \lambda ([z] \tensor g) & = \Phi \circ h ( [z \tensor g]) & \text{da $\lambda([z] \tensor g) = [z \tensor g]$} \\
+            & = \Phi(\del_k' \tensor \id (z \tensor g)) & \text{da $h([z \tensor g]) = \del_k' z \tensor g \in \ker(i_{k-1} \tensor \id)$} \\
+            & = \Phi(\underbrace{\del_k' z}_{=0} {} \tensor g) = 0
+          \end{align*}
+          Also ist $\mu \circ \lambda = 0$.
+        \item
+          $\ker \mu \subseteq \im \lambda$:
+          Sei $[\overline z] \in \overline{H_k}$ (mit $\overline{z_k} \in \overline{Z_k}$) mit $\mu([\overline z]) = 0$, also
+          \begin{equation*}
+            0 = \del_k' \tensor \id (\overline z)
+          \end{equation*}
+          (da $\Phi$ injektiv ist).
+          Da
+          \begin{cd*}
+            0 \ar[r]
+            & Z_k \tensor G \ar[r, "j_k \tensor \id"]
+            & C_k \tensor G \ar[r, "\del_k' \tensor \id"]
+            & B_k \tensor G \ar[r]
+            & 0
+          \end{cd*}
+          bei $C_k \tensor G$ exakt ist, existiert ein $\overline c \in Z_k \tensor G$ mit:
+          \begin{equation*}
+            j_k \tensor \id (\overline c) = \overline z.
+          \end{equation*}
+          Es gibt also $r \in \N_0$, $g_1, \dotsc, g_r \in G$ und $z_1, \dotsc, z_r \in Z_k$ mit
+          \begin{equation*}
+            \overline z = g_1 z_1 + \dotsb + g_r z_r.
+          \end{equation*}
+          Dann folgt
+          \begin{equation*}
+            [\overline z] = [ z_1 \tensor g_1 ] + \dotsm + [ z_r \tensor g_r ] = \lambda( [z_1] \tensor g_1) + \dotsm + \lambda([z_r] \tensor g_r) = \lambda([z_1] \tensor g_1 + \dotsm + [z_r] \tensor g_r) \in \im \lambda.
+          \end{equation*}
+      \end{enumerate}
+    \item
+      Bei $H_k(C) \tensor G$:
+      Da $B_{k-1}$ frei ist, spaltet die Sequenz
+      \begin{cd*}
+        0 \ar[r]
+        & Z_k \ar[r, "j_k"]
+        & C_k \ar[r, "\del_k'"]
+          \ar[l, bend left, "l_k"]
+        & B_{k-1} \ar[r]
+        & 0
+      \end{cd*}
+      Sei $l_k \colon C_k \to Z_k$ eine Spaltung,
+      \begin{equation*}
+        l_k \circ j_k = \id.
+      \end{equation*}
+      Betrachte dann die Komposition
+      \begin{cd*}
+        \label{seq:komposition}
+        \tag{$\ast$}
+        \overline{Z_k} \subseteq C_k \tensor G \ar[r, "l_k \tensor \id"]
+        & Z_k \tensor G \ar[r, "\pi_k"]
+        & H_k \tensor G.
+      \end{cd*}
+      Da jedes Element in $\overline{B_k}$ Summe von Elementen der Form
+      \begin{equation*}
+        \del c \tensor g = (\del_{k+1} \tensor \id) (c \tensor g)
+      \end{equation*}
+      ist, ist
+      \begin{equation*}
+        (\pi_k \tensor \id) \circ (l_k \tensor \id) (\del_k c \tensor g)
+        = \pi_k \circ l_k \circ \underbrace{\del_k (c)}_{= j_k (\del_k'(c))} {} \tensor g
+        \underset{l_k \circ j_k = \id}{=} \underbrace{\pi \circ \del_k'}_{= 0} (c) \tensor g = 0.
+      \end{equation*}
+      Deshalb induziert
+      \begin{equation*}
+        (\pi_k \tensor \id) \circ (l_k \tensor \id) |_{\overline{Z_k}}
+      \end{equation*}
+      ein Homomorphismus
+      \begin{align*}
+        \lambda' \colon \overline{H_k} & \to H_k \tensor G \\
+        \intertext{mit}
+        [\overline z] & \mapsto (\pi_k \tensor \id) \circ (l_k \tensor \id) (\overline z)
+      \end{align*}
+      also:
+      \begin{equation*}
+        \lambda' \circ \lambda ([z] \tensor g) = \lambda' ([z \tensor g]) = (\pi_k \tensor \id) \circ (l_k \tensor \id) (z \tensor g) = \pi_k \circ \underbrace{l_k (z)}_{= z} {} \tensor g = [z] \tensor g
+      \end{equation*}
+      \todo[]{ersetze $l_k$ durch $l_k \circ j_k$}
+      und damit $\lambda' \circ \lambda = \id$.
+      Somit ist $\lambda$ injektiv und~\eqref{seq:komposition} spaltet.
+  \end{enumerate}
+\end{proof}

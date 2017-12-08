@@ -218,8 +218,8 @@
 \begin{proof}
   \begin{enumerate}
     \item
-      EXaktheit bei $\Tor(H_k(C), G)$:
-      Nach dem Lemma ist $\del_k' \tensor \id \colon \overline{Z_k} \to \ker (i_{k-1} \tensor \id)$ surjektiv und dann auch $h \colon \overline{H_k} \coloneqq H_k(C;G) \to \ker(i_{k-1} \tensor \id)$ und damit auch $\mu = \Phi \circ h \colon \overline{H_k} \to \Tor(H_{k-1}, G)$, da $\Phi$ surjektiv ist.
+      Exaktheit bei $\Tor(H_k(C), G)$:
+      Nach dem Lemma ist $\del_k' \tensor \id \colon \overline{Z_k} \to \ker (i_{k-1} \tensor \id)$ surjektiv und dann auch $h \colon \overline{H_k} \coloneqq H_k(C;G) \to \ker(i_{k-1} \tensor \id)$ und damit auch $\mu = \Phi \circ h \colon \overline{H_k} \to \Tor(H_{k-1}(C), G)$, da $\Phi$ surjektiv ist.
     \item
       Bei $H_k(C;G)$:
       \begin{enumerate}
@@ -280,7 +280,7 @@
         \label{seq:komposition}
         \tag{$\ast$}
         \overline{Z_k} \subseteq C_k \tensor G \ar[r, "l_k \tensor \id"]
-        & Z_k \tensor G \ar[r, "\pi_k"]
+        & Z_k \tensor G \ar[r, "\pi_k \tensor \id"]
         & H_k \tensor G.
       \end{cd*}
       Da jedes Element in $\overline{B_k}$ Summe von Elementen der Form

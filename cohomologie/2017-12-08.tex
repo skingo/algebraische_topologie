@@ -1,0 +1,232 @@
+
+\begin{kommentar}
+  \begin{enumerate}
+    \item
+      $\lambda_C$ und $\mu_C$ sind natürliche Transformationen, allerdings spaltet die Sequenz nicht natürlich.
+    \item
+      Es folgt dann also insbesondere
+      \begin{equation*}
+        H_k(C;G) \cong H_k(C) \tensor G \oplus \Tor(H_{k-1}(C), G).
+      \end{equation*}
+    \item
+      Hat man insbesondere ein Raumpaar $(X,A)$, so ist der zugehörige singuläre Kettenkomplex $S(X,A)$ frei, denn $S_k(X,A)$ wird von allen singulären $k$-Simplexen $\sigma \colon \Sigma_k \to X$ frei erzeugt, die $\sigma (\Sigma_k) \not\subseteq A$ erfüllen.
+      Es gilt also hier das universelle Koeffiziententheorem:
+      \begin{cd*}
+        0 \ar[r]
+        & H_k(X,A) \tensor G \ar[r, "\lambda"]
+        & H_k(X,A;G) \ar[r, "\mu"]
+        & \Tor(H_{k-1}(X,A), G) \ar[r]
+        & 0
+      \end{cd*}
+  \end{enumerate}
+\end{kommentar}
+
+\begin{satz}
+  Sei $G$ eine abelsche Gruppe und $H = {(H_k)}_{k \in \N}$ die obigen Funktoren $H_k = H_k (- - ; G) \colon \Top_2 \to \Ab$.
+  Dann gibt es eine Folge $\del = {(\del_k)}_{k \in \N}$ von natürlichen Transformationen von $F_1 = H_k(-, - ; G)$ nach $F_2$ mit $F_2 (X,A) = H_{k-1}(A, \emptyset; G)$, sodass gilt:
+  \begin{enumerate}
+    \item
+      Ist $f \homot g \colon (X,A) \to (Y,B)$, so ist
+      \begin{equation*}
+        f_* = g_* \colon H_k(X,A) \to H_k(Y,B)
+      \end{equation*}
+      \emph{(Homotopie-Axiom)}
+    \item
+      Sind für ein Raumpaar $(X,A)$ $i \colon A \xhookrightarrow{} X$ und $j \colon X = (X,\emptyset) \to (X,A)$ die Inklusionen, so ist die folgende Sequenz exakt \emph{(Exaktheitsaxiom)}:
+      \begin{cd*}
+        \tag{$\ast$}
+        \label{seq:lange_sequenz}
+        \dotsb \ar[r]
+        & H_k(X,A;G)  \ar[r, "\del_k(X{,}A)"]
+        & H_{k-1}(A;G) \ar[r, "i_*"]
+        & H_{k-1}(X;G) \ar[r, "j_*"]
+        & H_{k-1}(X,A;G)  \ar[r, "\del_{k-1} (X{,}A)"]
+        & \dotsb
+      \end{cd*}
+    \item
+      Ist $(X,A)$ ein Raumpaar und $U \subseteq X$ derart, dass $\overline{U} \subseteq \mathring A$, so induziert die Inklusion $i \colon (X \setminus U, A \setminus U) \xhookrightarrow{} (X,A)$ einen Isomorphismus in der Homologie,
+      \begin{equation*}
+        i_{*} \colon H_k(X \setminus U, A \setminus U) \xrightarrow{\cong} H_k(X,A)
+      \end{equation*}
+      \emph{(Ausschneidungsaxiom)}.
+    \item
+      Für den einpunktigen Raum $pt$ gilt:
+      \begin{equation*}
+        H_k(pt;G) =
+        \begin{cases}
+          G & \text{für $k = 0$} \\
+          0 & \text{sonst}
+        \end{cases}
+      \end{equation*}
+      \emph{(Normierungsaxiom)}.
+  \end{enumerate}
+\end{satz}
+\begin{proof}
+  \begin{enumerate}
+    \item
+      Sei $f,g \colon (X,A) \to (Y,B)$ homotop, dann sind $S f, S g \colon S(X,A) \to S(Y,B)$ kettenhomotop, sagen wir bezüglich einer Kettenhomotopie $D$.
+      Dann gilt
+      \begin{equation*}
+        S f \tensor \id_G \underset{D \tensor \id}{\cong} S g \tensor \id_G \quad \text{(kettenhomotop)}
+      \end{equation*}
+      und somit
+      \begin{equation*}
+        f_* = g_* \colon H_k(X,A;G) \to H_k(Y,B;G).
+      \end{equation*}
+    \item
+      Für jedes Raumpaar $(X,A)$ spaltet folgende Sequenz, weil $(X,A)$ frei ist:
+      \begin{cd*}
+        0 \ar[r]
+        & S(A) \ar[r, "S i"]
+        & S(X) \ar[r]
+        & S(X,A) \ar[r]
+          \ar[l,bend left]
+        & 0
+      \end{cd*}
+      Also ist auch
+      \begin{cd*}
+        0 \ar[r]
+        & S(A) \tensor G \ar[r, "S i \tensor G"]
+        & S(X) \tensor G \ar[r]
+        & S(X,A) \tensor G \ar[r]
+          \ar[l,bend left]
+        & 0
+      \end{cd*}
+      exakt (und spaltet).
+      Sei $\del_k (X,A) \colon H_k(X,A;G) \to H_{k-1}(A;G)$ der verbindende Homomorphismus dieser kurzen exakten Sequenz.
+      Dann ist $\del_k$ natürliche Transformation von $H_k(-, -; G)$ nach $H_{k-1}(pr_2(-); G)$ und die lange Sequenz~\eqref{seq:lange_sequenz} ist exakt.
+    \item
+      Nach dem universellen Koeffiziententheorem sind die Reihen des folgenden Diagramms exakt und das Diagramm kommutiert:
+      \begin{equation*}
+        \begin{cd}
+          0 \ar[r]
+          & H_k(X \setminus U, A \setminus U) \tensor G \ar[r, "\lambda_{X \setminus U, A \setminus U}"]
+            \ar[d, "i_* \tensor \id_G", "\cong"']
+          & H_k(X \setminus U, A \setminus U; G) \ar[r, "\mu_{X \setminus U, A \setminus U}"]
+            \ar[d, "i_*"]
+          & \Tor(H_{k-1}(X \setminus U, A \setminus U), G) \ar[r]
+            \ar[d, "\Tor(i_*{,} G)", "\cong"']
+          & 0 \\
+          0 \ar[r]
+          & H_k(X , A ) \tensor G \ar[r, "\lambda_{X , A }"]
+          & H_k(X , A ; G) \ar[r, "\mu_{X , A }"]
+          & \Tor(H_{k-1}(X , A ), G) \ar[r]
+          & 0 \\
+        \end{cd}
+      \end{equation*}
+      Da $i_* \colon H_k(X \setminus U, A \setminus U) \to H_k(X,A)$ nach dem (ganzzahligen) Ausschneidungssatz Isomorphismus ist, sind es auch $i_* \tensor \id$ und $\Tor(i_*, G)$.
+      Nach dem Fünferlemma ist es dann auch
+      \begin{equation*}
+        i_*^G \colon H_k(X \setminus U, A \setminus U; G) \to H_k(X,A;G)
+      \end{equation*}
+    \item
+      Nach dem universellen Koeffiziententheorem ist:
+      \begin{equation*}
+        H_k(pt; G) \cong H_k(pt) \tensor G \oplus \underbrace{\Tor(\underbrace{H_{k-1}(pt)}_{\text{frei}}, G)}_{= \triv} =
+        \begin{cases}
+          \overbrace{\Z \tensor G}^{\cong G} & \text{für $k = 0$} \\
+          0 & \text{sonst}
+        \end{cases}
+      \end{equation*}
+  \end{enumerate}
+\end{proof}
+
+
+\section{Homologie von Produkten}
+
+\begin{motivation}
+  \begin{enumerate}
+    \item
+      Seien $X$ und $Y$ topologische Räume.
+      Wie sieht dann eigentlich die Homologie vom Produkt $X \times Y$ in Termen der Homologie von $X$ und von $Y$ aus?
+    \item
+      Innerhalb von Kettenkomplexen:
+      Kann man für gegebene Kettenkomplexe $C$ und $C'$ eigentlich das Tensorprodukt $C \tensor C' = {({(C \tensor C')}_{k})}_{k \in \Z}$ mit
+      \begin{equation*}
+        {(C \tensor C')}_k \coloneqq \bigoplus_{p+q = k} C_p \tensor C'_q
+      \end{equation*}
+      und geeigneten Randabbildungen
+      \begin{equation*}
+        \overline{\del}_k \colon \overline{C}_k \to \overline{C}_{k-1}
+      \end{equation*}
+      mit $\overline{C_k} \coloneqq {(C \tensor C')}_k$ selbst zu einem Kettenkomplex machen und wie sieht die Homologie von $C \tensor C'$ in Termen der Homologie von $C$ und $C'$ aus?
+    \item
+      Wie hängen denn $S(X) \tensor S(Y)$ und $S(X \times Y)$ genau zusammen?
+  \end{enumerate}
+\end{motivation}
+
+\begin{defn}
+  Seien $C$ und $C'$ Kettenkomplexe.
+  Man setzt dann
+  \begin{equation*}
+    \tag{$\ast$}
+    \label{eqn:def_del_bar}
+    \overline{\del}_k \colon \overline{C}_k \to \overline{C}_{k-1}, \qquad \overline{C}_k = \bigoplus C_p \tensor C'_q
+  \end{equation*}
+  folgendermaßen fest:
+  \begin{equation*}
+    \overline \del_k (c \tensor c') \coloneqq \del_p c \tensor c' + {(-1)}^p c \tensor \del_q' c'
+  \end{equation*}
+  mit $c \in C_p$, $c' \in C_q'$ und $p + q = k$.
+\end{defn}
+
+\begin{kommentar}
+  \begin{enumerate}
+    \item
+      Universelle Eigenschaft der direkten Summe zeigt, dass es reicht, $\overline \del_k$ auf jedem Summanden $C_p \tensor C'_q$ anzugeben
+    \item
+      Universelle Eigenschaft des Tensorproduktes zeight dann, dass $\overline \del_k | _{C_p \tensor C'_q}$ wohldefiniert und eindeuti bestimmt ist durch~\eqref{eqn:def_del_bar}.
+    \item
+      $\overline C \coloneqq ({(C \tensor C')}_k, \overline \del_k)$ ist dann tatsächlich ein Kettenkomplex, denn
+      \begin{align*}
+        \overline \del_{k-1} \circ \overline \del_k (c \tensor c')
+          & = \overline \del_{k-1} (\del c \tensor c' + {(-1)}^p c \tensor \del' c') \\
+          & = \underbrace{\del^2 c}_{= 0} + {(-1)}^{p-1} \del c \tensor \del' c'
+          + {(-1)}^{p} \del c \tensor \del' c' + {(-1)}^{2p} c \tensor \underbrace{{\del'}^2 c'}_{= 0} \\
+          & = 0
+      \end{align*}
+      für $c \in C_p$, $c' \in C'_q$ mit $p + q = k$ und das reicht, weil $\overline C_k$ von solchen Elementen erzeugt ist,
+      \begin{equation*}
+        \overline \del_{k-1} \circ \overline \del_k = 0
+      \end{equation*}
+  \end{enumerate}
+\end{kommentar}
+
+\begin{vorbereitung}
+  \begin{enumerate}
+    \item
+      Seien $C$ und $C'$ Kettenkomplexe, $\overline C = C \tensor C'$, $k \in \Z$ und $p, q \in \Z$ mit $p + q = k$.
+      Die bilineare Abbildung
+      \begin{align*}
+        C_p \times C'_q & \to C_p \tensor C'_q \subseteq \overline C_k\\
+        (c, c') & \mapsto c \tensor c'
+      \end{align*}
+      bildet $Z_p \times Z'_q$ nach $\overline Z_k$ ab, denn
+      \begin{equation*}
+        \overline \del_k (c \tensor c') = \underbrace{\del c}_{= 0} \tensor c' + {(-1)}^p c \tensor \underbrace{\del' c'}_{= 0} = 0
+      \end{equation*}
+      Die Komposition der Einschränkung auf $Z_p \times Z'_q$ mit der Projektion $\pi_k \colon \overline Z_k \to \overline H_k \coloneqq H_k(\overline C)$ schickt dann $B_p \times Z'_q$ und $Z_p \times B'_q$ nach Null, denn
+      \begin{equation*}
+        \overline \del_{k+1} (c \tensor z') = \del c \tensor z' + {(-1)}^{p+1} c \tensor \underbrace{\del' z'}_{= 0} = z \tensor z'
+      \end{equation*}
+      für $z \in B_p$, $z' \in Z'_q$, also $z = \del c$ für ein $c \in C_{p+1}$.
+      Also
+      \begin{equation*}
+        \pi_k \circ \overline \del_{k+1} (c \tensor z') = \pi_k(z \tensor z') = 0
+      \end{equation*}
+      (und ähnlich für $Z_p \times B'_q$).
+      Deshalb induziert nun $\pi_k \circ \tensor \colon Z_p \times Z'_q \to \overline H_k$ nach dem Homomorphiesatz ein (eindeutig bestimmtes) bilineares
+      \begin{align*}
+        s \colon H_p \times H'_q & \to \overline H_k \\
+        \intertext{mit}
+        s([z], [z']) & \coloneqq [ z \tensor z']
+      \end{align*}
+      und damit ein lineares
+      \begin{align*}
+        \lambda_{p,q} \colon H_p \tensor H'_q & \to \overline H_k\\
+        [z] \tensor [z'] & \mapsto [z \tensor z']
+      \end{align*}
+  \end{enumerate}
+\end{vorbereitung}<++>
+
+

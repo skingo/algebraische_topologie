@@ -1,0 +1,148 @@
+\begin{lemma}
+  Seien $C$ und $C'$ freie Kettenkomplexe. Weiter seien alle Randoperatoren von $C$ trivial, d.h. $\del =0$. Dann ist $\lambda : H(C) \tensor H(C') \rightarrow H(C \tensor C')$ ein Isomorphismus.
+\end{lemma}
+\begin{proof}
+\begin{enumerate}
+	\item Sei $p \in \Z$. Wir betrachten folgenden Teilkomplex $K^{(p)} \subseteq \overline{C} = C \tensor C'$.
+	\begin{align*}
+	K^{(p)}_{k} &:= C_p \tensor C'_{k-p} \text{ und } \\
+	\del^{(p)}_k (c \tensor c') &:= (-1)^pc \tensor \del'_{k-p}c'
+	\end{align*}
+	Bis auf das Vorzeichen stimmt $K^{(p)}$ mit $C_p \tensor C'$ überein und hat daher isomorphe Homologie.
+	Diese ist nach dem universellen Koeffiziententheorem isomorph zu $C_p \tensor H(C')$, denn
+	\begin{align*}
+	\lambda^{(p)} : C_p \tensor H(C') \rightarrow H(C_p \tensor C') \\
+	c \tensor [z] \mapsto [c \tensor z]
+	\end{align*}
+	ist Isomorphismus, da $C_p$ frei ist.
+	\item Da $\del = 0$ ist, folgt $H_p(C) = C_p$  und ausserdem
+	\begin{equation*}
+		\overline{C} = \bigoplus_{p \in \Z} K^{(p)}
+	\end{equation*}
+	als Kettenkomplex, denn $\overline{\del_k}$ bildet $K^{(p)}_k$ nach $K^{(p)}_{k-1}$ ab.
+	Wegen
+	\begin{equation*}
+		\overline{C} = (\bigoplus C_p) \tensor C' \cong \bigoplus(C_p \tensor C') = \bigoplus_{p \in \Z} K^{(p)}
+	\end{equation*}
+	und der Kommutativität des folgenden Diagramms
+	
+	\begin{cd*}
+	(C \tensor H(C'))_k \ar[d, "\cong"] \ar[r, "="]
+	& \bigoplus_{p}(C_p \tensor H_{k-p}(C')) \ar[r, "\bigoplus_p \lambda_k^{(p)}"]
+	& \bigoplus_p H_k(K^{(p)}) \ar[d, "\cong"] \\
+	(H(C) \tensor H(C'))_k \ar[rr, "\lambda_k"] &   & H_k(C\tensor C')
+	\end{cd*}
+	ist $\lambda_k$ ein Isomorphismus.
+\end{enumerate}
+\end{proof}
+
+\begin{vorbereitung}
+\begin{enumerate}
+	\item Sei $C$ ein freier Kettenkomplex. Betrachte die Unterkomplexe $Z = (Z_p)$ und $B^{-} = (B^{-}_p)_{p \in \Z}$.
+	\begin{align*}
+		Z_p &:= Z_p(C) \\
+		B^{-}_p &:= B_{p-1}(C)
+	\end{align*}
+	und trivialen Randoperatoren. Bezeichne weiter $j : Z \rightarrow C$ die Inklusion und $\del : C \rightarrow B^{-}$ der Randoperator von $C$. Daraus folgt dass $j, \delta$ Kettenabbildungen sind, denn
+	\begin{equation*}
+		\del \circ j = 0 \qquad \del^2 = 0
+	\end{equation*}
+	\begin{cd*}
+	Z \ar[r, "j"] \ar[d, "0", swap] & C  \ar[d, "\del"] & C \ar[r, "\del"] \ar[d, "\del", swap] & B^{-} \ar[d, "0"] \\
+	Z \ar[r, "j", swap] & C  & C \ar[r, "\del", swap] & B^{-}
+	\end{cd*}
+	
+	Die folgende Sequenz von Kettenkomplexen ist also exakt und spaltet, da $B^{-}$ frei ist.
+	\begin{cd*}
+		0 \ar[r] & Z \ar[r, "j"] & C \ar[r, bend left, "\del"] & B^{-} \ar[r] \ar[l, bend left] & 0
+	\end{cd*}
+	
+	\item Sei nun $C'$ weiterer \emph{freier} Kettenkomplex. Für jedes feste $q \in \Z$ ist dann auch
+	\begin{cd*}
+	0 \ar[r] & Z \tensor C'_q \ar[r] & C \tensor C'_q \ar[r] & B^{-} \tensor C'_q \ar[r] & 0
+	\end{cd*}
+	exakt. Und die direkte Summe über alle $q \in \Z$ liefert, dass sogar
+	\begin{cd*}
+	0 \ar[r] & Z \tensor C' \ar[r] & C \tensor C' \ar[r] & B^{-} \tensor C' \ar[r] & 0
+	\end{cd*}
+	exakt ist. Zu ihr gehört dann eine lange exakte Sequenz der Homologiegruppen.
+	\begin{cd*}
+	\ldots \ar[r, "\del_{\ast}"] & H_k(Z \tensor C') \ar[r, "(j\tensor\id)_{\ast}"] & H_k(C \tensor C') \ar[r, "(\del\tensor\id)_{\ast}"] & H_k(B^{-} \tensor C') \ar[r, "\del_{\ast}"]& \ldots
+	\end{cd*}
+	\item Da sowohl $B^{-}$ also auch $C'$ frei sind, und $\del^{B^{-}} = \del$ ist, ist nach dem Lemma der nat. Homomorphismus
+	\begin{equation*}
+	 \lambda_k : (B^{-} \tensor H(C'))_k \rightarrow H_k (B^{-} \tensor C')
+	\end{equation*}
+	ein Isomorphismus.
+	
+	Bezeichne weiter $i_p : B^{-}_p = B_{p-1}(C) \hookrightarrow Z_{p-1}$ die Inklusion und $i = (i_p)$.
+	Es bildet dann $i_p \tensor \id : B^{-1}_p \tensor H(C') \rightarrow Z_{p-1}\tensor H(C')$ den direkten Summanden $B^{-}_p \tensor H_q(C')$ nach $Z_{p-1}\tensor H_q(C')$ ab und folgendes Diagramm kommutiert
+	\begin{cd*}
+	(B^{-} \tensor H(C'))_k \ar[r, "(i\tensor \id)_k"] \ar[d, "\lambda_k" swap, "\cong"]
+	& (Z \tensor H(C'))_{k-1} \ar[d, "\lambda^z_k", "\cong" swap]\\
+	H_k(B^{-} \tensor C') \ar[r, "\del_{\ast}"]
+	& H_{k-1}(Z \tensor C')
+	\end{cd*}
+	(nach Definition des verbindenden Homomorphismus).
+	Weil auch $\lambda^z_k$ nach dem Lemma ein Isomorphismus ist bildet $\lambda_k$ den Kern von $(i\tensor\id)_k$ isomorph auf den Kern von $\del_{\ast}$ ab und folgende Sequenz ($\ast$) ist daher exakt.
+	\begin{cd*}
+	H_k(Z \tensor C') \ar[r, "(j\tensor \id)_{\ast}"] 
+	& H_k(C \tensor C') \ar[r, "\lambda_k^{-1} \circ (\del \tensor \id)_{\ast}"] 
+	&[5em] \ker (i \tensor \id)_k \ar[r] & 0
+	\end{cd*}
+	
+	\item Betrachte schließlich für jedes $p \in \Z$ die freie Auflösung
+	\begin{cd*}
+		S_p: & 0 \ar[r] & B^{-}_p \ar[r, "i_p"] & Z_{p-1} \ar[r] & H_{p-1}(C) \ar[r] & 0
+	\end{cd*}
+	Deshalb existiert ein funktorieller Isomorphismus
+	\begin{equation}
+		\tag{$\ast \ast$}
+		\Phi^p (\id, S, S(H_{p-1}(C))) : \ker(i\tensor \id) \rightarrow \Tor (H_{p-1}(C), H_q(C'))
+	\end{equation}
+	Setze schließlich noch für zwei graduierte abelsche Gruppen $(G_p) = G$ und $G' = (G'_q)$ ähnlich wie beim Tensorprodukt
+	\begin{align*}
+		\Tor(G,G') &:= (\Tor(G,G'))_k \text{ mit } \\
+		(\Tor(G,G'))_k &:= \bigoplus_{p + q = k} \Tor(G_p, G'_q)
+	\end{align*}
+	Summation von ($\ast\ast$) über alle $p,q \in \Z$ mit $p + q = k$ führt auf einen (funktoriellen) Homomorphismus zwischen abelschen Gruppen.
+	\begin{equation*}
+	\Phi_k : \ker(i\tensor id)_k \overset{\cong}{\rightarrow} \Tor (H(C), H(C'))_{k-1}
+	\end{equation*}
+	Setze abschließend
+	\begin{align*}
+	\mu &= (\mu_k) \\
+	\mu_k &= \Phi_k \circ \lambda^{-1}_k \circ (\del \tensor \id)_{\ast} : H_k(C \tensor C') \rightarrow \Tor(H(C), H(C'))_{k-1}
+	\end{align*}
+	Dann ist $\mu$ natürliche Transformation zwischen den Bifunktoren $F_1, F_2$
+	\begin{align*}
+	F_1, F_2 &: \KK \times \KK \rightarrow \GAb \\
+	F_1(C, C') &:= H(C \tensor C') \\
+	F_2(C, C') &:= \Tor^{-}(H(C), H(C'))
+	\end{align*}
+\end{enumerate}
+\end{vorbereitung}
+
+\begin{satz}[Künneth-Formel für Kettenkomplexe]
+	Seien $C,C'$ freie Kettenkomplexe sowie $\lambda : (H(C) \tensor H(C')) \rightarrow H(C\tensor C')$ und $\mu : H(C\tensor C') \rightarrow \Tor^{-}(H(C), H(C'))$ die eben beschriebenen natürlichen Homomorphismen.
+	Dann ist die folgende Sequenz ($\ast \ast \ast$) zwischen graduierten abelschen Gruppen exakt und spaltet.
+	\begin{cd*}
+	0 \ar[r]
+	& H(C) \tensor H(C') \ar[r, "\lambda"]
+	& H(C\tensor C') \ar[r, "\mu"]
+	& \Tor^{-}(H(C), H(C')) \ar[r]
+	& 0
+	\end{cd*}
+\end{satz}
+\begin{proof}
+\begin{enumerate}
+	\item Wegen der Exaktheit von ($\ast$) ist $\mu$ jedenfalls surjektiv, also ($\ast \ast \ast$) exakt bei $\Tor^{-}(H(C), H(C'))$.
+	\item Wegen des Lemmas ist $H_k(Z \tensor C')$ isomorph zu $Z \tensor H_k(C')$ und daher wird $\im (j \tensor \id)_{\ast}$ von den Elementen
+	\begin{equation*}
+		(j\tensor \id)_{\ast} ([z]\tensor[z']) = [z \tensor z'] \in H_k(C \tensor C')
+	\end{equation*}
+	mit $z \in Z_p$, $z' \in Z'_q$, $p+q =k$, erzeugt.
+	Das ist aber die gleiche Untergruppe von $H_k(C\tensor C')$ wie $\im(\lambda)$.
+	Wegen der Exaktheit von ($\ast$) ist daher ($\ast \ast \ast$) auch bei $H_k(C\tensor C')$ exakt.
+\end{enumerate}
+\end{proof}

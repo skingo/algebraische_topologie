@@ -1,0 +1,171 @@
+
+\begin{proof}[Beweisidee]\todo[]{ \emph{Künneth-Formel für $G$-Kettenkomplexe}}
+  Universelles Koeffiziententheorem für $G$-Kettenkomplexe:
+  Ist $C$ ein $G$-Kettenkomplexe und $V$ ein $G$-Vektorraum, so ist die natürliche Transformation $\lambda = (\lambda_C)$,
+  \begin{align*}
+    \lambda_C \colon H(C) \tensor V & \to H(C \tensor V)\\
+    [z] \tensor v & \mapsto [z \tensor v]
+  \end{align*}
+  ein Isomorphismus.
+
+  Beweis dann analog zum Fall ohne $G$-Vektorraum (wird sogar einfacher, da Torsionsprodukte hier wegfallen).
+\end{proof}
+
+\begin{kommentar}
+  Diese $G$-Variante ist oft nützlich, z.B.\ wenn man sich nur für die Betti-Zahlen oder die Euler-Charakteristik eines Produktraumes interessiert.
+\end{kommentar}
+
+\begin{motivation}
+  \begin{enumerate}
+    \item
+      Eigentlich sind wir darauf aus, aus den Homologien zweier topologischer Räume $X$ und $Y$ auf die Homologie des Produktes $X \times Y$ zu schließen.
+      Seien dazu $p,q \in \N_0$, $\sigma \colon \Delta^p \to X$ ein singuläres $p$-Simplex in $X$ und $\tau \colon \Delta^q \to Y$ singuläres $q$-Simplex in $Y$.
+
+      Aus $\sigma \times \tau \colon \Delta^p \times \Delta^q \to X \times Y$ möchte man dann ein singuläres $k$-Simplex, oder wenigstens eine singuläre $k$-Kette (mit $k = p + q$) in $X \times Y$ machen.
+
+      Dazu könnte man einen Homöomorphismus $f$ von $(\Delta^k \dot\Delta^k)$ nach $(\Delta^p \times \Delta^q, {(\Delta^p \times \Delta^q)}^\cdot)$, mit ${(\Delta^p \times \Delta^q)}^\cdot \coloneqq \del(\Delta^p \times \Delta^q) \subseteq \R^{p+q+2}$ davor schalten, denn beide sind homöomorph zu $(\B^k, \S^{k-1})$.
+      Es wird sich herausstellen, dass man von $f$ lediglich braucht, dass
+      \begin{equation*}
+        f_* \colon H_k(\Delta^k, \dot\Delta^k) \cong \Z \to \Z \cong H_k(\Delta^p \times \Delta^q, {(\Delta^p \times \Delta^q)}^\cdot)
+      \end{equation*}
+      ein Isomorphismus ist.
+      Es reicht deshalb, eine feste \emph{Modellkette}
+      \begin{equation*}
+        m_{p,q} \in Z_k (\Delta^p \times \Delta^q, {(\Delta^p \times \Delta^q)}^\cdot)
+      \end{equation*}
+      festzulegen, deren Homologieklasse $[m_{p,q}]$ die zyklische Gruppe $H_k(\Delta^p \times \Delta^q, {(\Delta^p \times \Delta^q)}^\cdot) \cong \Z$ erzeugt, denn $m_{p,q} \coloneqq S f (\id_k)$ (für $\id_k \colon \Delta^k \to \Delta^k)$ wäre eine solche.
+
+      Für $p = q = 0$ bietet sich die Modellkette $m_{0,0} = (e_0, e_0)$ an, wobei $\Delta^0 = \left\{ e_0 \right\}$.
+
+    \item
+      Wenn man das gemacht hat, so könnte man $\sigma \in \Sigma_p(X)$ und $\tau \in \Sigma_q(Y)$ die $k$-Kette
+      \begin{equation*}
+        S(\sigma \times \tau) (m_{p,q}) \in S_{p+q}(X \times Y)
+      \end{equation*}
+      zuordnen, die wir dann später selbst wieder als $\sigma \times \tau$ bezeichnen werden.
+      Bilinear fortgesetzt erhält man so ein bilineares
+      \begin{equation*}
+        \times \colon S_p(X) \times S_q(Y) \to S_{k} (X \times Y),
+      \end{equation*}
+      dessen Bild gerade aus allen \emph{Produktketten} besteht (nach Definition).
+    \item
+      Bei richtiger Wahl der Modellketten $m_{p,q}$ stellt sich dann die \emph{Randformel}
+      \begin{equation*}
+        \del(\sigma \times \tau) = \del \sigma \times \tau + {(-1)}^{p} \sigma \times \del \tau
+      \end{equation*}
+      als richtig heraus, weshalb $\times$ dann eine Kettenabbildung
+      \begin{align*}
+        P = P_{X,Y} \colon S(X) \tensor S(Y) & \to S(X \times Y) \\
+        \sigma \tensor \tau & \mapsto \sigma \times \tau
+      \end{align*}
+      induziert (vergleiche Definition des Randoperators für Kettenkomplexe $C \tensor C'$) und daher auch einen Homomorphismus
+      \begin{equation*}
+        P_* \colon H(S(X) \tensor S(Y)) \to H(X \times Y)
+      \end{equation*}
+      Während die von $\times$ induzierte Kettenabbildung $P_{X,Y}$ im Allgemeinen keineswegs ein Isomorphismus sein wird (nicht jede $k$-Kette in $X \times Y$ ist eine Produktkette), kann man von dem induzierten $P_*$ erhoffen, dass es ein Isomorphismus ist.
+
+    \item
+      Im Folgenden wird nun erstaunlich abstrakt vorgegangen, weil die Modellketten gar nicht explizit gebraucht werden.
+      Das liegt daran, dass man von den Kettenabbildungen $P_{X,Y} \colon S(X) \tensor S(Y) \to S(X \times Y)$ nur die Eigenschaft braucht, dass sie \emph{natürlich}, das heißt $P= {(P_{X,Y})}_{X,Y}$ ist eine natürliche Transformation zwischen den Funktoren
+      \begin{align*}
+        F_1, F_2 \colon \Top \times \Top & \to \KK
+        \intertext{mit}
+        F_1(X,Y) & = S(X) \tensor S(Y)
+        \intertext{und}
+        F_2(X,Y) & = S(X \times Y)
+      \end{align*}
+      und \emph{normiert} (siehe später) sind.
+
+      Die zugehörigen Modellketten wären dann
+      \begin{equation*}
+        m_{p,q} \coloneqq P_{\Delta^p, \Delta^q} (\id_p \tensor \id_q) \in S_{p+q}(\Delta^p \times \Delta^q)
+      \end{equation*}
+      und wegen der Natürlichkeit von $P$ ist dann für beliebige Räume $X$ und $Y$ sowie $\sigma \in \Sigma_p(X)$ und $\tau \in \Sigma_q(Y)$:
+      \begin{cd*}
+        S(\Delta^p) \tensor S(\Delta^q) \ar[d, "S \sigma \tensor S \tau"] \ar[r, "P_{\Delta^p, \Delta^q}"]
+          & S(\Delta^p \times \Delta^q) \ar[d, "S(\sigma\times \tau)"]\\
+        S(X) \tensor S(Y) \ar[r, "P_{X,Y}"]
+          & S(X \times Y)
+      \end{cd*}
+      \begin{align*}
+        P_{X,Y} (\sigma \tensor \tau)
+        & = P_{X,Y} (S \sigma (\id_p) \tensor S \tau (\id_q) \\
+        & = P_{X,Y}  \circ (S\sigma \tensor S\tau) (\id_p \tensor \id_q)\\
+        & = S(\sigma \times \tau) \circ P_{\Delta^p, \Delta^q} (\id_p \tensor \id_q)\\
+        & = S(\sigma \times \tau) (m_{p,q})
+      \end{align*}
+      (Und es wird sich herausstellen, dass $[m_{p,q}]$ ein Erzeuger von $H_{p + q} (\Delta^p \times \Delta^q, {(\Delta^p \times \Delta^q)}^\cdot)$ ist, wenn $m_{0,0} = (e_0, e_0)$ ist)
+  \end{enumerate}
+\end{motivation}
+
+\begin{erinnerung}
+  Für zwei Kettenkomplexe $C$ und $C'$ heißen zwei Kettenabbildungen $f$ und $g$ (ketten-)homotop, wenn es eine Kettenhomotopie $D = (D_k)$ zwischen ihnen gibt, d.h.
+  \begin{align*}
+    D_k \colon C_k \to C'_{k+1}
+    \intertext{mit}
+    \del_{k+1}' \circ D_k + D_{k-1} \circ \del_k = g_k - f_k,
+  \end{align*}
+  kurz $\del D + D \del = g - f$.
+  Es induzieren dann $f$ und $g$ die gleichen Abbildungen in der Homologie, denn
+  \begin{align*}
+    g_*([z]) - f_* ([z]) = \underbrace{[\del D z]}_{=0} + [D {} \underbrace{\del z}_{=0}] = 0
+  \end{align*}
+\end{erinnerung}
+
+\begin{lemma}
+  Seien $C$ und $C'$ nicht-negative Kettenkomplexe (d.h. $C_k = \triv$ für $k < 0$) und für $k > 0$ sei $C_k$ frei und $H_k(C') = \triv$.
+  Dann gilt:
+  \begin{enumerate}
+    \item
+      Sind $f,g \colon C \to C'$ Kettenabbildungen mit $f_0 = g_0$, so sind $f$ und $g$ homotop.
+    \item
+      Seien $B_0 \subseteq C_0$ und $B_0' \subseteq C_0'$ die entsprechenden Randgruppen und
+      \begin{equation*}
+        \varphi \colon C_0 \to C_0'
+      \end{equation*}
+      ein beliebiger Homomorphismus mit $\varphi(B_0) \subseteq B_0'$.
+      Dann gibt es eine Kettenabbildung $f \colon C \to C'$ mit $f_0 = \varphi$.
+  \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+  \begin{enumerate}
+    \item
+      Induktion über $k$:
+      Für $k = 0$ können wir $D_0 = 0$ setzen, weil dann
+      \begin{equation*}
+        \del_1' \circ D_0 + D_{-1} \del_0 = 0 = g_0 - f_0.
+      \end{equation*}
+      Seien nun $D_{j} \colon C_j \to C_{j+1}'$ für $0 \le j \le k$ schon gewählt mit
+      \begin{equation*}
+        \tag{$\ast$}
+        \label{eqn:kettenhomotopie_IV}
+        \del_{j+1}' \circ D_j + D_{j-1} \circ \del_j = g_j - f_j.
+      \end{equation*}
+      Sei weiter ${(x_i)}_{i \in I}$ eine Basis von $C_{k+1}$.
+      Dann ist
+      \begin{equation*}
+        z_{i}' \coloneqq (g_{k+1} - f_{k+1} - D_k \circ \del_{k+1}) (x_i) \in C_{k+1}'
+      \end{equation*}
+      ein Zyklus, denn wegen~\eqref{eqn:kettenhomotopie_IV} für $j = k$ ist
+      \begin{align*}
+        \del' z_i' & = (\del' g_{k+1} - \del' f_{k+1} - \del' \circ D_k \circ \del_{k+1}) (x_i)\\
+        & = (g_k \del - f_k \del - (g_k - f_k - D_{k-1} \circ \del_k) \circ \del_{k+1}) (x_i)\\
+        & = 0
+      \end{align*}
+      damit wegen $H_{k+1}(C') = \triv$ sogar ein Rand.
+
+      Wähle $x_i' \in C_{k+2}'$ mit $\del_{k+2}' x_i' = z_i'$ und setze
+      \begin{equation*}
+        D_{k+1} x_i \coloneqq x_i'
+      \end{equation*}
+      und
+      \begin{align*}
+        \del_{k+2}' \circ D_{k+1} (x_i)
+        & = \del_{k+2}' x_i'\\
+        & = z_i'\\
+        & = (g_{k+1} - f_{k+1} - D_k \circ \del_{k+1}) (x_i)
+      \end{align*}
+      also $\del_{k+2}' \circ D_{k+1} + D_k \circ \del_{k+1} = g_{k+1} - f_{k+1}$.
+  \end{enumerate}
+\end{proof}

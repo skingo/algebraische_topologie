@@ -1,0 +1,125 @@
+\begin{proposition}
+	Sind $P$ und $P'$ Eilenberg-Zilber-Transformationen, so ist $P(X,Y) \cong P'(X,Y) \forall X, Y$.
+\end{proposition}
+\begin{proof}[Beweisidee] (a) Zunächst $X = \Delta^p, Y = \Delta^q$ ($p,q \in \mathbb{N}_0$). Baue zunächst Kettenhomotopie $D_{pq} : P_{pq} \cong P'_{pq}$, $P_{pq} := P_{\Delta^p\Delta^q}$. Funktioniert, weil $S(\Delta^p) \otimes S(\Delta^q)$ frei ist und weil $\Delta^p \times \Delta^q$ azyklisch ist.
+	
+	(b) $(X,Y) \Rightarrow D_{XY}$ soll auch eine natürliche Transformation sein, insbesondere muss folgendes Diagramm kommutieren:
+		\begin{cd*}
+		S(\Delta^p) \tensor S(\Delta^q) \ar[r, "D_{pq}"] \ar[d, "S(\sigma)\tensor S(\tau)"]
+		& S(\Delta^p \times \Delta^q) \ar[d, "S(\sigma \times \tau)"]\\
+		S(X) \tensor S(Y) \ar[r, "D_{XY}"]
+		& S(X,Y)
+	\end{cd*}
+
+Ein $\sigma \in \Sigma_p(X), \sigma : \Delta^p \Rightarrow X$,\\
+$\tau \in \Sigma_q(Y), \tau : \Delta^q \Rightarrow Y$.
+
+$D_{XY}(\sigma \tensor \tau) := S(\sigma \times \tau) \circ D_{pq}(\id \tensor \id)$, denn $\sigma \tensor \tau = S_\sigma \tensor S_\tau(\id \tensor \id)$.
+
+$\rightsquigarrow D_{XY} : P_{XY} \cong P'_{XY}$
+\end{proof}
+\begin{cd*}
+	S(\Delta^p) \tensor S(\Delta^q) \ar[r, "D_{pq}"] \ar[d, swap, "S(\sigma)\tensor S(\tau)"]
+	& S(\Delta^p \times \Delta^q) \ar[d, "S(\sigma \times \tau)"]\\
+	S(X) \tensor S(Y) \ar[r, "D_{XY}"] \ar[d,swap, "S(f)\tensor S(g)"]\drar[phantom, "(\ast)"]
+	& S(X,Y) \ar[d, "S(f \times g)"] \\
+	S(X') \tensor S(Y') \ar[r, "D'_{XY}"]
+	& S(X',Y') \\
+\end{cd*}
+\begin{align*}
+f : X \rightarrow X'
+g:Y \rightarrow X'
+\end{align*}
+
+\begin{kommentar}
+	(a) $D = (D_{XY})$ wird selbst zu einer natürlichen Transformation in dem Sinne, dass das Diagramm $\ast$ für alle Morphismen $f : X \rightarrow X', g: Y \rightarrow X'$ kommutiert.
+	
+	Denn für $sigma \in \Sigma_p(X), \tau \in \Sigma_q(Y)$ gilt
+	\begin{align*}
+	& D_{X',Y'} \circ (S(f) \otimes S(g)) (\sigma \otimes \tau) =\\
+	&= D_{X',Y'}(S(f) \otimes S(g))(S\sigma \otimes S\tau)(\id \tensor \id)\\
+	&= D_{X'Y'}(S(f \circ sigma) \tensor S(g \circ \tau))(\id \tensor \id)\\
+	&= S(f\sigma \times g\tau) D_{pq}(id\times \id) \textrm{(nach Definition von $D_{X'Y'}$)}\\
+	&=S(f \times g) S(\sigma \times tau) D_{pq} (\id \tensor \id) \\
+	&= S(f \times g) D_{XY} (\sigma \tensor \tau) \\
+	&= D_{X'Y'} \circ (S(f) \tensor S(g)) = S(f \times g) \tensor D_{XY}.
+	\end{align*}
+	
+	(b) Man vergleiche auch den Beweis aus Alg.~Top.~2, warum die baryzentrische Unterteilung $B_X : S(X) \rightarrow S(X)$ homotop zu $\id_{S(X)}$ ist. Auch dort wurde die Aussage zun-chst für $X = \Delta$ bewiesen, und dann die Natürlichkeit von $B = (B_x)$ benutzt, um eine natürliche Homotopie $D_X$ zwischen $B_X$ und $\id$ durch
+	\begin{align*}
+	D_X\sigma := S\Sigma circ D_{\Delta^k}(\id)
+	\end{align*}
+	zu definieren. (Ähnliches gilt beim Beweis des Homotopiesatzes.)
+	
+	Man nennt dies die \textit{Matheode der azyklischen Modelle}. Damit kann man nun auch die Existenz einer Eilenberg-Zilber-Transformation beweisen:
+\end{kommentar}
+	
+	\begin{proposition}
+		Es existiert eine Eilenberg-Zilber-Transformation\begin{align*}
+		P = P_{XY} : S(X) \tensor S(Y) \rightarrow S(X \times Y).
+		\end{align*}
+	\end{proposition}
+\begin{proof}
+	a) Sei zunächst wieder $X = \Delta^p, Y = \Delta^q (p, q \in \mathbb{N}_0$. Ist $z \in (S(\Delta^p) \tensor S(\Delta^q))_0 = S_0(\Delta^p) \tensor S_0(\Delta^q)$ ein Rand, so ist z eine Summe von Elementen der Form
+	\begin{align*}
+	(x_2 - x_1) \tensor y_0 \textrm{und} x \tensor (y_2 - y_1)
+	\end{align*}
+	mit $x_1, x_2$ aus der selben Wegkomponente, $x,x_1,x_2 \in \Delta^p$ und $y, y_1, y_2 \in \Delta^q$.
+	
+	Die Abbildung
+	\begin{align*}
+	\phi : S_0(X) \tensor S_0(Y) &\rightarrow S_0(X \times Y)\\
+	x \tensor y &\mapsto (x,y)
+		\end{align*}
+		bildet Ränder tatsächlich in Ränder ab, denn $(x_2, y) - (x_1,y)$ beziehungsweise $(x,y_2) - (x,y_1)$ sind Ränder in $S_0(X \times Y)$. Nach dem Lemma (Teil b) gibt es deshalb eine Kettenabbildung
+		\begin{align*}
+		P_{p,q} := P_{\Delta^p, \Delta^q} : S(\Delta^p) \tensor S(\Delta^q) \rightarrow S(\Delta^p \times \Delta^q)
+		\end{align*}
+		mit $P_{pq} = \phi$.
+		
+		(b) Nun setzen wir für beliebiges $(X,Y)$
+		\begin{align*}
+		\sigma &\in \Sigma_p(X)\\
+		\tau &\in \Sigma_q(Y)
+		\end{align*}
+		wieder $P_{XY} : S(X) \tensor S(Y) \rightarrow S(X \times Y)$ fest durch
+		
+		\begin{cd*}
+			S(\Delta^p) \tensor S(\Delta^q) \ar[r, "P_{pq}"] \ar[d, "S(\sigma)\tensor S(\tau)"]
+			& S(\Delta^p \times \Delta^q) \ar[d, "S(\sigma \times \tau)"]\\
+			S(X) \tensor S(Y) \ar[r, "P_{XY}"]
+			& S(X,Y)
+		\end{cd*}
+	($\sigma = S\sigma(\id)$)
+	
+	Jetzt prüft man ähnlich wie in Kommentar (a) nach, dass
+	\begin{itemize}
+		\item $P_{XY}$ Kettenabbildung ist
+		\item $P = P_{XY}$ sind natürliche Transformationen.
+	\end{itemize}
+$P$ ist auch normiert, denn für $x \ in X$ und $y \in Y$ ist
+\begin{align*}
+(P_{XY})_0(x \tensor y) = (\sigma_x \times \sigma_y) P_{pq}(\id_{\Delta^0} \tensor \id_{\Delta^0})(e_0 \tensor e_0)
+\end{align*}
+(mit $\sigma_x: e_0 \mapsto x, \sigma_y : e_0 \mapsto y$)
+\begin{align*}
+(\sigma_x \times \sigma_y)(e0, e0) = (\sigma_x(e_0), \sigma_y(e_0)) = (x,y)
+\end{align*}
+\end{proof}
+
+\begin{kommentar}
+	(a) Geht man von der Kategorie KK der Homotopie der Kategorie HKK über, so giebt es also nach den Propositionen genau eine natürliche Transformation $\hat{P}$ zwischen den Funktoren $\hat{F}_1$ und $\hat{F}_2 : \textrm{\underline{Top}} \times \textrm{\underline{Top}} \rightarrow \textrm{\underline{HKK}}$.
+	\begin{align*}
+	\hat{F}_1(X,Y) = S(X) \tensor S(Y) \\
+	\hat{F}_2(X,Y) = S(X) \tensor S(Y)
+	\end{align*}
+	
+	(b) auf s\textit{eh\/}r ähnliche Weise zeigt man nun die Existenz und Eindeutigkeit bis auf (natürliche) Kettenhomotopie einer natürlichen Transformation Q von $\hat{F}_1$ nach $\hat{F}_2$
+	\begin{align*}
+	Q_{X,Y} : S(X \times Y) \rightarrow S(X) \otimes S(Y),
+	\end{align*}
+	die \underline{normiert} ist, als
+	\begin{align*}
+	(Q_{XY})_0(x,y) = x \tensor y.
+	\end{align*}
+\end{kommentar}

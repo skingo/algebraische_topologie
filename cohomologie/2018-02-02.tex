@@ -1,0 +1,230 @@
+
+\begin{satz}
+  \begin{enumerate}
+    \item
+      Es gibt natürliche Transformation $Q = (Q_{X Y})$ von $F_2$ nach $F_1$, die \emph{normiert} ist, das heißt
+      \begin{equation*}
+        {(Q_{XY})}_0 \, (x,y) = x \tensor y
+      \end{equation*}
+    \item
+      Sind $Q$ und $Q'$ wie unter (a), so gilt für alle $X$, $Y$:
+      \begin{equation*}
+        Q_{XY} \simeq Q_{XY}'
+      \end{equation*}
+  \end{enumerate}
+\end{satz}
+\begin{proof}
+  \begin{enumerate}
+    \item
+      \begin{enumerate}
+        \item
+          Sei $k \in \N_0$, $X = \Delta^k$ und $Y = \Delta^k$.
+          Es ist $S(\Delta^k \times \Delta^k)$ frei und nach der Künneth-Formel für Kettenkomplexe ist für $k > 0$
+          \begin{equation*}
+            H_k(S(\Delta^k) \tensor S(\Delta^k))
+            = \left( H_0(\Delta^k) \tensor \underbrace{H_k(\Delta^k)}_{= 0} \oplus \underbrace{H_1(\Delta^k)}_{= 0} \tensor H_{k-1}(\Delta^k) \oplus \dotsb \oplus \underbrace{H_k(\Delta^k)}_{= 0} \tensor H_0(\Delta^k) \right)
+            \oplus \left( \underbrace{\Tor(H_0(\Delta^k), H_{k-1}(\Delta^k)) \oplus \dotsm \oplus \Tor(H_{k-1}(\Delta^k), H_0(\Delta^k))}_{= 0} \right)
+            = \triv
+          \end{equation*}
+          Also gibt es nach dem Lemma, Teil (b), eine Kettenabbildung
+          \begin{align*}
+            Q_k \colon S(\Delta^k \times \Delta^k) & \to S(\Delta^k) \tensor S(\Delta^k)
+            \intertext{mit}
+            {(Q_k)}_0 (x, y) & = x \tensor y
+          \end{align*}
+          Dann
+          \begin{align*}
+            \varphi \colon S_0(\Delta^k \times \Delta^k) & \to S_0(\Delta^k) \tensor S_0(\Delta^k)\\
+            (x,y) & \mapsto x \tensor y
+          \end{align*}
+          bildet Ränder in Ränder ab:
+          Ist $\gamma \colon [0,1] \to \Delta^k \times \Delta^k$ ein Weg von $(x_1,y_1)$ nach $(x_2, y_2)$, so ist $\gamma_1 \coloneqq \pi_1 \circ \gamma$ beziehungsweise $\gamma_2 \coloneqq \pi_2 \circ \gamma$ ein Weg von $x_1$ nach $x_2$ in $\Delta^k$ beziehungsweise $\gamma_2$ ein Weg von $y_1$ nach $y_2$ ($\pi_i \colon \Delta^k \times \Delta^k \to \Delta^k$ die Projektionen auf die Faktoren).
+          Wegen
+          \begin{align*}
+            \varphi(\del \gamma) = \varphi( (x_2,y_2) - (x_1,y_1))
+              & = x_2 \tensor y_2 - x_1 \tensor y_1 \\
+              & = (x_2 - x_1) \tensor y_2 + x_1 \tensor (y_2 - y_1) \\
+              & = \del \gamma_1 \tensor y_2 + x_1 \tensor \del \gamma_2\\
+              & = \del(\gamma_1 \tensor y_2 + x_1 \tensor \del \gamma_2)
+          \end{align*}
+          folgt (a).
+        \item
+          Sei $k \in \N_0$, $X$ und $Y$ beliebig, sowie $\sigma \in \Sigma_k (X \times Y)$.
+          Sei $d_k \in \Sigma_k(\Delta^k \times \Delta^k)$, also $d_k \colon \Delta^k \to \Delta^k \times \Delta^k$ das Diagonalsimplex,
+          \begin{equation*}
+            d_k(x) = (x, x).
+          \end{equation*}
+          Setze dann mit $\sigma_i \coloneqq \pi_i \circ \sigma \in \Sigma_k(\Delta^k)$:
+          \begin{equation*}
+            Q_{XY}(\sigma) \coloneqq (S \sigma_1 \tensor S \sigma_2) \circ Q_k(d).
+          \end{equation*}
+          \begin{cd*}
+            \overset{d \in}{S_k(\Delta^k \times \Delta^k)}
+              \ar[r, "Q_k"] \ar[d, "S(\sigma_1 \times \sigma_2)"]
+            & S_k(\Delta^k) \tensor S_k(\Delta^k)
+              \ar[d, "S \sigma_1 \tensor S \sigma_2"]\\
+            \underset{\sigma \in}{S_k(X \times Y)}
+              \ar[r, "Q_{XY}"]
+            & {(S(X) \tensor S(Y))}_k
+          \end{cd*}
+          \todo[inline]{Achtung: für $f \colon X \to Y$ und $g \colon X \to Z$ ist $(f,g) \colon X \to Y \times Z$ und $f \times g \colon X \times X \to Y \times Z$}
+          Beachte:
+          \begin{align*}
+            \sigma = (\sigma_1, \sigma_2)
+            & = (S \sigma_1 (\id), S \sigma_2 (\id)) \\
+            & = (S \sigma_1 \times S \sigma_2) (\underbrace{\id, \id}_{= d}) \\
+            & = S(\sigma_1 \times \sigma_2) (d)
+          \end{align*}
+          und somit
+          \begin{equation*}
+            Q_{XY} \circ S (\sigma_1 \times \sigma_2) = (S \sigma_1 \tensor S \sigma_2) \circ Q_k
+          \end{equation*}
+          zunächst nur auf dem Element $d$, dann aber mit ähnlichem Argument für alle $\sigma \in \Sigma_k(\Delta^k \times \Delta^k)$.
+          Es ist dann -- ählich wie bei $P_{XY}$ -- $Q_{XY}$ eine Kettenabbildung, die zudem auch natürlich und auch normiert ist.
+          Somit folgt (a).
+      \end{enumerate}
+    \item
+      Sind $Q$ und $Q'$ gegeben, so zeigt man wie bei $P$ zunächst mit dem Lemma, Teil (a), dass
+      \begin{equation*}
+        Q_k \simeq Q_k'
+      \end{equation*}
+      (auf dem azyklischen Modell $\Delta^k \times \Delta^k$) und dann wie bei $P$ auch
+      \begin{equation*}
+        Q_{XY} \simeq Q_{XY}'.
+      \end{equation*}
+  \end{enumerate}
+\end{proof}
+
+\begin{theorem}[Eilenberg-Zilber]
+  \label{thm:ez}
+  Sie $P = {(P_{XY})}$ eine EZ-Transformation und $Q = {(Q_{XY})}$ eine normierte natürliche Transformation von $F_2$ nach $F_1$.
+  Dann gilt für alle $X,Y$:
+  \begin{align*}
+    Q_{XY} \circ P_{XY} & \simeq \id_{S(X) \tensor S(Y)} \\
+    P_{XY} \circ Q_{XY} & \simeq \id_{S(X \times Y)}
+  \end{align*}
+\end{theorem}
+
+\begin{kommentar}
+  \begin{enumerate}
+    \item
+      Ist $P$ EZ-Transformation, so ist also
+      \begin{equation*}
+        P_{XY} \colon S(X) \tensor S(Y) \to S(X \times Y)
+      \end{equation*}
+      für alle Paare $(X,Y)$ eine Homothopie-Äquivalenz.
+      Insbesondere induziert $P_{XY}$ dann einen Isomorphismus in der Homologie,
+      \begin{equation*}
+        {(P_{XY})}_{*} \colon H(S(X) \tensor S(Y)) \to H(X \times Y)
+      \end{equation*}
+    \item
+      Während wir $P_{XY}$ nicht explizit angeben können, kann man für $Q_{XY}$ einen Repräsentanten konkret angeben (siehe Kommentar nach dem Beweis).
+  \end{enumerate}
+\end{kommentar}
+
+\begin{proof}[Beweis von Theorem~\ref{thm:ez}]
+  Seien $P$ und $Q$ gegeben.
+  \begin{enumerate}[(i)]
+    \item
+      Betrachte dann $Q \circ P$ zunächst wieder auf dem Modellräumen $X = \Delta^p$, $Y = \Delta^q$.
+      Da
+      \begin{equation*}
+        {({(Q \circ P)}_{\Delta^p \Delta^q})}_{0} (x \tensor y)
+        = {(Q_{\Delta^p \Delta^q})}_0 (x, y)
+        = x \tensor y
+        = \id (x \tensor y)
+      \end{equation*}
+      exisitiert Kettenhomotopie nach dem Lemma Teil (a),
+      \begin{equation*}
+        D_{pq} \colon {(Q \circ P)}_{\Delta^p \Delta^q} \simeq \id_{S(\Delta^p) \tensor S(\Delta^q)}.
+      \end{equation*}
+      Setze dann wie gehabt $D$ auf beliebige Paare $(X,Y)$ derart fort, dass $(X,Y) \mapsto D_{XY}$ natürliche Transformation wird.
+      Somit erhält man
+      \begin{equation*}
+        D_{XY} \colon {(P \circ Q)}_{XY} \simeq \id_{XY}
+      \end{equation*}
+    \item
+      Ganz ähnlich sieht man, dass auch
+      \begin{equation*}
+        {(Q \circ P)}_{XY} \simeq \id.
+      \end{equation*}
+  \end{enumerate}
+\end{proof}
+
+\begin{defn}
+  \begin{enumerate}
+    \item
+      Seien $p,q.k \in \N_0$ mit $0 \le p,q \le k$.
+      Wir bezeichnen mit
+      \begin{align*}
+        {(\delta')}^p_k \colon \Delta^p & \to \Delta^k
+        \intertext{und}
+        {(\delta'')}^q_k \colon \Delta^q & \to \Delta^k
+      \end{align*}
+      die Einschränkungen der linearen Abbildungen $\R^{p+1} \to \R^{k+1}$ beziehungsweise $\R^{q+1} \to \R^{k+1}$, die durch
+      \begin{align*}
+        {(\delta')}^p_k (e_i) & = e_i & (i = 0, \dotsc, p)
+        \intertext{und}
+        {(\delta'')}^q_k (e_i) & = e_{k-q+i} & (i = 0, \dotsc, q)
+      \end{align*}
+      gegeben sind.
+    \item
+      Sei nun $k = p + q$ und $\sigma \colon \Delta^k \to X$ ein singuläres $k$-Simplex.
+      Dann heißt
+      \begin{equation*}
+        \sigma'_p \coloneqq \sigma \circ {(\delta')}_k^p
+      \end{equation*}
+      die \emph{$p$-te Vorderseite von $\sigma$} und
+      \begin{equation*}
+        \sigma''_q \coloneqq \sigma \circ {(\delta'')}_k^q
+      \end{equation*}
+      die \emph{$q$-te Hinterseite von $\sigma$}.
+      \todo[inline]{Bild}
+  \end{enumerate}
+\end{defn}
+
+\begin{kommentar}
+  Setzt man nun für topologische Räume $X$ und $Y$ sowie $K \in \N_0$ und $\sigma \in \Sigma_k(X \times Y)$, $\sigma = (\sigma_1, \sigma_2)$
+  \begin{equation*}
+    Q_{XY}(\sigma) \coloneqq \sum_{p = 0}^k {(\sigma_1')}_p \tensor {(\sigma_2'')}_{k-p},
+  \end{equation*}
+  so erhält man eine natürliche Transformation $(Q_{XY})$ von $F_2$ nach $F_1$, die normiert ist.
+\end{kommentar}
+
+\begin{defn}
+  Seien $X$,$Y$ topologische Räume und $P = (P_{XY})$ eine EZ-Transformation,
+  \begin{equation*}
+    P_{XY} \colon S(X) \tensor S(Y) \to S(X \times Y).
+  \end{equation*}
+  Wir definieren das \emph{Homologie-Kreuzprodukt}
+  \begin{align*}
+    H(X) \times H(Y) & \to H(X \times Y)
+    \intertext{durch}
+    ([z], [z']) & \mapsto \left[P_{XY}(z \tensor z')\right]
+  \end{align*}
+\end{defn}
+
+\begin{kommentar}
+  \begin{enumerate}
+    \item
+      Für zwei graduierte abelsche Gruppen $G = (G_p)$, $G' = (G'_q)$ definiert man ihr Produkt
+      $G \times G' = {(G \times G')}_k$ als die folgende graduierte abelsche Gruppe:
+      \begin{equation*}
+        {(G \times G')}_k \coloneqq \bigoplus_{p+q = k} G_p \times G'_q.
+      \end{equation*}
+    \item
+      Das Homologie-Kreuzprodukt hängt nicht von der Auswahl der EZ-Transformation ab, denn es gilt mit der natürlichen Transformation $\lambda = (\lambda_{XY})$,
+      \begin{align*}
+        \lambda_{XY} \colon H(X) \tensor H(Y) & \to H(S(X) \tensor S(Y))\\
+        [z] \tensor [z'] & \mapsto [ z \tensor z' ]
+      \end{align*}
+      für $\alpha = [z] \in H_p(X)$ und $\beta = [z'] \in H_q(Y)$:
+      \begin{align*}
+        \alpha \times \beta
+        & = [P(z \tensor z')] \\
+        & = P_* ( [z \tensor z']) \\
+        & = P_* \circ \lambda_{XY} (\alpha \tensor \beta),
+      \end{align*}
+      und für jede weitere Wahl einer EZ-Transformation $P'$ ist $P_*' = P_*$.
+  \end{enumerate}
+\end{kommentar}

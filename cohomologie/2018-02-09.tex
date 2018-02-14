@@ -1,0 +1,278 @@
+
+\begin{satz}
+  Für das Homologie-Kreuzprodukt $\times = (\times_{X Y})$ gilt:
+  \begin{enumerate}
+    \item
+      $\times$ ist natürliche Transformation zwischen den Funktoren $F_1, F_2 \colon \Top^2 \to \GAb$,
+      \begin{align*}
+        F_1(X,Y) & = H(X) \tensor H(Y) \\
+        F_2(X,Y) & = H(X \times Y)
+      \end{align*}
+      (und auf Morphismen naheliegend).
+    \item
+      $\times_{XY} \colon H(X) \times H(Y) \to H(X \times Y)$ ist bilinear für alle $X$ und $Y$.
+    \item
+      Das Kreuzprodukt ist im folgenden Sinne kommutativ:
+      Ist $\alpha \in H_p(X)$, $\beta \in H_q(Y)$ für $p,q \in \N_0$, so gilt mit $t_{XY} \colon X \times Y \to Y \times X, (x,y) \mapsto (y,x)$:
+      \begin{equation*}
+        \beta \times \alpha
+         = {(-1)}^{pq} t_* (\alpha \times \beta)
+      \end{equation*}
+    \item
+      Das Kreuzprodukt ist im folgenden Sinne assoziativ:
+      Ist $\alpha \in H(X)$, $\beta \in H(Y)$ und $\gamma \in H(Z)$, so gilt in $H(X \times Y \times Z)$:
+      \begin{equation*}
+        (\alpha \times \beta) \times \gamma = \alpha \times (\beta \times \gamma).
+      \end{equation*}
+    \item
+      Sei $x_0 \in X$ und $j = j_{x_0} \colon Y \to X \times Y, j(y) = (x_0,y)$.
+      Dann gilt für alle $\beta \in H(Y)$:
+      \begin{equation*}
+        [x_0] \times \beta = j_* (\beta)
+      \end{equation*}
+      (Neutrales Element).
+  \end{enumerate}
+\end{satz}
+
+\begin{proof}
+  \begin{enumerate}
+    \item
+      Die Darstellung
+      \begin{equation*}
+        \alpha \times \beta = P_* \circ \lambda(\alpha \tensor \beta)
+      \end{equation*}
+      zeigt, dass $\times$ natürliche Transformation ist (Verkettung natürlicher Transformationen), das heißt:
+      Für $f \colon X \to X'$ und $g \colon Y \to Y'$ stetig ist kommutativ:
+      \begin{cd*}
+        H(X) \times H(Y)
+        \ar[r, "\times_{X Y}"] \ar[d, "f_* \times g_*"]
+        & H(X \times Y)
+        \ar[d, "{(f \times g)}_*"]
+        \\
+        H(X') \times H(Y')
+        \ar[r, "\times_{X' Y'}"]
+        & H(X' \times Y')\\
+      \end{cd*}
+    \item
+      Die Formel zeigt auch, dass $\times_{XY}$ bilinear ist,
+      \begin{align*}
+        (\alpha_1 + \alpha_2) \times \beta
+        & = \alpha_1 \times \beta + \alpha_2 \times \beta \\
+        \alpha \times (\beta_1 + \beta_2)
+        & = \alpha \times \beta_1 + \alpha \times \beta_2
+      \end{align*}
+      für alle $\alpha,\alpha_1,\alpha_2 \in H(X)$, $\beta, \beta_1, \beta_2 \in H(Y)$, denn $\tensor$ ist bilinear und $\lambda$ sowie $P$ sind linear.
+    \item
+      Betrachte die Kettenabbildung
+      \begin{equation*}
+        \tau_{XY} \colon S(X) \tensor S(Y) \to S(Y) \tensor S(X)
+      \end{equation*}
+      gegeben durch
+      \begin{equation*}
+        \tau(c \tensor d) = {(-1)}^{pq} d \tensor c
+      \end{equation*}
+      für $c \in S_p(X)$, $d \in S_q(Y)$.
+      Wir behaupten nun, dass das folgende Diagramm bis auf Kettenhomotopie kommutiert:
+      \begin{cd*}
+        \label{dia:kommutativ}
+        \tag{$\ast$}
+        S(X) \tensor S(Y)
+        \ar[r, "\tau_{XY}"]
+        \ar[d, "P_{XY}"]
+        & S(Y) \tensor S(X)
+        \ar[d, "P_{YX}"]
+        \\
+        S(X \times Y)
+        \ar[r, "S t_{XY}"]
+        & S(Y \times X)
+      \end{cd*}
+      wobei wie eben $t_{XY} \colon X \times Y \to Y \times X$ durch $t(x,y) = (y,x)$ gegeben ist.
+      Es folgt dann für $\alpha = [z] \in H_p(X)$ und $\beta = [z'] \in H_q(Y)$:
+      \begin{align*}
+        \beta \times \alpha
+        & = [ P_{YX} (z' \tensor z) ] \\
+        & = {(-1)}^{pq} [ P_{YX} \circ \tau_{XY} (z \tensor z') ] \\
+        & \overset{\eqref{dia:kommutativ}}{=}
+          {(-1)}^{pq} [ S t_{XY} \circ P_{XY} (z \tensor z') ] \\
+        & = {(-1)}^{pq} {(t_{XY})}_* \circ [ P_{XY} (z \tensor z') ] \\
+        & = {(-1)}^{pq} {(t_{XY})}_{*} (\alpha \times \beta)
+      \end{align*}
+
+      Zur $H$-Kommutativität von~\eqref{dia:kommutativ} benutzen wir die Methode der azyklischen Modelle:
+      \begin{enumerate}
+        \item
+          Seien $X = \Delta^p$, $Y = \Delta^q$.
+          Dann ist $S(X) \tensor S(Y)$ frei und $S(Y \times X$ azyklisch und außerdem
+          \begin{align*}
+            {(P_{YX} \circ \tau_{XY})}_0 (x \tensor y)
+            & = {(P_{YX})}_0 (y \tensor x) \\
+            & = (y,x) \\
+            & = S t_{XY} (x, y) \\
+            & = S t_{XY} \circ {(P_{XY})}_0 (x \tensor y)
+          \end{align*}
+          für alle $x \in X$, $y \in Y$.
+          Somit folgt (La.)
+          \begin{equation*}
+            P_{YX} \circ \tau_{XY} \simeq S t_{XY} \circ P_{XY}.
+          \end{equation*}
+
+          Nun sind neben $P = (P_{XY})$ und $t = (t_{XY})$ und $\tau = (\tau_{XY})$ natürliche Transformationen und daher auch $(P_{YX} \circ \tau_{XY})$ und $(S t_{XY} \circ P_{XY})$ und daher kommutiert dann~\eqref{dia:kommutativ} bis auf Homotopie auch für alle Paare $(X,Y)$.
+      \end{enumerate}
+    \item
+      Betrachte das Diagramm
+      \begin{cd*}
+        \label{dia:assoc}
+        \tag{$\ast\ast$}
+        S(X) \tensor S(Y) \tensor S(Z)
+        \ar[r, "\id \tensor P_{YZ}"]
+        \ar[d, "P_{XY} \tensor \id"]
+        & S(X) \tensor S(Y \times Z)
+        \ar[d, "P_{X, Y \times Z}"]
+        \\
+        S(X \times Y) \tensor S(Z)
+        \ar[r, "P_{X \times Y, Z}"]
+        & S(X \times Y \times Z)
+      \end{cd*}
+      Dass dieses bis auf Homotopie kommutiert, zeigt man wieder mit dem Methode der azyklischen Modelle ($X = \Delta^p$, $Y = \Delta^q$, $Z = \Delta^r$).
+      Es folgt dann für $\alpha = [z] \in H(X)$, $\beta = [z'] \in H(Y)$ und $\gamma = [z''] \in H(Z)$:
+      \begin{align*}
+        (\alpha \times \beta) \times \gamma
+        & = [ P_{XY} (z \tensor z') ] \times \gamma \\
+        & = [ P_{X \times Y, Z} (P_{XY} (z \tensor z') \tensor z'') ] \\
+        & = [P_{X \times Y, Z}  \circ (P_{XY} \tensor \id) (z \tensor z' \tensor z'') ] \\
+        & \overset{\eqref{dia:assoc}}{=}
+        [P_{X, Y \times Z} \circ (\id \tensor P_{YZ}) (z \tensor z' \tensor z'') ] \\
+        & = [P_{X, Y \times Z} (z \tensor P_{YZ} (z' \tensor z'')) ] \\
+        & = \alpha \times [ P_{YZ} (z' \tensor z'') ] \\
+        & = \alpha \times (\beta \times \gamma)
+      \end{align*}
+    \item
+      Methode der azyklischen Modelle:
+      Sei zunächst $X = \left\{ x_0 \right\}$ und $\psi \colon S(Y) \to S(X) \tensor S(Y)$ die Kettenabbildung mit
+      \begin{equation*}
+        \psi(d) = x_0 \tensor d.
+      \end{equation*}
+      Dann kommutiert bis auf Homotopie (Beweis wieder mit dem Modellfall $Y = \Delta^q$):
+      \begin{cd*}
+        \label{dia:foo}
+        \tag{$\ast\ast\ast$}
+        S(Y)
+        \ar[r, "S j"]
+        \ar[d, "\psi"]
+        & S(X \times Y) \\
+        S(X) \tensor S(Y)
+        \ar[ur, "P_{XY}"]
+      \end{cd*}
+      Es folgt für $\beta = [z'] \in H(Y)$:
+      \begin{align*}
+        [x_0] \times \beta
+        & = [ P_{XY}(x_0 \tensor z') ] \\
+        & = [ P_{XY} \circ \psi(z') ] \\
+        & \overset{\eqref{dia:foo}}{=}
+          [S j (z') ] \\
+        & = j_* ( [z'] ) \\
+        & = j_* ( \beta ).
+      \end{align*}
+      Für den allgemeinen Fall benutzt man Teil (a) mit den Abbildungen $i \colon \left\{ x_0 \right\} \xhookrightarrow{} X$, $j_0 \colon Y \to \left\{ x_0 \right\} \times Y$ und $j \colon Y \to X \times Y$.
+      Wegen $(i \times \id) \circ j_0 = j$,
+      \begin{cd*}
+        Y
+        \ar[r, "j_0"]
+        \ar[d, "j"]
+        & \left\{ x_0 \right\} \times Y
+        \ar[dl, "i \times \id"]
+        \\
+        X \times Y
+      \end{cd*}
+      ist dann.
+      \begin{align*}
+        {[x_0]}_X \times \beta
+        & = i_* ([x_0]) \times \beta \\
+        & = (i_* \times \id_*) ([x_0], \beta) \\
+        & \overset{\times \text{nat. Trans.}}{=} {(i \times \id)}_* ( [x_0] \times \beta) \\
+        & = {(i \times \id)}_* ( {(j_0)}_* (\beta)) \\
+        & = {( (i \times \id) \circ j_0)}_* ([\beta]) \\
+        & = j_* ([\beta])
+      \end{align*}
+  \end{enumerate}
+\end{proof}
+
+\begin{satz}[Künneth-Formel für topologische Räume]
+  Sei $\times = (\times_{XY})$ das Homologie-Kreuzprodukt, $Q = (Q_{XY})$ eine (inverse) EZ-Transformation und $\mu = (\mu_{XY} \colon H(S(X) \tensor S(Y)) \to \Tor(H(X),H(Y)))$ aus der Künneth-Formel für Kettenkomplexe.
+  Dann ist die folgende Sequenz natürlich, exakt und spaltet:
+  \begin{cd*}
+    \label{seq:kuenneth_top}
+    \tag{$\star$}
+    0 \ar[r]
+    & H(X) \tensor H(Y) \ar[r, "\times"]
+    & H(X \times Y) \ar[r, "\mu \circ Q_*"]
+    & \Tor(H(X),H(Y)) \ar[r]
+    & 0.
+  \end{cd*}
+\end{satz}
+
+\begin{proof}
+  Sei $P = (P_{XY})$ eine EZ-Transformation.
+  Dann ist $P_*$ invers zu $Q_*$.
+  Benutze nun die Natürlichkeit, Exaktheit und Spaltung der folgenden Sequenz nach de Künneth-Formel für Kettenkomplexe:
+  \begin{cd*}
+    \label{seq:kuenneth_kk}
+    \tag{$\star\star$}
+    0 \ar[r]
+    & H(X) \tensor H(Y) \ar[r, "\lambda_{XY}"]
+    \ar[dr, "\times_{XY}"]
+    & H(S(X) \tensor S(Y)) \ar[r, "\mu_{XY}"]
+    \ar[d, "P_*", swap, "\cong", bend left]
+    & \Tor(H(X),H(Y)) \ar[r]
+    & 0 \\
+    & & H(X \times Y)
+    \ar[u, "Q_*", bend left]
+    \ar[ur, "\mu_{XY} \circ {(Q_{XY})}_*"]
+  \end{cd*}
+  Die Aussagen übertragen sich daher auf die Künneth-Sequenz für topologische Räume.
+\end{proof}
+
+\begin{beispiel}
+  \begin{enumerate}
+    \item
+      Ist insbesondere $H(X)$ \emph{oder} $H(Y)$ frei, so liefert das Homologie-Kreuzprodukt also einen Isomorphismus.
+      \begin{enumerate}
+        \item
+          Zum Beispiel ist dann für $m,n \in \N$ mit $m \neq n$:
+          \begin{equation*}
+            H_k(S^m \times S^n) =
+            \begin{cases}
+              \Z & \text{für $k \in \left\{ 0,m,n,m+n \right\}$} \\
+              0 & \text{sonst}
+            \end{cases}
+          \end{equation*}
+          und für $m = n$:
+          \begin{equation*}
+            H_k(S^n \times S^n) = 
+            \begin{cases}
+              \Z & \text{für $k = 0$ und $k = 2n$} \\
+              \Z^2 & \text{für $k = n$} \\
+              0 & \text{sonst}
+            \end{cases}
+          \end{equation*}
+        \item
+          Für den $n$-dimensionalen Torus $\T = {(\S^1)}^n$ ist
+          \begin{equation*}
+            H_k(\T^n) =
+            \begin{cases}
+              \Z^{\binom{n}{k}} & \text{für $0 \le k \le n$} \\
+              0 & \text{sonst}
+            \end{cases}
+          \end{equation*}
+      \end{enumerate}
+    \item
+      Für $k = 1$ gilt für beliebige topologische Räume:
+      \begin{equation*}
+        H_1(X \times Y) = (H_0(X) \tensor H_1(Y)) \oplus (H_1(X) \tensor H_0(Y))
+      \end{equation*}
+      also für $X,Y$ wegzusammenhängend:
+      \begin{equation*}
+        H_1(X \times Y) = H_1(X) \oplus H_1(Y)
+      \end{equation*}
+  \end{enumerate}
+\end{beispiel}

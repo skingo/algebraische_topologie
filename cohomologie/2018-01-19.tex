@@ -1,0 +1,155 @@
+%19.1.2018???
+
+\begin{lemma}
+	Seien $\C, \C'$ nicht-negative Kettenkomplexe und weiter
+	\begin{itemize}
+		\item $C_k$ frei für $k \geq 1$
+		\item $H_k(\C') = 0$ für $k \geq 1$
+	\end{itemize}
+	\begin{enumerate}
+		\item Seien $f,g : \C \rightarrow \C'$ Kettenabbildungen mit $f_0 = g_0$, dann sind $f$ und $g$ kettenhomotop.
+		\item Sei $\phi : \C_0 \rightarrow C_0'$ ein Homomorphismus mit $\phi(B_0) \subseteq B_0'$.
+		Dann existiert eine Kettenabbildung $f : \C \rightarrow \C'$ mit $f_0 = \phi$.
+	\end{enumerate}
+\end{lemma}
+\begin{proof}
+	\begin{enumerate}
+		\item (letzter Aufschrieb)
+		\item Betrachte
+		
+		\begin{center}
+		\begin{cd}
+			\C_k \ar[r, "f_k"] \ar[d, "\del_k", swap]& \C'_k \ar[d, "\del'_k"] \\
+			\C_{k-1} \ar[r, "f_{k-1}"] & \C'_{k-1}
+		\end{cd}
+		\end{center}
+		Beweis per Induktion über $k$.
+		\begin{itemize}
+			\item ($k = 0$) $f_0 := \phi$ (trivial)
+			\item ($k = 1$) Sei $(x_i)_{i \in I}$ eine Basis von $\C_1$ und $z_i := \phi \circ \del_1(x_i) \in B'_0 \subseteq \C'_0$ (nach Voraussetzung).
+			Sei $x'_i \in \C'_1$ mit $\del'_1 x'_i = z'_i$.
+			Setze dann $f_1(x_i) := x'_i$. Nach Konstruktion gilt:
+			\begin{align*}
+				\del'_1 \circ f_1 (x_i) &= \del'_1(x'_i) \\
+				&= z'_i \\
+				&= \phi \circ \del_1 (x_i) \\
+				&= f_0 \circ \del_1 (x_i)
+			\end{align*}
+			Setze dann $f_1 : \C_1 \rightarrow \C'_1$ zu (eindeutigem) Homomorphismus fort und erhalte
+			\begin{equation*}
+				\del'_1 \circ f_1 = f_0 \circ \del_1
+			\end{equation*}
+			\item ($k \rightarrow k + 1$) Seien $f_0 \ldots f_k$ mit $\del'_j \circ f_j = f_{j-1} \circ \del_j$  für $ 1 \leq j \leq k$ schon gegeben.
+			Da $\C_{k+1}$ frei ist existiert eine Basis $(x_i)_{i\in I}$ von $\C_{k+1}$.
+			
+			$\Rightarrow$ $z'_i := f_k \circ \del_{k+1}(x_i) \in \C'_{k}$
+			
+			Daraus folgt:
+			\begin{align*}
+				\del'_k z'_i &= \del'_k f_k \circ \del_{k+1}(x_i)  \\
+				&\overset{IV}{=} f_{k-1} \circ \del_k \circ \del_{k+1} (x_i) \\
+				&= 0
+			\end{align*}
+			
+			Da $H_k(\C') = 0$ ist, existiert also ein $x'_i \in \C'_{k+1}$ mit $\del'_{k+1}(x'_i) = z'_i$.
+			Setze $f_{k+1}(x_i) = x'_i$.
+			
+			$\Rightarrow$ (nach Konstruktion:)
+			\begin{align*}
+				\del'_{k+1} \circ f_{k+1}(x_i) &= \del'_{k+1} (x'_i) \\
+				  &= z'_i \\
+				  &= f_k \circ \del_{k+1} (x_i)
+			\end{align*}
+			Setze dann $f_{k+1} : \C_{k+1} \rightarrow \C'_{k+1}$ zu einem Homomorphismus fort und erhalte
+			\begin{align*}
+				\del' \circ f = f \circ \del
+			\end{align*}
+		\end{itemize}
+	\end{enumerate}
+\end{proof}
+
+\begin{defn}[Eilenberg-Zilber Transformation]
+	Seien $F_1,F_2 : \Top \times \Top \rightarrow \KK$ die Funktoren die auf den Objekten durch
+	\begin{align*}
+		F_1(X,Y) &= S(X) \tensor S(Y) \\
+		F_2(X,Y) &= S(X \times Y)
+	\end{align*}
+	und auf den Morphismen auf naheliegende Weise gegeben sind.
+	
+	Man nennt eine nat. Transformation $P = (P_{XY})$ von $F_1$ nach $F_2$ eine Eilenberg-Zilber Transformation (EZ-Trafo) wenn sie \emph{normiert} ist, d.h.
+	\begin{equation*}
+		(P_{XY})_0(x \tensor y) = (x,y) \quad \forall x \in X \quad \forall y \in Y
+	\end{equation*}
+	wobei wir (wie üblich) $\Sigma_0 (x)$ mit $x$ identifizieren.
+	
+	\begin{center}
+	\begin{cd}
+		S(X_1) \tensor S(Y_1) \ar[r, "S_f \tensor S_g"] \ar[d, "P_{X_1Y_1}", swap] & S(X_2) \tensor S(Y_2) \ar[d, "P_{X_2Y_2}"] \\
+		S(X_1 \times Y_1) \ar[r, "S(f\times g)", swap] & S(X_2 \times Y_2)
+	\end{cd}
+	\end{center}
+\end{defn}
+
+\begin{proposition}
+	Seien $P, P'$ EZ-Trafos. Dann sind $P, P'$ kettenhomotop für jedes Paar $X,Y$: $P_{XY} \homot P'_{XY}$.
+\end{proposition}
+\begin{proof}X
+	\begin{enumerate}
+	\item Seien $p,q \in \N_0$ und zunächst $X = \bigtriangleup^p$ und $Y = \bigtriangleup^q$.
+	Da $P$ und $P'$ normiert sind, stimmen $(P_{XY})_0$ und $(P'_{XY})_0$ überein.
+	Weil $S(X) \tensor S(Y)$ frei ist und $X\times Y = \bigtriangleup^p \times \bigtriangleup^q$ ist azyklisch, denn $\bigtriangleup^p \times \bigtriangleup^q \cong \B^{p+q}$.
+	
+	Wegen Teil a) des Lemmas gibt es deshalb eine Kettenhomotopie
+	\begin{equation*}
+		D_{pq} := D_{\bigtriangleup^p \bigtriangleup^q} : S(X) \tensor S(Y) \rightarrow S(X \times Y)
+	\end{equation*}
+	von $P_{\bigtriangleup^p \bigtriangleup^q}$ nach $P'_{\bigtriangleup^p \bigtriangleup^q}$, also:
+	\begin{equation*}
+		\del D_{pq} + D_{pq}\del = P'_{pq} - P_{pq}.
+	\end{equation*}
+	\item Seien $X$ und $Y$ nun beliebig.
+	Seien $k \in \N$, $p,q \in \N_0$ mit $p + q = k$.
+	Für $\sigma \in \Sigma_p(X)$ und $\tau \in \Sigma_q(Y)$ setzen wir
+	\begin{align*}
+		(D_{XY})_k &: (S(X) \tensor S(Y))_k &&\rightarrow (S(X\times Y))_{k+1} \\
+		&: (\sigma \tensor \tau) &&\mapsto S(\sigma \times \tau)((D_{pq})_k (id_p \tensor id_q))
+	\end{align*}
+	mit $id_p := id_{\bigtriangleup^p}$ und $id_q := id_{\bigtriangleup^q}$.
+	Dann wird das folgende Diagramm kommutativ
+	\begin{center}	
+	\begin{cd}
+		S(\bigtriangleup^p) \tensor S(\bigtriangleup^q) \ar[r, "D_{pq}"] \ar[d, "S\sigma \tensor S\tau", swap] & S(\bigtriangleup^p \times \bigtriangleup^q) \ar[d, "S(\sigma \times \tau)"]\\
+		S(X) \tensor S(Y) \ar[r, "D_{XY}", swap] & S(X \times Y)
+	\end{cd}
+	\end{center}
+	da gilt
+	\begin{align*}
+		\sigma \tensor \tau = S\sigma \tensor S\tau (id_p \tensor id_q)
+	\end{align*}
+	
+	\underline{Behauptung:} $D_{XY}$ ist tatsächlich Kettenhomotopie zwischen $P_{XY}$ und $P'_{XY}$.
+	Sei dazu $\sigma \in \Sigma_p(X)$, $\tau \in \Sigma_q(Y)$.
+	Dann folgt:
+	\begin{align*}
+		& (\del \circ D_{XY} + D_{XY} \circ \del) (\sigma \tensor \tau) \\
+		=\, & \del S(\sigma \tensor \tau) D_{pq}(id \tensor id) + D_{XY} \del (S\sigma \tensor S\tau (id \tensor id)) \\
+		=\, & S(\sigma \tensor \tau) \circ \del \circ (D_{pq} (id \tensor id)) + D_{XY} \circ (S\sigma \tensor S\tau) \circ \del (id \tensor id)
+	\end{align*}
+	 Denn $S(\sigma \times \tau)$ und $S\sigma \tensor S\tau$ sind Kettenabbildungen.
+	\end{enumerate}
+	
+	Daraus folgt
+	\begin{align*}
+		&(\del D_{XY} + D_{XY}\del)(\sigma \tensor \tau) \\
+		=\, & [S(\sigma \times \tau)(-D_{pq} \circ \del + (P'_{pq} - P_{pq})) + D_{pq}\circ \del](\sigma \tensor \tau)
+	\end{align*}
+	
+	weil $D_{pq}$ eine Kettenhomotopie ist und $(\ast)$, also
+	\begin{align*}
+		(\del D_{XY} + D_{XY} \del) (\sigma \tensor \tau) = S(\sigma \times \tau)(P'_{pq} - P_{pq})(id \tensor id)
+	\end{align*}
+	Weil $P, P'$ nat. Transformationen sind, ist daher
+	\begin{align*}
+		(\del D_{XY} + D_{XY} \del) (\sigma \tensor \tau) = (P'_{XY} - P_{XY})\underbrace{(S\sigma \tensor S\tau)(id \tensor id)}_{= \sigma \tensor \tau}
+	\end{align*}
+\end{proof}
